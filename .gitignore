@@ -1,0 +1,10 @@
+# Third party vendor libraries.
+vendor/*
+system/*
+uploads/*
+
+asset/fonts/*
+asset/img/*
+
+.editorconfig
+application/logs/*
