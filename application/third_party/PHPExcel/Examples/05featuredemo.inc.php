@@ -18,17 +18,21 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 
-/** Error reporting */
+/**
+ * Error reporting 
+ */
 error_reporting(E_ALL);
 
-/** Include PHPExcel */
+/**
+ * Include PHPExcel 
+*/
 require_once dirname(__FILE__) . '/../Classes/PHPExcel.php';
 
 
@@ -39,19 +43,19 @@ $objPHPExcel = new PHPExcel();
 // Set document properties
 echo date('H:i:s') , " Set document properties" , EOL;
 $objPHPExcel->getProperties()->setCreator("Maarten Balliauw")
-							 ->setLastModifiedBy("Maarten Balliauw")
-							 ->setTitle("Office 2007 XLSX Test Document")
-							 ->setSubject("Office 2007 XLSX Test Document")
-							 ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
-							 ->setKeywords("office 2007 openxml php")
-							 ->setCategory("Test result file");
+    ->setLastModifiedBy("Maarten Balliauw")
+    ->setTitle("Office 2007 XLSX Test Document")
+    ->setSubject("Office 2007 XLSX Test Document")
+    ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
+    ->setKeywords("office 2007 openxml php")
+    ->setCategory("Test result file");
 
 
 // Create a first sheet, representing sales data
 echo date('H:i:s') , " Add some data" , EOL;
 $objPHPExcel->setActiveSheetIndex(0);
 $objPHPExcel->getActiveSheet()->setCellValue('B1', 'Invoice');
-$objPHPExcel->getActiveSheet()->setCellValue('D1', PHPExcel_Shared_Date::PHPToExcel( gmmktime(0,0,0,date('m'),date('d'),date('Y')) ));
+$objPHPExcel->getActiveSheet()->setCellValue('D1', PHPExcel_Shared_Date::PHPToExcel(gmmktime(0, 0, 0, date('m'), date('d'), date('Y'))));
 $objPHPExcel->getActiveSheet()->getStyle('D1')->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_DATE_XLSX15);
 $objPHPExcel->getActiveSheet()->setCellValue('E1', '#12566');
 
@@ -121,7 +125,7 @@ $objRichText->createText('This invoice is ');
 $objPayable = $objRichText->createTextRun('payable within thirty days after the end of the month');
 $objPayable->getFont()->setBold(true);
 $objPayable->getFont()->setItalic(true);
-$objPayable->getFont()->setColor( new PHPExcel_Style_Color( PHPExcel_Style_Color::COLOR_DARKGREEN ) );
+$objPayable->getFont()->setColor(new PHPExcel_Style_Color(PHPExcel_Style_Color::COLOR_DARKGREEN));
 
 $objRichText->createText(', unless specified otherwise on the invoice.');
 
@@ -130,12 +134,12 @@ $objPHPExcel->getActiveSheet()->getCell('A18')->setValue($objRichText);
 // Merge cells
 echo date('H:i:s') , " Merge cells" , EOL;
 $objPHPExcel->getActiveSheet()->mergeCells('A18:E22');
-$objPHPExcel->getActiveSheet()->mergeCells('A28:B28');		// Just to test...
-$objPHPExcel->getActiveSheet()->unmergeCells('A28:B28');	// Just to test...
+$objPHPExcel->getActiveSheet()->mergeCells('A28:B28');        // Just to test...
+$objPHPExcel->getActiveSheet()->unmergeCells('A28:B28');    // Just to test...
 
 // Protect cells
 echo date('H:i:s') , " Protect cells" , EOL;
-$objPHPExcel->getActiveSheet()->getProtection()->setSheet(true);	// Needs to be set to true in order to enable any worksheet protection!
+$objPHPExcel->getActiveSheet()->getProtection()->setSheet(true);    // Needs to be set to true in order to enable any worksheet protection!
 $objPHPExcel->getActiveSheet()->protectCells('A3:E13', 'PHPExcel');
 
 // Set cell number formats
@@ -176,12 +180,12 @@ $objPHPExcel->getActiveSheet()->getStyle('B5')->getAlignment()->setShrinkToFit(t
 // Set thin black border outline around column
 echo date('H:i:s') , " Set thin black border outline around column" , EOL;
 $styleThinBlackBorderOutline = array(
-	'borders' => array(
-		'outline' => array(
-			'style' => PHPExcel_Style_Border::BORDER_THIN,
-			'color' => array('argb' => 'FF000000'),
-		),
-	),
+    'borders' => array(
+        'outline' => array(
+            'style' => PHPExcel_Style_Border::BORDER_THIN,
+            'color' => array('argb' => 'FF000000'),
+        ),
+    ),
 );
 $objPHPExcel->getActiveSheet()->getStyle('A4:E10')->applyFromArray($styleThinBlackBorderOutline);
 
@@ -189,12 +193,12 @@ $objPHPExcel->getActiveSheet()->getStyle('A4:E10')->applyFromArray($styleThinBla
 // Set thick brown border outline around "Total"
 echo date('H:i:s') , " Set thick brown border outline around Total" , EOL;
 $styleThickBrownBorderOutline = array(
-	'borders' => array(
-		'outline' => array(
-			'style' => PHPExcel_Style_Border::BORDER_THICK,
-			'color' => array('argb' => 'FF993300'),
-		),
-	),
+    'borders' => array(
+        'outline' => array(
+            'style' => PHPExcel_Style_Border::BORDER_THICK,
+            'color' => array('argb' => 'FF993300'),
+        ),
+    ),
 );
 $objPHPExcel->getActiveSheet()->getStyle('D13:E13')->applyFromArray($styleThickBrownBorderOutline);
 
@@ -206,60 +210,60 @@ $objPHPExcel->getActiveSheet()->getStyle('A1:E1')->getFill()->getStartColor()->s
 // Set style for header row using alternative method
 echo date('H:i:s') , " Set style for header row using alternative method" , EOL;
 $objPHPExcel->getActiveSheet()->getStyle('A3:E3')->applyFromArray(
-		array(
-			'font'    => array(
-				'bold'      => true
-			),
-			'alignment' => array(
-				'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_RIGHT,
-			),
-			'borders' => array(
-				'top'     => array(
- 					'style' => PHPExcel_Style_Border::BORDER_THIN
- 				)
-			),
-			'fill' => array(
-	 			'type'       => PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR,
-	  			'rotation'   => 90,
-	 			'startcolor' => array(
-	 				'argb' => 'FFA0A0A0'
-	 			),
-	 			'endcolor'   => array(
-	 				'argb' => 'FFFFFFFF'
-	 			)
-	 		)
-		)
+    array(
+            'font'    => array(
+                'bold'      => true
+            ),
+            'alignment' => array(
+                'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_RIGHT,
+            ),
+            'borders' => array(
+                'top'     => array(
+                     'style' => PHPExcel_Style_Border::BORDER_THIN
+                 )
+            ),
+            'fill' => array(
+                 'type'       => PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR,
+                  'rotation'   => 90,
+                 'startcolor' => array(
+                     'argb' => 'FFA0A0A0'
+                 ),
+                 'endcolor'   => array(
+                     'argb' => 'FFFFFFFF'
+                 )
+             )
+        )
 );
 
 $objPHPExcel->getActiveSheet()->getStyle('A3')->applyFromArray(
-		array(
-			'alignment' => array(
-				'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
-			),
-			'borders' => array(
-				'left'     => array(
- 					'style' => PHPExcel_Style_Border::BORDER_THIN
- 				)
-			)
-		)
+    array(
+            'alignment' => array(
+                'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+            ),
+            'borders' => array(
+                'left'     => array(
+                     'style' => PHPExcel_Style_Border::BORDER_THIN
+                 )
+            )
+        )
 );
 
 $objPHPExcel->getActiveSheet()->getStyle('B3')->applyFromArray(
-		array(
-			'alignment' => array(
-				'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
-			)
-		)
+    array(
+            'alignment' => array(
+                'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+            )
+        )
 );
 
 $objPHPExcel->getActiveSheet()->getStyle('E3')->applyFromArray(
-		array(
-			'borders' => array(
-				'right'     => array(
- 					'style' => PHPExcel_Style_Border::BORDER_THIN
- 				)
-			)
-		)
+    array(
+            'borders' => array(
+                'right'     => array(
+                     'style' => PHPExcel_Style_Border::BORDER_THIN
+                 )
+            )
+        )
 );
 
 // Unprotect a cell

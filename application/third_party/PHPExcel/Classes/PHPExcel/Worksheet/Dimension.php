@@ -19,11 +19,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Worksheet
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Worksheet
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 abstract class PHPExcel_Worksheet_Dimension
 {
@@ -79,7 +79,7 @@ abstract class PHPExcel_Worksheet_Dimension
     /**
      * Set Visible
      *
-     * @param bool $pValue
+     * @param  bool $pValue
      * @return PHPExcel_Worksheet_Dimension
      */
     public function setVisible($pValue = true)
@@ -103,7 +103,7 @@ abstract class PHPExcel_Worksheet_Dimension
      *
      * Value must be between 0 and 7
      *
-     * @param int $pValue
+     * @param  int $pValue
      * @throws PHPExcel_Exception
      * @return PHPExcel_Worksheet_Dimension
      */
@@ -130,7 +130,7 @@ abstract class PHPExcel_Worksheet_Dimension
     /**
      * Set Collapsed
      *
-     * @param bool $pValue
+     * @param  bool $pValue
      * @return PHPExcel_Worksheet_Dimension
      */
     public function setCollapsed($pValue = true)
@@ -152,7 +152,7 @@ abstract class PHPExcel_Worksheet_Dimension
     /**
      * Set index to cellXf
      *
-     * @param int $pValue
+     * @param  int $pValue
      * @return PHPExcel_Worksheet_Dimension
      */
     public function setXfIndex($pValue = 0)

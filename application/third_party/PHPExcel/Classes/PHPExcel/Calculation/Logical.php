@@ -1,12 +1,14 @@
 <?php
 
-/** PHPExcel root directory */
+/**
+ * PHPExcel root directory 
+ */
 if (!defined('PHPEXCEL_ROOT')) {
     /**
      * @ignore
      */
     define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../');
-    require(PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php');
+    include PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php';
 }
 
 /**
@@ -28,11 +30,11 @@ if (!defined('PHPEXCEL_ROOT')) {
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  *
- * @category    PHPExcel
- * @package        PHPExcel_Calculation
- * @copyright    Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license        http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version        ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Calculation
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_Calculation_Logical
 {
@@ -44,9 +46,9 @@ class PHPExcel_Calculation_Logical
      * Excel Function:
      *        =TRUE()
      *
-     * @access    public
+     * @access   public
      * @category Logical Functions
-     * @return    boolean        True
+     * @return   boolean        True
      */
     public static function TRUE()
     {
@@ -62,9 +64,9 @@ class PHPExcel_Calculation_Logical
      * Excel Function:
      *        =FALSE()
      *
-     * @access    public
+     * @access   public
      * @category Logical Functions
-     * @return    boolean        False
+     * @return   boolean        False
      */
     public static function FALSE()
     {
@@ -88,10 +90,10 @@ class PHPExcel_Calculation_Logical
      *        If any argument value is a string, or a Null, the function returns a #VALUE! error, unless the string holds
      *            the value TRUE or FALSE, in which case it is evaluated as the corresponding boolean value
      *
-     * @access    public
+     * @access   public
      * @category Logical Functions
-     * @param    mixed        $arg,...        Data values
-     * @return    boolean        The logical AND of the arguments.
+     * @param    mixed $arg,... Data values
+     * @return   boolean        The logical AND of the arguments.
      */
     public static function LOGICAL_AND()
     {
@@ -144,10 +146,10 @@ class PHPExcel_Calculation_Logical
      *        If any argument value is a string, or a Null, the function returns a #VALUE! error, unless the string holds
      *            the value TRUE or FALSE, in which case it is evaluated as the corresponding boolean value
      *
-     * @access    public
+     * @access   public
      * @category Logical Functions
-     * @param    mixed        $arg,...        Data values
-     * @return    boolean        The logical OR of the arguments.
+     * @param    mixed $arg,... Data values
+     * @return   boolean        The logical OR of the arguments.
      */
     public static function LOGICAL_OR()
     {
@@ -199,10 +201,10 @@ class PHPExcel_Calculation_Logical
      *        If any argument value is a string, or a Null, the function returns a #VALUE! error, unless the string holds
      *            the value TRUE or FALSE, in which case it is evaluated as the corresponding boolean value
      *
-     * @access    public
+     * @access   public
      * @category Logical Functions
-     * @param    mixed        $logical    A value or expression that can be evaluated to TRUE or FALSE
-     * @return    boolean        The boolean inverse of the argument.
+     * @param    mixed $logical A value or expression that can be evaluated to TRUE or FALSE
+     * @return   boolean        The boolean inverse of the argument.
      */
     public static function NOT($logical = false)
     {
@@ -246,12 +248,12 @@ class PHPExcel_Calculation_Logical
      *            If condition is FALSE and ReturnIfFalse is blank, then the value 0 (zero) is returned.
      *            ReturnIfFalse can be another formula.
      *
-     * @access    public
+     * @access   public
      * @category Logical Functions
-     * @param    mixed    $condition        Condition to evaluate
-     * @param    mixed    $returnIfTrue    Value to return when condition is true
-     * @param    mixed    $returnIfFalse    Optional value to return when condition is false
-     * @return    mixed    The value of returnIfTrue or returnIfFalse determined by condition
+     * @param    mixed $condition     Condition to evaluate
+     * @param    mixed $returnIfTrue  Value to return when condition is true
+     * @param    mixed $returnIfFalse Optional value to return when condition is false
+     * @return   mixed    The value of returnIfTrue or returnIfFalse determined by condition
      */
     public static function STATEMENT_IF($condition = true, $returnIfTrue = 0, $returnIfFalse = false)
     {
@@ -269,11 +271,11 @@ class PHPExcel_Calculation_Logical
      * Excel Function:
      *        =IFERROR(testValue,errorpart)
      *
-     * @access    public
+     * @access   public
      * @category Logical Functions
-     * @param    mixed    $testValue    Value to check, is also the value returned when no error
-     * @param    mixed    $errorpart    Value to return when testValue is an error condition
-     * @return    mixed    The value of errorpart or testValue determined by error condition
+     * @param    mixed $testValue Value to check, is also the value returned when no error
+     * @param    mixed $errorpart Value to return when testValue is an error condition
+     * @return   mixed    The value of errorpart or testValue determined by error condition
      */
     public static function IFERROR($testValue = '', $errorpart = '')
     {

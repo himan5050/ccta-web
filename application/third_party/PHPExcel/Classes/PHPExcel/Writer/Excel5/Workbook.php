@@ -19,11 +19,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Writer_Excel5
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Writer_Excel5
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 
 // Original file header of PEAR::Spreadsheet_Excel_Writer_Workbook (used as the base for this class):
@@ -71,6 +71,7 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
 
     /**
      * The BIFF file size for the workbook.
+     *
      * @var integer
      * @see calcSheetOffsets()
      */
@@ -78,30 +79,35 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
 
     /**
      * XF Writers
+     *
      * @var PHPExcel_Writer_Excel5_Xf[]
      */
     private $xfWriters = array();
 
     /**
      * Array containing the colour palette
+     *
      * @var array
      */
     private $palette;
 
     /**
      * The codepage indicates the text encoding used for strings
+     *
      * @var integer
      */
     private $codepage;
 
     /**
      * The country code used for localization
+     *
      * @var integer
      */
     private $countryCode;
 
     /**
      * Workbook
+     *
      * @var PHPExcel
      */
     private $phpExcel;
@@ -185,12 +191,12 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
     /**
      * Class constructor
      *
-     * @param PHPExcel    $phpExcel        The Workbook
-     * @param int        &$str_total        Total number of strings
-     * @param int        &$str_unique    Total number of unique strings
-     * @param array        &$str_table        String Table
-     * @param array        &$colors        Colour Table
-     * @param mixed        $parser            The formula parser created for the Workbook
+     * @param PHPExcel $phpExcel    The Workbook
+     * @param int      &$str_total  Total number of strings
+     * @param int      &$str_unique Total number of unique strings
+     * @param array    &$str_table  String Table
+     * @param array    &$colors     Colour Table
+     * @param mixed    $parser      The formula parser created for the Workbook
      */
     public function __construct(PHPExcel $phpExcel = null, &$str_total, &$str_unique, &$str_table, &$colors, $parser)
     {
@@ -236,8 +242,8 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
     /**
      * Add a new XF writer
      *
-     * @param PHPExcel_Style
-     * @param boolean Is it a style XF?
+     * @param  PHPExcel_Style
+     * @param  boolean Is it a style XF?
      * @return int Index to XF record
      */
     public function addXfWriter($style, $isStyleXf = false)
@@ -287,7 +293,7 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
     /**
      * Add a font to added fonts
      *
-     * @param PHPExcel_Style_Font $font
+     * @param  PHPExcel_Style_Font $font
      * @return int Index to FONT record
      */
     public function addFont(PHPExcel_Style_Font $font)
@@ -311,7 +317,7 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
     /**
      * Alter color palette adding a custom color
      *
-     * @param string $rgb E.g. 'FF00AA'
+     * @param  string $rgb E.g. 'FF00AA'
      * @return int Color index
      */
     private function addColor($rgb)
@@ -411,8 +417,8 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
      * Assemble worksheets into a workbook and send the BIFF data to an OLE
      * storage.
      *
-     * @param    array    $pWorksheetSizes    The sizes in bytes of the binary worksheet streams
-     * @return    string    Binary data for workbook stream
+     * @param  array $pWorksheetSizes The sizes in bytes of the binary worksheet streams
+     * @return string    Binary data for workbook stream
      */
     public function writeWorkbook($pWorksheetSizes = null)
     {
@@ -601,7 +607,7 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
                     $colmax
                 );
 
-            // (exclusive) either repeatColumns or repeatRows
+                // (exclusive) either repeatColumns or repeatRows
             } elseif ($sheetSetup->isColumnsToRepeatAtLeftSet() || $sheetSetup->isRowsToRepeatAtTopSet()) {
                 // Columns to repeat
                 if ($sheetSetup->isColumnsToRepeatAtLeftSet()) {
@@ -708,7 +714,7 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
                 // store the DEFINEDNAME record
                 $chunk .= $this->writeData($this->writeDefinedNameBiff8(pack('C', 0x07), $formulaData, $i + 1, true));
 
-            // (exclusive) either repeatColumns or repeatRows
+                // (exclusive) either repeatColumns or repeatRows
             } elseif ($sheetSetup->isColumnsToRepeatAtLeftSet() || $sheetSetup->isRowsToRepeatAtTopSet()) {
                 // Columns to repeat
                 if ($sheetSetup->isColumnsToRepeatAtLeftSet()) {
@@ -789,11 +795,11 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
     /**
      * Write a DEFINEDNAME record for BIFF8 using explicit binary formula data
      *
-     * @param    string        $name            The name in UTF-8
-     * @param    string        $formulaData    The binary formula data
-     * @param    string        $sheetIndex        1-based sheet index the defined name applies to. 0 = global
-     * @param    boolean        $isBuiltIn        Built-in name?
-     * @return    string    Complete binary record data
+     * @param  string  $name        The name in UTF-8
+     * @param  string  $formulaData The binary formula data
+     * @param  string  $sheetIndex  1-based sheet index the defined name applies to. 0 = global
+     * @param  boolean $isBuiltIn   Built-in name?
+     * @return string    Complete binary record data
      */
     private function writeDefinedNameBiff8($name, $formulaData, $sheetIndex = 0, $isBuiltIn = false)
     {
@@ -824,11 +830,11 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
     /**
      * Write a short NAME record
      *
-     * @param    string         $name
-     * @param    string         $sheetIndex        1-based sheet index the defined name applies to. 0 = global
-     * @param    integer[][]  $rangeBounds    range boundaries
-     * @param    boolean      $isHidden
-     * @return    string    Complete binary record data
+     * @param  string      $name
+     * @param  string      $sheetIndex  1-based sheet index the defined name applies to. 0 = global
+     * @param  integer[][] $rangeBounds range boundaries
+     * @param  boolean     $isHidden
+     * @return string    Complete binary record data
      * */
     private function writeShortNameBiff8($name, $sheetIndex = 0, $rangeBounds, $isHidden = false)
     {
@@ -907,8 +913,8 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
     /**
      * Writes Excel BIFF BOUNDSHEET record.
      *
-     * @param PHPExcel_Worksheet  $sheet Worksheet name
-     * @param integer $offset    Location of worksheet BOF
+     * @param PHPExcel_Worksheet $sheet  Worksheet name
+     * @param integer            $offset Location of worksheet BOF
      */
     private function writeBoundSheet($sheet, $offset)
     {
@@ -917,18 +923,18 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
 
         // sheet state
         switch ($sheet->getSheetState()) {
-            case PHPExcel_Worksheet::SHEETSTATE_VISIBLE:
-                $ss = 0x00;
-                break;
-            case PHPExcel_Worksheet::SHEETSTATE_HIDDEN:
-                $ss = 0x01;
-                break;
-            case PHPExcel_Worksheet::SHEETSTATE_VERYHIDDEN:
-                $ss = 0x02;
-                break;
-            default:
-                $ss = 0x00;
-                break;
+        case PHPExcel_Worksheet::SHEETSTATE_VISIBLE:
+            $ss = 0x00;
+            break;
+        case PHPExcel_Worksheet::SHEETSTATE_HIDDEN:
+            $ss = 0x01;
+            break;
+        case PHPExcel_Worksheet::SHEETSTATE_VERYHIDDEN:
+            $ss = 0x02;
+            break;
+        default:
+            $ss = 0x00;
+            break;
         }
 
         // sheet type
@@ -960,7 +966,6 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
     /**
      * Writes the Excel BIFF EXTERNSHEET record. These references are used by
      * formulas.
-     *
      */
     private function writeExternalsheetBiff8()
     {
@@ -1142,8 +1147,8 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
      * writeNameShort() but we use a separate method to keep the code clean.
      * Code abstraction for reuse can be carried too far, and I should know. ;-)
      *
-     * @param integer $index Sheet index
-     * @param integer $type  Built-in name type
+     * @param integer $index  Sheet index
+     * @param integer $type   Built-in name type
      * @param integer $rowmin Start row
      * @param integer $rowmax End row
      * @param integer $colmin Start colum
@@ -1358,7 +1363,7 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
                         // and start new record data block where we start writing the string
                         $recordData = '';
 
-                    // 2. space remaining is greater than or equal to minimum space needed
+                        // 2. space remaining is greater than or equal to minimum space needed
                     } else {
                         // initialize effective remaining space, for Unicode strings this may need to be reduced by 1, see below
                         $effective_space_remaining = $space_remaining;

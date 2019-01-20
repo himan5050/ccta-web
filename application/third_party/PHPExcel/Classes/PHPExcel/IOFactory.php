@@ -1,12 +1,14 @@
 <?php
 
-/**    PHPExcel root directory */
+/**
+ * PHPExcel root directory 
+ */
 if (!defined('PHPEXCEL_ROOT')) {
     /**
      * @ignore
      */
     define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../');
-    require(PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php');
+    include PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php';
 }
 
 /**
@@ -28,11 +30,11 @@ if (!defined('PHPEXCEL_ROOT')) {
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_IOFactory
 {
@@ -40,7 +42,7 @@ class PHPExcel_IOFactory
      * Search locations
      *
      * @var    array
-     * @access    private
+     * @access private
      * @static
      */
     private static $searchLocations = array(
@@ -52,7 +54,7 @@ class PHPExcel_IOFactory
      * Autoresolve classes
      *
      * @var    array
-     * @access    private
+     * @access private
      * @static
      */
     private static $autoResolveClasses = array(
@@ -77,8 +79,8 @@ class PHPExcel_IOFactory
      * Get search locations
      *
      * @static
-     * @access    public
-     * @return    array
+     * @access public
+     * @return array
      */
     public static function getSearchLocations()
     {
@@ -89,9 +91,9 @@ class PHPExcel_IOFactory
      * Set search locations
      *
      * @static
-     * @access    public
-     * @param    array $value
-     * @throws    PHPExcel_Reader_Exception
+     * @access public
+     * @param  array $value
+     * @throws PHPExcel_Reader_Exception
      */
     public static function setSearchLocations($value)
     {
@@ -106,10 +108,10 @@ class PHPExcel_IOFactory
      * Add search location
      *
      * @static
-     * @access    public
-     * @param    string $type        Example: IWriter
-     * @param    string $location    Example: PHPExcel/Writer/{0}.php
-     * @param    string $classname     Example: PHPExcel_Writer_{0}
+     * @access public
+     * @param  string $type      Example: IWriter
+     * @param  string $location  Example: PHPExcel/Writer/{0}.php
+     * @param  string $classname Example: PHPExcel_Writer_{0}
      */
     public static function addSearchLocation($type = '', $location = '', $classname = '')
     {
@@ -120,11 +122,11 @@ class PHPExcel_IOFactory
      * Create PHPExcel_Writer_IWriter
      *
      * @static
-     * @access    public
-     * @param    PHPExcel $phpExcel
-     * @param    string  $writerType    Example: Excel2007
-     * @return    PHPExcel_Writer_IWriter
-     * @throws    PHPExcel_Reader_Exception
+     * @access public
+     * @param  PHPExcel $phpExcel
+     * @param  string   $writerType Example: Excel2007
+     * @return PHPExcel_Writer_IWriter
+     * @throws PHPExcel_Reader_Exception
      */
     public static function createWriter(PHPExcel $phpExcel, $writerType = '')
     {
@@ -151,10 +153,10 @@ class PHPExcel_IOFactory
      * Create PHPExcel_Reader_IReader
      *
      * @static
-     * @access    public
-     * @param    string $readerType    Example: Excel2007
-     * @return    PHPExcel_Reader_IReader
-     * @throws    PHPExcel_Reader_Exception
+     * @access public
+     * @param  string $readerType Example: Excel2007
+     * @return PHPExcel_Reader_IReader
+     * @throws PHPExcel_Reader_Exception
      */
     public static function createReader($readerType = '')
     {
@@ -182,9 +184,9 @@ class PHPExcel_IOFactory
      *
      * @static
      * @access public
-     * @param     string         $pFilename        The name of the spreadsheet file
-     * @return    PHPExcel
-     * @throws    PHPExcel_Reader_Exception
+     * @param  string $pFilename The name of the spreadsheet file
+     * @return PHPExcel
+     * @throws PHPExcel_Reader_Exception
      */
     public static function load($pFilename)
     {
@@ -197,9 +199,9 @@ class PHPExcel_IOFactory
      *
      * @static
      * @access public
-     * @param     string         $pFilename        The name of the spreadsheet file to identify
-     * @return    string
-     * @throws    PHPExcel_Reader_Exception
+     * @param  string $pFilename The name of the spreadsheet file to identify
+     * @return string
+     * @throws PHPExcel_Reader_Exception
      */
     public static function identify($pFilename)
     {
@@ -214,10 +216,10 @@ class PHPExcel_IOFactory
      * Create PHPExcel_Reader_IReader for file using automatic PHPExcel_Reader_IReader resolution
      *
      * @static
-     * @access    public
-     * @param     string         $pFilename        The name of the spreadsheet file
-     * @return    PHPExcel_Reader_IReader
-     * @throws    PHPExcel_Reader_Exception
+     * @access public
+     * @param  string $pFilename The name of the spreadsheet file
+     * @return PHPExcel_Reader_IReader
+     * @throws PHPExcel_Reader_Exception
      */
     public static function createReaderForFile($pFilename)
     {
@@ -227,40 +229,40 @@ class PHPExcel_IOFactory
         $extensionType = null;
         if (isset($pathinfo['extension'])) {
             switch (strtolower($pathinfo['extension'])) {
-                case 'xlsx':            //    Excel (OfficeOpenXML) Spreadsheet
-                case 'xlsm':            //    Excel (OfficeOpenXML) Macro Spreadsheet (macros will be discarded)
-                case 'xltx':            //    Excel (OfficeOpenXML) Template
-                case 'xltm':            //    Excel (OfficeOpenXML) Macro Template (macros will be discarded)
-                    $extensionType = 'Excel2007';
-                    break;
-                case 'xls':                //    Excel (BIFF) Spreadsheet
-                case 'xlt':                //    Excel (BIFF) Template
-                    $extensionType = 'Excel5';
-                    break;
-                case 'ods':                //    Open/Libre Offic Calc
-                case 'ots':                //    Open/Libre Offic Calc Template
-                    $extensionType = 'OOCalc';
-                    break;
-                case 'slk':
-                    $extensionType = 'SYLK';
-                    break;
-                case 'xml':                //    Excel 2003 SpreadSheetML
-                    $extensionType = 'Excel2003XML';
-                    break;
-                case 'gnumeric':
-                    $extensionType = 'Gnumeric';
-                    break;
-                case 'htm':
-                case 'html':
-                    $extensionType = 'HTML';
-                    break;
-                case 'csv':
-                    // Do nothing
-                    // We must not try to use CSV reader since it loads
-                    // all files including Excel files etc.
-                    break;
-                default:
-                    break;
+            case 'xlsx':            //    Excel (OfficeOpenXML) Spreadsheet
+            case 'xlsm':            //    Excel (OfficeOpenXML) Macro Spreadsheet (macros will be discarded)
+            case 'xltx':            //    Excel (OfficeOpenXML) Template
+            case 'xltm':            //    Excel (OfficeOpenXML) Macro Template (macros will be discarded)
+                $extensionType = 'Excel2007';
+                break;
+            case 'xls':                //    Excel (BIFF) Spreadsheet
+            case 'xlt':                //    Excel (BIFF) Template
+                $extensionType = 'Excel5';
+                break;
+            case 'ods':                //    Open/Libre Offic Calc
+            case 'ots':                //    Open/Libre Offic Calc Template
+                $extensionType = 'OOCalc';
+                break;
+            case 'slk':
+                $extensionType = 'SYLK';
+                break;
+            case 'xml':                //    Excel 2003 SpreadSheetML
+                $extensionType = 'Excel2003XML';
+                break;
+            case 'gnumeric':
+                $extensionType = 'Gnumeric';
+                break;
+            case 'htm':
+            case 'html':
+                $extensionType = 'HTML';
+                break;
+            case 'csv':
+                // Do nothing
+                // We must not try to use CSV reader since it loads
+                // all files including Excel files etc.
+                break;
+            default:
+                break;
             }
 
             if ($extensionType !== null) {

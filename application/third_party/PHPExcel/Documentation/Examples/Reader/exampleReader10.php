@@ -19,50 +19,58 @@ date_default_timezone_set('Europe/London');
 <h2>Simple File Reader Using a Configurable Read Filter</h2>
 <?php
 
-/** Include path **/
+/**
+ * 
+ * Include path 
+ **/
 set_include_path(get_include_path() . PATH_SEPARATOR . '../../../Classes/');
 
-/** PHPExcel_IOFactory */
-include 'PHPExcel/IOFactory.php';
+/**
+* 
+ * PHPExcel_IOFactory 
+*/
+require 'PHPExcel/IOFactory.php';
 
 
 $inputFileType = 'Excel5';
-//	$inputFileType = 'Excel2007';
-//	$inputFileType = 'Excel2003XML';
-//	$inputFileType = 'OOCalc';
-//	$inputFileType = 'Gnumeric';
+//    $inputFileType = 'Excel2007';
+//    $inputFileType = 'Excel2003XML';
+//    $inputFileType = 'OOCalc';
+//    $inputFileType = 'Gnumeric';
 $inputFileName = './sampleData/example1.xls';
 $sheetname = 'Data Sheet #3';
 
 
 class MyReadFilter implements PHPExcel_Reader_IReadFilter
 {
-	private $_startRow = 0;
+    private $_startRow = 0;
 
-	private $_endRow = 0;
+    private $_endRow = 0;
 
-	private $_columns = array();
+    private $_columns = array();
 
-	public function __construct($startRow, $endRow, $columns) {
-		$this->_startRow	= $startRow;
-		$this->_endRow		= $endRow;
-		$this->_columns		= $columns;
-	}
+    public function __construct($startRow, $endRow, $columns)
+    {
+        $this->_startRow    = $startRow;
+        $this->_endRow        = $endRow;
+        $this->_columns        = $columns;
+    }
 
-	public function readCell($column, $row, $worksheetName = '') {
-		if ($row >= $this->_startRow && $row <= $this->_endRow) {
-			if (in_array($column,$this->_columns)) {
-				return true;
-			}
-		}
-		return false;
-	}
+    public function readCell($column, $row, $worksheetName = '')
+    {
+        if ($row >= $this->_startRow && $row <= $this->_endRow) {
+            if (in_array($column, $this->_columns)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
-$filterSubset = new MyReadFilter(9,15,range('G','K'));
+$filterSubset = new MyReadFilter(9, 15, range('G', 'K'));
 
 
-echo 'Loading file ',pathinfo($inputFileName,PATHINFO_BASENAME),' using IOFactory with a defined reader type of ',$inputFileType,'<br />';
+echo 'Loading file ',pathinfo($inputFileName, PATHINFO_BASENAME),' using IOFactory with a defined reader type of ',$inputFileType,'<br />';
 $objReader = PHPExcel_IOFactory::createReader($inputFileType);
 echo 'Loading Sheet "',$sheetname,'" only<br />';
 $objReader->setLoadSheetsOnly($sheetname);
@@ -73,7 +81,7 @@ $objPHPExcel = $objReader->load($inputFileName);
 
 echo '<hr />';
 
-$sheetData = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
 var_dump($sheetData);
 
 

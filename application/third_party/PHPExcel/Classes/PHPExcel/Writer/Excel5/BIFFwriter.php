@@ -19,11 +19,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Writer_Excel5
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Writer_Excel5
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 
 // Original file header of PEAR::Spreadsheet_Excel_Writer_BIFFwriter (used as the base for this class):
@@ -63,24 +63,28 @@ class PHPExcel_Writer_Excel5_BIFFwriter
 {
     /**
      * The byte order of this architecture. 0 => little endian, 1 => big endian
+     *
      * @var integer
      */
     private static $byteOrder;
 
     /**
      * The string containing the data of the BIFF stream
+     *
      * @var string
      */
     public $_data;
 
     /**
      * The size of the data in bytes. Should be the same as strlen($this->_data)
+     *
      * @var integer
      */
     public $_datasize;
 
     /**
      * The maximum length for a BIFF record (excluding record header and length field). See addContinue()
+     *
      * @var integer
      * @see addContinue()
      */
@@ -93,7 +97,7 @@ class PHPExcel_Writer_Excel5_BIFFwriter
     {
         $this->_data       = '';
         $this->_datasize   = 0;
-//        $this->limit      = 8224;
+        //        $this->limit      = 8224;
     }
 
     /**
@@ -125,7 +129,7 @@ class PHPExcel_Writer_Excel5_BIFFwriter
     /**
      * General storage function
      *
-     * @param string $data binary data to append
+     * @param  string $data binary data to append
      * @access private
      */
     protected function append($data)
@@ -140,7 +144,7 @@ class PHPExcel_Writer_Excel5_BIFFwriter
     /**
      * General storage function like append, but returns string instead of modifying $this->_data
      *
-     * @param string $data binary data to write
+     * @param  string $data binary data to write
      * @return string
      */
     public function writeData($data)
@@ -214,7 +218,7 @@ class PHPExcel_Writer_Excel5_BIFFwriter
      * This function takes a long BIFF record and inserts CONTINUE records as
      * necessary.
      *
-     * @param  string  $data The original binary data to be written
+     * @param  string $data The original binary data to be written
      * @return string        A very convenient string of continue blocks
      * @access private
      */

@@ -17,12 +17,12 @@
             <div class="panel panel-default" id="">
                 <div class="panel-heading">
                   <h5>View Phase</h5>
-                  <?php if (isset($error_msg)) { ?>
-						<h5><b style="color: red;"><?php echo $error_msg ?></b></h5>
-						<?php } ?>
-						<?php if (isset($success_msg)) { ?>
-						<h5><b style="color: green;"><?php echo $success_msg ?></b></h5>
-						<?php } ?>
+                    <?php if (isset($error_msg)) { ?>
+                        <h5><b style="color: red;"><?php echo $error_msg ?></b></h5>
+                    <?php } ?>
+        <?php if (isset($success_msg)) { ?>
+                        <h5><b style="color: green;"><?php echo $success_msg ?></b></h5>
+        <?php } ?>
                 </div>
                 <div class="panel-body">
                   <div class="row">
@@ -80,7 +80,7 @@
                               </tr>
                               </thead>
                               <tbody>
-                              <?php foreach($phase_lists as $phase_list): ?>
+                                <?php foreach($phase_lists as $phase_list): ?>
                                   <tr>
                                     <td><?php echo $phase_list['phase_code'] ?></td>
                                     <td><?php echo $phase_list['phase_name'] ?></td>
@@ -92,7 +92,7 @@
                                       <a href="<?php echo site_url('phase/delete/'.$phase_list['phase_id']); ?>" class="btn btn-danger btn-sm" data-toggle="tooltip" title="Delete"><i class="fa fa-trash" aria-hidden="true" onclick="return confirm('Are you sure to delete?')"></i></a>
                                     </td>
                                   </tr>
-                              <?php endforeach; ?>
+                                <?php endforeach; ?>
                             </tbody>
                           </table>
                     </div>

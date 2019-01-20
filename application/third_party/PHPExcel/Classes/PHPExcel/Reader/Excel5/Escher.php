@@ -19,11 +19,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Reader_Excel5
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Reader_Excel5
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_Reader_Excel5_Escher
 {
@@ -104,63 +104,63 @@ class PHPExcel_Reader_Excel5_Escher
             $fbt = PHPExcel_Reader_Excel5::getInt2d($this->data, $this->pos + 2);
 
             switch ($fbt) {
-                case self::DGGCONTAINER:
-                    $this->readDggContainer();
-                    break;
-                case self::DGG:
-                    $this->readDgg();
-                    break;
-                case self::BSTORECONTAINER:
-                    $this->readBstoreContainer();
-                    break;
-                case self::BSE:
-                    $this->readBSE();
-                    break;
-                case self::BLIPJPEG:
-                    $this->readBlipJPEG();
-                    break;
-                case self::BLIPPNG:
-                    $this->readBlipPNG();
-                    break;
-                case self::OPT:
-                    $this->readOPT();
-                    break;
-                case self::TERTIARYOPT:
-                    $this->readTertiaryOPT();
-                    break;
-                case self::SPLITMENUCOLORS:
-                    $this->readSplitMenuColors();
-                    break;
-                case self::DGCONTAINER:
-                    $this->readDgContainer();
-                    break;
-                case self::DG:
-                    $this->readDg();
-                    break;
-                case self::SPGRCONTAINER:
-                    $this->readSpgrContainer();
-                    break;
-                case self::SPCONTAINER:
-                    $this->readSpContainer();
-                    break;
-                case self::SPGR:
-                    $this->readSpgr();
-                    break;
-                case self::SP:
-                    $this->readSp();
-                    break;
-                case self::CLIENTTEXTBOX:
-                    $this->readClientTextbox();
-                    break;
-                case self::CLIENTANCHOR:
-                    $this->readClientAnchor();
-                    break;
-                case self::CLIENTDATA:
-                    $this->readClientData();
-                    break;
-                default:
-                    $this->readDefault();
-                    break;
+            case self::DGGCONTAINER:
+                $this->readDggContainer();
+                break;
+            case self::DGG:
+                $this->readDgg();
+                break;
+            case self::BSTORECONTAINER:
+                $this->readBstoreContainer();
+                break;
+            case self::BSE:
+                $this->readBSE();
+                break;
+            case self::BLIPJPEG:
+                $this->readBlipJPEG();
+                break;
+            case self::BLIPPNG:
+                $this->readBlipPNG();
+                break;
+            case self::OPT:
+                $this->readOPT();
+                break;
+            case self::TERTIARYOPT:
+                $this->readTertiaryOPT();
+                break;
+            case self::SPLITMENUCOLORS:
+                $this->readSplitMenuColors();
+                break;
+            case self::DGCONTAINER:
+                $this->readDgContainer();
+                break;
+            case self::DG:
+                $this->readDg();
+                break;
+            case self::SPGRCONTAINER:
+                $this->readSpgrContainer();
+                break;
+            case self::SPCONTAINER:
+                $this->readSpContainer();
+                break;
+            case self::SPGR:
+                $this->readSpgr();
+                break;
+            case self::SP:
+                $this->readSp();
+                break;
+            case self::CLIENTTEXTBOX:
+                $this->readClientTextbox();
+                break;
+            case self::CLIENTANCHOR:
+                $this->readClientAnchor();
+                break;
+            case self::CLIENTDATA:
+                $this->readClientData();
+                break;
+            default:
+                $this->readDefault();
+                break;
             }
         }
 
@@ -626,7 +626,7 @@ class PHPExcel_Reader_Excel5_Escher
      * Read OfficeArtRGFOPTE table of property-value pairs
      *
      * @param string $data Binary data
-     * @param int $n Number of properties
+     * @param int    $n    Number of properties
      */
     private function readOfficeArtRGFOPTE($data, $n)
     {

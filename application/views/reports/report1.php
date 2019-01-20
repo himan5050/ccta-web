@@ -16,7 +16,7 @@
                     <a href="<?php echo site_url('report3'); ?>" id="">Report 3</a>
                 </span>
                 <span class="project_name">
-                  <?php echo $project_name; ?>
+                    <?php echo $project_name; ?>
                 </span>
             </h4>
           </div>
@@ -38,46 +38,46 @@
                           <th>Project Component</th>
                           <th>Costs</th>
 
-                          <?php foreach($funds as $fund): ?>
+                            <?php foreach($funds as $fund): ?>
                             <th><?php echo $fund['fund_name'] ?></th>
-                          <?php endforeach; ?>
+                            <?php endforeach; ?>
 
                         </tr>
                       </thead>
                         <tbody>
 
-                          <?php foreach($phase_estimated_costs as $estimated_costs): ?>
-                          <?php if ($estimated_costs['amount']): ?>
+                            <?php foreach($phase_estimated_costs as $estimated_costs): ?>
+                                <?php if ($estimated_costs['amount']) : ?>
                             <tr>
                               <td><?php echo $estimated_costs['phase_name'] ?></td>
 
-                              <?php if ($estimated_costs['amount']) { ?>
+                                    <?php if ($estimated_costs['amount']) { ?>
                                 <td>$ <?php echo number_format(preg_replace('/\s+/', '', $estimated_costs['amount'])) ?></td>
-                              <?php } else {?>
+                                    <?php } else {?>
                                 <td><?php echo "-" ?></td>
-                              <?php } ?>
+                                    <?php } ?>
 
-                              <?php for($i=0; $i < count($estimated_costs['funds']); $i++) {?>
+                                    <?php for($i=0; $i < count($estimated_costs['funds']); $i++) {?>
 
-                                <?php if ($estimated_costs['funds'][$i]) { ?>
+                                        <?php if ($estimated_costs['funds'][$i]) { ?>
                                   <td>$ <?php echo number_format(preg_replace('/\s+/', '', $estimated_costs['funds'][$i])) ?></td>
-                                <?php } else { ?>
+                                        <?php } else { ?>
                                   <td><?php echo "-" ?></td>
-                                <?php } ?>
-                              <?php } ?>
+                                        <?php } ?>
+                                    <?php } ?>
                             </tr>
-                          <?php endif; ?>
-                          <?php endforeach; ?>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
 
                         </tbody>
                         <tfoot>
                           <tr>
                             <td><b>Sum</b></td>
                             <td><b>$ <?php echo number_format(preg_replace('/\s+/', '', $phaseTotal)) ?></b></td>
-                            <?php if (!empty($total_funds)): ?>
-                            <?php foreach($total_funds as $fund): ?>
+                            <?php if (!empty($total_funds)) : ?>
+                                <?php foreach($total_funds as $fund): ?>
                               <td><b>$ <?php echo number_format(preg_replace('/\s+/', '', $fund['amount'])) ?></b></td>
-                            <?php endforeach; ?>
+                                <?php endforeach; ?>
                             <?php endif; ?>
                           </tr>
                         </tfoot>

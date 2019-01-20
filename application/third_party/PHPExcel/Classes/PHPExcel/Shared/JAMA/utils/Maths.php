@@ -1,6 +1,6 @@
 <?php
 /**
- *    @package JAMA
+ * @package JAMA
  *
  *    Pythagorean Theorem:
  *

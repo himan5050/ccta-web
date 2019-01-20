@@ -19,11 +19,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Writer_Excel2007
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Writer_Excel2007
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPExcel_Writer_IWriter
 {
@@ -118,7 +118,7 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
     /**
      * Create a new PHPExcel_Writer_Excel2007
      *
-     * @param     PHPExcel    $pPHPExcel
+     * @param PHPExcel $pPHPExcel
      */
     public function __construct(PHPExcel $pPHPExcel = null)
     {
@@ -160,8 +160,8 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
     /**
      * Get writer part
      *
-     * @param     string     $pPartName        Writer part name
-     * @return     PHPExcel_Writer_Excel2007_WriterPart
+     * @param  string $pPartName Writer part name
+     * @return PHPExcel_Writer_Excel2007_WriterPart
      */
     public function getWriterPart($pPartName = '')
     {
@@ -175,8 +175,8 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
     /**
      * Save PHPExcel to file
      *
-     * @param     string         $pFilename
-     * @throws     PHPExcel_Writer_Exception
+     * @param  string $pFilename
+     * @throws PHPExcel_Writer_Exception
      */
     public function save($pFilename = null)
     {
@@ -419,8 +419,8 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
     /**
      * Set PHPExcel object
      *
-     * @param     PHPExcel     $pPHPExcel    PHPExcel object
-     * @throws    PHPExcel_Writer_Exception
+     * @param  PHPExcel $pPHPExcel PHPExcel object
+     * @throws PHPExcel_Writer_Exception
      * @return PHPExcel_Writer_Excel2007
      */
     public function setPHPExcel(PHPExcel $pPHPExcel = null)
@@ -522,7 +522,7 @@ class PHPExcel_Writer_Excel2007 extends PHPExcel_Writer_Abstract implements PHPE
     /**
      * Set Office2003 compatibility
      *
-     * @param boolean $pValue    Office2003 compatibility?
+     * @param  boolean $pValue Office2003 compatibility?
      * @return PHPExcel_Writer_Excel2007
      */
     public function setOffice2003Compatibility($pValue = false)

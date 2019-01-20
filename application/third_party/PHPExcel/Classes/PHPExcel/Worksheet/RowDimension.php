@@ -19,11 +19,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Worksheet
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Worksheet
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_Worksheet_RowDimension extends PHPExcel_Worksheet_Dimension
 {
@@ -44,10 +44,10 @@ class PHPExcel_Worksheet_RowDimension extends PHPExcel_Worksheet_Dimension
     private $height = -1;
 
      /**
-     * ZeroHeight for Row?
-     *
-     * @var bool
-     */
+      * ZeroHeight for Row?
+      *
+      * @var bool
+      */
     private $zeroHeight = false;
 
     /**
@@ -77,7 +77,7 @@ class PHPExcel_Worksheet_RowDimension extends PHPExcel_Worksheet_Dimension
     /**
      * Set Row Index
      *
-     * @param int $pValue
+     * @param  int $pValue
      * @return PHPExcel_Worksheet_RowDimension
      */
     public function setRowIndex($pValue)
@@ -99,7 +99,7 @@ class PHPExcel_Worksheet_RowDimension extends PHPExcel_Worksheet_Dimension
     /**
      * Set Row Height
      *
-     * @param double $pValue
+     * @param  double $pValue
      * @return PHPExcel_Worksheet_RowDimension
      */
     public function setRowHeight($pValue = -1)
@@ -121,7 +121,7 @@ class PHPExcel_Worksheet_RowDimension extends PHPExcel_Worksheet_Dimension
     /**
      * Set ZeroHeight
      *
-     * @param bool $pValue
+     * @param  bool $pValue
      * @return PHPExcel_Worksheet_RowDimension
      */
     public function setZeroHeight($pValue = false)

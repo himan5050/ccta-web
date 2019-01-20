@@ -17,12 +17,12 @@
             <div class="panel panel-default" id="">
                 <div class="panel-heading">
                   <h5>Add New Phases</h5>
-                  <?php if (isset($error_msg)) { ?>
-						<h5><b style="color: red;"><?php echo $error_msg ?></b></h5>
-						<?php } ?>
-						<?php if (isset($success_msg)) { ?>
-						<h5><b style="color: green;"><?php echo $success_msg ?></b></h5>
-						<?php } ?>
+                    <?php if (isset($error_msg)) { ?>
+                        <h5><b style="color: red;"><?php echo $error_msg ?></b></h5>
+                    <?php } ?>
+        <?php if (isset($success_msg)) { ?>
+                        <h5><b style="color: green;"><?php echo $success_msg ?></b></h5>
+        <?php } ?>
                 </div>
                 <div class="panel-body">
                   <div class="row">
@@ -61,7 +61,7 @@
                                 <option value="">0</option>
                                 <?php for($i=1;$i<50;$i++): ?>
                                     <option value="<?php echo $i ?>" > <?php echo $i ?> </option>
-                                  <?php endfor;; ?>
+                                <?php endfor;; ?>
                               </select>
                             </div>
                           </div>
@@ -102,9 +102,9 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <?php foreach($phase_lists as $phase_list): ?>
+                            <?php foreach($phase_lists as $phase_list): ?>
                               <tr>
-                              	<td><?php echo $phase_list['phase_code'] ?></td>
+                                  <td><?php echo $phase_list['phase_code'] ?></td>
                                 <td><?php echo $phase_list['phase_name'] ?></td>
                                 <td style="text-align: justify; text-justify: inter-word;"><?php echo $phase_list['phase_description'] ?></td>
                                 <td><?php echo $phase_list['weight'] ?></td>
@@ -114,7 +114,7 @@
                                   <a href="<?php echo site_url('phase/delete/'.$phase_list['phase_id']); ?>" class="btn btn-danger btn-sm" data-toggle="tooltip" title="Delete"><i class="fa fa-trash" aria-hidden="true" onclick="return confirm('Are you sure to delete?')"></i></a>
                                 </td>
                               </tr>
-                          <?php endforeach; ?>
+                            <?php endforeach; ?>
                         </tbody>
                       </table>
                     </div>
@@ -132,9 +132,9 @@
     var cnt= $("#add").val();
 
       var htmldata = '<div class="col-md-12" id="myDiv'+cnt+'" style="padding:0;">'
-      		  +'<div class="col-md-2"><div class="form-group">'
-      		  +'<div class="col-sm-10"><input type="text" name="phase_code[]" class="form-control" id="phase_code'+cnt+'" placeholder="Enter Phase Code" value="" onblur="check(this)" required="required">'
-      		  +'</div></div></div>'
+                +'<div class="col-md-2"><div class="form-group">'
+                +'<div class="col-sm-10"><input type="text" name="phase_code[]" class="form-control" id="phase_code'+cnt+'" placeholder="Enter Phase Code" value="" onblur="check(this)" required="required">'
+                +'</div></div></div>'
               +'<div class="col-md-2"><div class="form-group">'
               +'<div class="col-sm-10"><input type="text" name="phase_name[]" class="form-control" id="phase_name'+cnt+'" placeholder="Enter Phase Name" value="" onblur="check(this)" required="required">'
               +'</div></div></div><div class="col-md-4"><div class="form-group">'
@@ -142,7 +142,8 @@
               +'<div class="col-md-3"><div class="form-group"><div class="col-sm-8">'
               +'<select class="form-control" id="weight0" name="weight[]" required="required" onchange="check1(this)">'
               +'<option value="">0</option>'
-              +'<?php for($i=1;$i<50;$i++): ?><option value="<?php echo $i ?>" > <?php echo $i ?> </option><?php endfor;; ?>'
+              +'<?php for($i=1;$i<50;$i++): ?><option value="<?php echo $i ?>" > <?php echo $i ?> </option><?php 
+             endfor;; ?>'
               +'</select></div></div></div>'
               +'<div class="col-md-1" id="del'+cnt+'">'
               +'<button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip" title="Delete" '

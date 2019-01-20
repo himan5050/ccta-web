@@ -42,11 +42,11 @@ PARTLY BASED ON:
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Calculation
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Calculation
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 
 
@@ -102,9 +102,9 @@ class PHPExcel_Calculation_FormulaToken
     /**
      * Create a new PHPExcel_Calculation_FormulaToken
      *
-     * @param string    $pValue
-     * @param string    $pTokenType     Token type (represented by TOKEN_TYPE_*)
-     * @param string    $pTokenSubType     Token Subtype (represented by TOKEN_SUBTYPE_*)
+     * @param string $pValue
+     * @param string $pTokenType    Token type (represented by TOKEN_TYPE_*)
+     * @param string $pTokenSubType Token Subtype (represented by TOKEN_SUBTYPE_*)
      */
     public function __construct($pValue, $pTokenType = PHPExcel_Calculation_FormulaToken::TOKEN_TYPE_UNKNOWN, $pTokenSubType = PHPExcel_Calculation_FormulaToken::TOKEN_SUBTYPE_NOTHING)
     {
@@ -127,7 +127,7 @@ class PHPExcel_Calculation_FormulaToken
     /**
      * Set Value
      *
-     * @param string    $value
+     * @param string $value
      */
     public function setValue($value)
     {
@@ -147,7 +147,7 @@ class PHPExcel_Calculation_FormulaToken
     /**
      * Set Token Type
      *
-     * @param string    $value
+     * @param string $value
      */
     public function setTokenType($value = PHPExcel_Calculation_FormulaToken::TOKEN_TYPE_UNKNOWN)
     {
@@ -167,7 +167,7 @@ class PHPExcel_Calculation_FormulaToken
     /**
      * Set Token SubType
      *
-     * @param string    $value
+     * @param string $value
      */
     public function setTokenSubType($value = PHPExcel_Calculation_FormulaToken::TOKEN_SUBTYPE_NOTHING)
     {

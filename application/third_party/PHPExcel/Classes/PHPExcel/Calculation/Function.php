@@ -19,11 +19,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Calculation
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Calculation
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_Calculation_Function
 {
@@ -64,10 +64,10 @@ class PHPExcel_Calculation_Function
     /**
      * Create a new PHPExcel_Calculation_Function
      *
-     * @param     string        $pCategory         Category (represented by CATEGORY_*)
-     * @param     string        $pExcelName        Excel function name
-     * @param     string        $pPHPExcelName    PHPExcel function mapping
-     * @throws     PHPExcel_Calculation_Exception
+     * @param  string $pCategory     Category (represented by CATEGORY_*)
+     * @param  string $pExcelName    Excel function name
+     * @param  string $pPHPExcelName PHPExcel function mapping
+     * @throws PHPExcel_Calculation_Exception
      */
     public function __construct($pCategory = null, $pExcelName = null, $pPHPExcelName = null)
     {
@@ -94,8 +94,8 @@ class PHPExcel_Calculation_Function
     /**
      * Set Category (represented by CATEGORY_*)
      *
-     * @param     string        $value
-     * @throws     PHPExcel_Calculation_Exception
+     * @param  string $value
+     * @throws PHPExcel_Calculation_Exception
      */
     public function setCategory($value = null)
     {
@@ -119,7 +119,7 @@ class PHPExcel_Calculation_Function
     /**
      * Set Excel name
      *
-     * @param string    $value
+     * @param string $value
      */
     public function setExcelName($value)
     {
@@ -139,7 +139,7 @@ class PHPExcel_Calculation_Function
     /**
      * Set PHPExcel name
      *
-     * @param string    $value
+     * @param string $value
      */
     public function setPHPExcelName($value)
     {

@@ -19,26 +19,32 @@ date_default_timezone_set('Europe/London');
 <h2>Simple File Reader using the PHPExcel_IOFactory to Identify a Reader to Use</h2>
 <?php
 
-/** Include path **/
+/**
+ * 
+ * Include path 
+ **/
 set_include_path(get_include_path() . PATH_SEPARATOR . '../../../Classes/');
 
-/** PHPExcel_IOFactory */
-include 'PHPExcel/IOFactory.php';
+/**
+* 
+ * PHPExcel_IOFactory 
+*/
+require 'PHPExcel/IOFactory.php';
 
 
 $inputFileName = './sampleData/example1.xls';
 
 $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
-echo 'File ',pathinfo($inputFileName,PATHINFO_BASENAME),' has been identified as an ',$inputFileType,' file<br />';
+echo 'File ',pathinfo($inputFileName, PATHINFO_BASENAME),' has been identified as an ',$inputFileType,' file<br />';
 
-echo 'Loading file ',pathinfo($inputFileName,PATHINFO_BASENAME),' using IOFactory with the identified reader type<br />';
+echo 'Loading file ',pathinfo($inputFileName, PATHINFO_BASENAME),' using IOFactory with the identified reader type<br />';
 $objReader = PHPExcel_IOFactory::createReader($inputFileType);
 $objPHPExcel = $objReader->load($inputFileName);
 
 
 echo '<hr />';
 
-$sheetData = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
 var_dump($sheetData);
 
 

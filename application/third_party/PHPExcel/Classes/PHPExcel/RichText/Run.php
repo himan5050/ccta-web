@@ -17,11 +17,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_RichText
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_RichText
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_RichText_Run extends PHPExcel_RichText_TextElement implements PHPExcel_RichText_ITextElement
 {
@@ -35,7 +35,7 @@ class PHPExcel_RichText_Run extends PHPExcel_RichText_TextElement implements PHP
     /**
      * Create a new PHPExcel_RichText_Run instance
      *
-     * @param     string        $pText        Text
+     * @param string $pText Text
      */
     public function __construct($pText = '')
     {
@@ -57,8 +57,8 @@ class PHPExcel_RichText_Run extends PHPExcel_RichText_TextElement implements PHP
     /**
      * Set font
      *
-     * @param    PHPExcel_Style_Font        $pFont        Font
-     * @throws     PHPExcel_Exception
+     * @param  PHPExcel_Style_Font $pFont Font
+     * @throws PHPExcel_Exception
      * @return PHPExcel_RichText_ITextElement
      */
     public function setFont(PHPExcel_Style_Font $pFont = null)

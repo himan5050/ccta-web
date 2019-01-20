@@ -19,11 +19,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_NamedRange
 {
@@ -65,11 +65,11 @@ class PHPExcel_NamedRange
     /**
      * Create a new NamedRange
      *
-     * @param string $pName
-     * @param PHPExcel_Worksheet $pWorksheet
-     * @param string $pRange
-     * @param bool $pLocalOnly
-     * @param PHPExcel_Worksheet|null $pScope    Scope. Only applies when $pLocalOnly = true. Null for global scope.
+     * @param  string                  $pName
+     * @param  PHPExcel_Worksheet      $pWorksheet
+     * @param  string                  $pRange
+     * @param  bool                    $pLocalOnly
+     * @param  PHPExcel_Worksheet|null $pScope     Scope. Only applies when $pLocalOnly = true. Null for global scope.
      * @throws PHPExcel_Exception
      */
     public function __construct($pName = null, PHPExcel_Worksheet $pWorksheet, $pRange = 'A1', $pLocalOnly = false, $pScope = null)
@@ -100,7 +100,7 @@ class PHPExcel_NamedRange
     /**
      * Set name
      *
-     * @param string $value
+     * @param  string $value
      * @return PHPExcel_NamedRange
      */
     public function setName($value = null)
@@ -139,7 +139,7 @@ class PHPExcel_NamedRange
     /**
      * Set worksheet
      *
-     * @param PHPExcel_Worksheet $value
+     * @param  PHPExcel_Worksheet $value
      * @return PHPExcel_NamedRange
      */
     public function setWorksheet(PHPExcel_Worksheet $value = null)
@@ -163,7 +163,7 @@ class PHPExcel_NamedRange
     /**
      * Set range
      *
-     * @param string $value
+     * @param  string $value
      * @return PHPExcel_NamedRange
      */
     public function setRange($value = null)
@@ -187,7 +187,7 @@ class PHPExcel_NamedRange
     /**
      * Set localOnly
      *
-     * @param bool $value
+     * @param  bool $value
      * @return PHPExcel_NamedRange
      */
     public function setLocalOnly($value = false)
@@ -210,7 +210,7 @@ class PHPExcel_NamedRange
     /**
      * Set scope
      *
-     * @param PHPExcel_Worksheet|null $value
+     * @param  PHPExcel_Worksheet|null $value
      * @return PHPExcel_NamedRange
      */
     public function setScope(PHPExcel_Worksheet $value = null)
@@ -223,8 +223,8 @@ class PHPExcel_NamedRange
     /**
      * Resolve a named range to a regular cell range
      *
-     * @param string $pNamedRange Named range
-     * @param PHPExcel_Worksheet|null $pSheet Scope. Use null for global scope
+     * @param  string                  $pNamedRange Named range
+     * @param  PHPExcel_Worksheet|null $pSheet      Scope. Use null for global scope
      * @return PHPExcel_NamedRange
      */
     public static function resolveRange($pNamedRange = '', PHPExcel_Worksheet $pSheet)

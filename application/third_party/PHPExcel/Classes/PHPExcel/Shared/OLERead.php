@@ -18,11 +18,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Shared
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Shared
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 
 defined('IDENTIFIER_OLE') ||
@@ -71,7 +71,7 @@ class PHPExcel_Shared_OLERead
     /**
      * Read the file
      *
-     * @param $sFileName string Filename
+     * @param  $sFileName string Filename
      * @throws PHPExcel_Reader_Exception
      */
     public function read($sFileName)
@@ -217,7 +217,7 @@ class PHPExcel_Shared_OLERead
     /**
      * Read a standard stream (by joining sectors using information from SAT)
      *
-     * @param int $bl Sector ID where the stream starts
+     * @param  int $bl Sector ID where the stream starts
      * @return string Data for standard stream
      */
     private function _readData($bl)
@@ -280,13 +280,13 @@ class PHPExcel_Shared_OLERead
 
             // Summary information
             if ($name == chr(5) . 'SummaryInformation') {
-//                echo 'Summary Information<br />';
+                //                echo 'Summary Information<br />';
                 $this->summaryInformation = count($this->props) - 1;
             }
 
             // Additional Document Summary information
             if ($name == chr(5) . 'DocumentSummaryInformation') {
-//                echo 'Document Summary Information<br />';
+                //                echo 'Document Summary Information<br />';
                 $this->documentSummaryInformation = count($this->props) - 1;
             }
 
@@ -297,8 +297,8 @@ class PHPExcel_Shared_OLERead
     /**
      * Read 4 bytes of data at specified position
      *
-     * @param string $data
-     * @param int $pos
+     * @param  string $data
+     * @param  int    $pos
      * @return int
      */
     private static function getInt4d($data, $pos)

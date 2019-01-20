@@ -19,11 +19,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Writer_Excel5
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Writer_Excel5
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 
 // Original file header of PEAR::Spreadsheet_Excel_Writer_Worksheet (used as the base for this class):
@@ -71,66 +71,77 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 
     /**
      * Maximum number of characters for a string (LABEL record in BIFF5)
+     *
      * @var integer
      */
     private $xlsStringMaxLength;
 
     /**
      * Array containing format information for columns
+     *
      * @var array
      */
     private $columnInfo;
 
     /**
      * Array containing the selected area for the worksheet
+     *
      * @var array
      */
     private $selection;
 
     /**
      * The active pane for the worksheet
+     *
      * @var integer
      */
     private $activePane;
 
     /**
      * Whether to use outline.
+     *
      * @var integer
      */
     private $outlineOn;
 
     /**
      * Auto outline styles.
+     *
      * @var bool
      */
     private $outlineStyle;
 
     /**
      * Whether to have outline summary below.
+     *
      * @var bool
      */
     private $outlineBelow;
 
     /**
      * Whether to have outline summary at the right.
+     *
      * @var bool
      */
     private $outlineRight;
 
     /**
      * Reference to the total number of strings in the workbook
+     *
      * @var integer
      */
     private $stringTotal;
 
     /**
      * Reference to the number of unique strings in the workbook
+     *
      * @var integer
      */
     private $stringUnique;
 
     /**
      * Reference to the array containing all the unique strings in the workbook
+     *
      * @var array
      */
     private $stringTable;
@@ -142,30 +153,35 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 
     /**
      * Index of first used row (at least 0)
+     *
      * @var int
      */
     private $firstRowIndex;
 
     /**
      * Index of last used row. (no used rows means -1)
+     *
      * @var int
      */
     private $lastRowIndex;
 
     /**
      * Index of first used column (at least 0)
+     *
      * @var int
      */
     private $firstColumnIndex;
 
     /**
      * Index of last used column (no used columns means -1)
+     *
      * @var int
      */
     private $lastColumnIndex;
 
     /**
      * Sheet object
+     *
      * @var PHPExcel_Worksheet
      */
     public $phpSheet;
@@ -194,13 +210,13 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
     /**
      * Constructor
      *
-     * @param int        &$str_total        Total number of strings
-     * @param int        &$str_unique    Total number of unique strings
-     * @param array        &$str_table        String Table
-     * @param array        &$colors        Colour Table
-     * @param mixed        $parser            The formula parser created for the Workbook
-     * @param boolean    $preCalculateFormulas    Flag indicating whether formulas should be calculated or just written
-     * @param string    $phpSheet        The worksheet to write
+     * @param int                &$str_total           Total number of strings
+     * @param int                &$str_unique          Total number of unique strings
+     * @param array              &$str_table           String Table
+     * @param array              &$colors              Colour Table
+     * @param mixed              $parser               The formula parser created for the Workbook
+     * @param boolean            $preCalculateFormulas Flag indicating whether formulas should be calculated or just written
+     * @param string             $phpSheet             The worksheet to write
      * @param PHPExcel_Worksheet $phpSheet
      */
     public function __construct(&$str_total, &$str_unique, &$str_table, &$colors, $parser, $preCalculateFormulas, $phpSheet)
@@ -209,7 +225,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
         parent::__construct();
 
         // change BIFFwriter limit for CONTINUE records
-//        $this->_limit = 8224;
+        //        $this->_limit = 8224;
 
 
         $this->_preCalculateFormulas = $preCalculateFormulas;
@@ -245,13 +261,13 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
         $maxC = $this->phpSheet->getHighestColumn();
 
         // Determine lowest and highest column and row
-//        $this->firstRowIndex = ($minR > 65535) ? 65535 : $minR;
+        //        $this->firstRowIndex = ($minR > 65535) ? 65535 : $minR;
         $this->lastRowIndex = ($maxR > 65535) ? 65535 : $maxR ;
 
         $this->firstColumnIndex = PHPExcel_Cell::columnIndexFromString($minC);
         $this->lastColumnIndex  = PHPExcel_Cell::columnIndexFromString($maxC);
 
-//        if ($this->firstColumnIndex > 255) $this->firstColumnIndex = 255;
+        //        if ($this->firstColumnIndex > 255) $this->firstColumnIndex = 255;
         if ($this->lastColumnIndex > 255) {
             $this->lastColumnIndex = 255;
         }
@@ -264,7 +280,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
      * and to the end of the workbook.
      *
      * @access public
-     * @see PHPExcel_Writer_Excel5_Workbook::storeWorkbook()
+     * @see    PHPExcel_Writer_Excel5_Workbook::storeWorkbook()
      */
     public function close()
     {
@@ -389,7 +405,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
             $column = PHPExcel_Cell::columnIndexFromString($cell->getColumn()) - 1;
 
             // Don't break Excel!
-//            if ($row + 1 > 65536 or $column + 1 > 256) {
+            //            if ($row + 1 > 65536 or $column + 1 > 256) {
             if ($row > 65535 || $column > 255) {
                 break;
             }
@@ -418,32 +434,32 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
                 $this->writeRichTextString($row, $column, $cVal->getPlainText(), $xfIndex, $arrcRun);
             } else {
                 switch ($cell->getDatatype()) {
-                    case PHPExcel_Cell_DataType::TYPE_STRING:
-                    case PHPExcel_Cell_DataType::TYPE_NULL:
-                        if ($cVal === '' || $cVal === null) {
-                            $this->writeBlank($row, $column, $xfIndex);
-                        } else {
-                            $this->writeString($row, $column, $cVal, $xfIndex);
-                        }
-                        break;
+                case PHPExcel_Cell_DataType::TYPE_STRING:
+                case PHPExcel_Cell_DataType::TYPE_NULL:
+                    if ($cVal === '' || $cVal === null) {
+                        $this->writeBlank($row, $column, $xfIndex);
+                    } else {
+                        $this->writeString($row, $column, $cVal, $xfIndex);
+                    }
+                    break;
 
-                    case PHPExcel_Cell_DataType::TYPE_NUMERIC:
-                        $this->writeNumber($row, $column, $cVal, $xfIndex);
-                        break;
+                case PHPExcel_Cell_DataType::TYPE_NUMERIC:
+                    $this->writeNumber($row, $column, $cVal, $xfIndex);
+                    break;
 
-                    case PHPExcel_Cell_DataType::TYPE_FORMULA:
-                        $calculatedValue = $this->_preCalculateFormulas ?
-                            $cell->getCalculatedValue() : null;
-                        $this->writeFormula($row, $column, $cVal, $xfIndex, $calculatedValue);
-                        break;
+                case PHPExcel_Cell_DataType::TYPE_FORMULA:
+                    $calculatedValue = $this->_preCalculateFormulas ?
+                        $cell->getCalculatedValue() : null;
+                    $this->writeFormula($row, $column, $cVal, $xfIndex, $calculatedValue);
+                    break;
 
-                    case PHPExcel_Cell_DataType::TYPE_BOOL:
-                        $this->writeBoolErr($row, $column, $cVal, 0, $xfIndex);
-                        break;
+                case PHPExcel_Cell_DataType::TYPE_BOOL:
+                    $this->writeBoolErr($row, $column, $cVal, 0, $xfIndex);
+                    break;
 
-                    case PHPExcel_Cell_DataType::TYPE_ERROR:
-                        $this->writeBoolErr($row, $column, self::mapErrorCode($cVal), 1, $xfIndex);
-                        break;
+                case PHPExcel_Cell_DataType::TYPE_ERROR:
+                    $this->writeBoolErr($row, $column, self::mapErrorCode($cVal), 1, $xfIndex);
+                    break;
 
                 }
             }
@@ -509,7 +525,8 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
             foreach ($arrConditionalStyles as $cellCoordinate => $conditionalStyles) {
                 foreach ($conditionalStyles as $conditional) {
                     if ($conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_EXPRESSION
-                        || $conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_CELLIS) {
+                        || $conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_CELLIS
+                    ) {
                         if (!in_array($conditional->getHashCode(), $arrConditional)) {
                             $arrConditional[] = $conditional->getHashCode();
                             // Write CFRULE record
@@ -528,7 +545,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
      * always fixed range
      * See section 2.5.14 in OpenOffice.org's Documentation of the Microsoft Excel File Format
      *
-     * @param string $range E.g. 'A1' or 'A1:B6'
+     * @param  string $range E.g. 'A1' or 'A1:B6'
      * @return string Binary data
      */
     private function writeBIFF8CellRangeAddressFixed($range = 'A1')
@@ -575,7 +592,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
      * Set the option to print the row and column headers on the printed page.
      *
      * @access public
-     * @param integer $print Whether to print the headers or not. Defaults to 1 (print).
+     * @param  integer $print Whether to print the headers or not. Defaults to 1 (print).
      */
     public function printRowColHeaders($print = 1)
     {
@@ -612,10 +629,10 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
      * Returns  0 : normal termination
      *         -2 : row or column out of range
      *
-     * @param integer $row    Zero indexed row
-     * @param integer $col    Zero indexed column
-     * @param float   $num    The number to write
-     * @param mixed   $xfIndex The optional XF format
+     * @param  integer $row     Zero indexed row
+     * @param  integer $col     Zero indexed column
+     * @param  float   $num     The number to write
+     * @param  mixed   $xfIndex The optional XF format
      * @return integer
      */
     private function writeNumber($row, $col, $num, $xfIndex)
@@ -637,10 +654,10 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
     /**
      * Write a LABELSST record or a LABEL record. Which one depends on BIFF version
      *
-     * @param int $row Row index (0-based)
-     * @param int $col Column index (0-based)
-     * @param string $str The string
-     * @param int $xfIndex Index to XF record
+     * @param int    $row     Row index (0-based)
+     * @param int    $col     Column index (0-based)
+     * @param string $str     The string
+     * @param int    $xfIndex Index to XF record
      */
     private function writeString($row, $col, $str, $xfIndex)
     {
@@ -650,11 +667,12 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
     /**
      * Write a LABELSST record or a LABEL record. Which one depends on BIFF version
      * It differs from writeString by the writing of rich text strings.
-     * @param int $row Row index (0-based)
-     * @param int $col Column index (0-based)
-     * @param string $str The string
-     * @param mixed   $xfIndex The XF format index for the cell
-     * @param array $arrcRun Index to Font record and characters beginning
+     *
+     * @param int    $row     Row index (0-based)
+     * @param int    $col     Column index (0-based)
+     * @param string $str     The string
+     * @param mixed  $xfIndex The XF format index for the cell
+     * @param array  $arrcRun Index to Font record and characters beginning
      */
     private function writeRichTextString($row, $col, $str, $xfIndex, $arrcRun)
     {
@@ -682,10 +700,10 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
      *         -3 : long string truncated to 255 chars
      *
      * @access public
-     * @param integer $row    Zero indexed row
-     * @param integer $col    Zero indexed column
-     * @param string  $str    The string to write
-     * @param mixed   $xfIndex The XF format index for the cell
+     * @param  integer $row     Zero indexed row
+     * @param  integer $col     Zero indexed column
+     * @param  string  $str     The string to write
+     * @param  mixed   $xfIndex The XF format index for the cell
      * @return integer
      */
     private function writeLabel($row, $col, $str, $xfIndex)
@@ -718,10 +736,10 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
      *         -3 : long string truncated to 255 chars
      *
      * @access public
-     * @param integer $row    Zero indexed row
-     * @param integer $col    Zero indexed column
-     * @param string  $str    The string to write
-     * @param mixed   $xfIndex The XF format index for the cell
+     * @param  integer $row     Zero indexed row
+     * @param  integer $col     Zero indexed column
+     * @param  string  $str     The string to write
+     * @param  mixed   $xfIndex The XF format index for the cell
      * @return integer
      */
     private function writeLabelSst($row, $col, $str, $xfIndex)
@@ -746,9 +764,9 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
      * Writes a note associated with the cell given by the row and column.
      * NOTE records don't have a length limit.
      *
-     * @param integer $row    Zero indexed row
-     * @param integer $col    Zero indexed column
-     * @param string  $note   The note to write
+     * @param integer $row  Zero indexed row
+     * @param integer $col  Zero indexed column
+     * @param string  $note The note to write
      */
     private function writeNote($row, $col, $note)
     {
@@ -784,8 +802,8 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
      *         -1 : insufficient number of arguments
      *         -2 : row or column out of range
      *
-     * @param integer $row    Zero indexed row
-     * @param integer $col    Zero indexed column
+     * @param integer $row     Zero indexed row
+     * @param integer $col     Zero indexed column
      * @param mixed   $xfIndex The XF format index
      */
     public function writeBlank($row, $col, $xfIndex)
@@ -802,11 +820,11 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
     /**
      * Write a boolean or an error type to the specified row and column (zero indexed)
      *
-     * @param int $row Row index (0-based)
-     * @param int $col Column index (0-based)
-     * @param int $value
+     * @param int     $row     Row index (0-based)
+     * @param int     $col     Column index (0-based)
+     * @param int     $value
      * @param boolean $isError Error or Boolean?
-     * @param int $xfIndex
+     * @param int     $xfIndex
      */
     private function writeBoolErr($row, $col, $value, $isError, $xfIndex)
     {
@@ -828,11 +846,11 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
      *         -1 : formula errors (bad formula)
      *         -2 : row or column out of range
      *
-     * @param integer $row     Zero indexed row
-     * @param integer $col     Zero indexed column
-     * @param string  $formula The formula text string
-     * @param mixed   $xfIndex  The XF format index
-     * @param mixed   $calculatedValue  Calculated value
+     * @param  integer $row             Zero indexed row
+     * @param  integer $col             Zero indexed column
+     * @param  string  $formula         The formula text string
+     * @param  mixed   $xfIndex         The XF format index
+     * @param  mixed   $calculatedValue Calculated value
      * @return integer
      */
     private function writeFormula($row, $col, $formula, $xfIndex, $calculatedValue)
@@ -943,9 +961,9 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
      *         -2 : row or column out of range
      *         -3 : long string truncated to 255 chars
      *
-     * @param integer $row    Row
-     * @param integer $col    Column
-     * @param string  $url    URL string
+     * @param  integer $row Row
+     * @param  integer $col Column
+     * @param  string  $url URL string
      * @return integer
      */
     private function writeUrl($row, $col, $url)
@@ -961,12 +979,12 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
      * (Sheet1!A1) or external ('c:\temp\foo.xls#Sheet1!A1').
      *
      * @access private
-     * @see writeUrl()
-     * @param integer $row1   Start row
-     * @param integer $col1   Start column
-     * @param integer $row2   End row
-     * @param integer $col2   End column
-     * @param string  $url    URL string
+     * @see    writeUrl()
+     * @param  integer $row1 Start row
+     * @param  integer $col1 Start column
+     * @param  integer $row2 End row
+     * @param  integer $col2 End column
+     * @param  string  $url  URL string
      * @return integer
      */
     public function writeUrlRange($row1, $col1, $row2, $col2, $url)
@@ -987,12 +1005,12 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
      * sheet. However it is differentiated by the $unknown2 data stream.
      *
      * @access private
-     * @see writeUrl()
-     * @param integer $row1   Start row
-     * @param integer $col1   Start column
-     * @param integer $row2   End row
-     * @param integer $col2   End column
-     * @param string  $url    URL string
+     * @see    writeUrl()
+     * @param  integer $row1 Start row
+     * @param  integer $col1 Start column
+     * @param  integer $row2 End row
+     * @param  integer $col2 End column
+     * @param  string  $url  URL string
      * @return integer
      */
     public function writeUrlWeb($row1, $col1, $row2, $col2, $url)
@@ -1022,9 +1040,11 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
         $data        = pack("vvvv", $row1, $row2, $col1, $col2);
 
         // Write the packed data
-        $this->append($header . $data .
+        $this->append(
+            $header . $data .
                        $unknown1 . $options .
-                       $unknown2 . $url_len . $url);
+            $unknown2 . $url_len . $url
+        );
         return 0;
     }
 
@@ -1032,12 +1052,12 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
      * Used to write internal reference hyperlinks such as "Sheet1!A1".
      *
      * @access private
-     * @see writeUrl()
-     * @param integer $row1   Start row
-     * @param integer $col1   Start column
-     * @param integer $row2   End row
-     * @param integer $col2   End column
-     * @param string  $url    URL string
+     * @see    writeUrl()
+     * @param  integer $row1 Start row
+     * @param  integer $col1 Start column
+     * @param  integer $row2 End row
+     * @param  integer $col2 End column
+     * @param  string  $url  URL string
      * @return integer
      */
     public function writeUrlInternal($row1, $col1, $row2, $col2, $url)
@@ -1071,9 +1091,11 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
         $data        = pack("vvvv", $row1, $row2, $col1, $col2);
 
         // Write the packed data
-        $this->append($header . $data .
+        $this->append(
+            $header . $data .
                        $unknown1 . $options .
-                       $url_len . $url);
+            $url_len . $url
+        );
         return 0;
     }
 
@@ -1085,12 +1107,12 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
      * these cases for the sake of simpler code.
      *
      * @access private
-     * @see writeUrl()
-     * @param integer $row1   Start row
-     * @param integer $col1   Start column
-     * @param integer $row2   End row
-     * @param integer $col2   End column
-     * @param string  $url    URL string
+     * @see    writeUrl()
+     * @param  integer $row1 Start row
+     * @param  integer $col1 Start column
+     * @param  integer $row2 End row
+     * @param  integer $col2 End column
+     * @param  string  $url  URL string
      * @return integer
      */
     public function writeUrlExternal($row1, $col1, $row2, $col2, $url)
@@ -1181,12 +1203,13 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
     /**
      * This method is used to set the height and format for a row.
      *
-     * @param integer $row    The row to set
-     * @param integer $height Height we are giving to the row.
-     *                        Use null to set XF without setting height
-     * @param integer $xfIndex  The optional cell style Xf index to apply to the columns
-     * @param bool    $hidden The optional hidden attribute
-     * @param integer $level  The optional outline level for row, in range [0,7]
+     * @param integer $row     The row to set
+     * @param integer $height  Height we are giving to the row.
+     *                         Use null to set XF without
+     *                         setting height
+     * @param integer $xfIndex The optional cell style Xf index to apply to the columns
+     * @param bool    $hidden  The optional hidden attribute
+     * @param integer $level   The optional outline level for row, in range [0,7]
      */
     private function writeRow($row, $height, $xfIndex, $hidden = false, $level = 0)
     {
@@ -1346,12 +1369,12 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
      * length record.
      *
      * @param array $col_array This is the only parameter received and is composed of the following:
-     *                0 => First formatted column,
-     *                1 => Last formatted column,
-     *                2 => Col width (8.43 is Excel default),
-     *                3 => The optional XF format of the column,
-     *                4 => Option flags.
-     *                5 => Optional outline level
+     *                         0 => First formatted column,
+     *                         1 => Last formatted column,
+     *                         2 => Col width (8.43 is Excel default),
+     *                         3 => The optional XF format of the column,
+     *                         4 => Option flags.
+     *                         5 => Optional outline level
      */
     private function writeColinfo($col_array)
     {
@@ -2146,18 +2169,18 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 
             // Decide what to do by the type of break
             switch ($breakType) {
-                case PHPExcel_Worksheet::BREAK_COLUMN:
-                    // Add to list of vertical breaks
-                    $vbreaks[] = PHPExcel_Cell::columnIndexFromString($coordinates[0]) - 1;
-                    break;
-                case PHPExcel_Worksheet::BREAK_ROW:
-                    // Add to list of horizontal breaks
-                    $hbreaks[] = $coordinates[1];
-                    break;
-                case PHPExcel_Worksheet::BREAK_NONE:
-                default:
-                    // Nothing to do
-                    break;
+            case PHPExcel_Worksheet::BREAK_COLUMN:
+                // Add to list of vertical breaks
+                $vbreaks[] = PHPExcel_Cell::columnIndexFromString($coordinates[0]) - 1;
+                break;
+            case PHPExcel_Worksheet::BREAK_ROW:
+                // Add to list of horizontal breaks
+                $hbreaks[] = $coordinates[1];
+                break;
+            case PHPExcel_Worksheet::BREAK_NONE:
+            default:
+                // Nothing to do
+                break;
             }
         }
 
@@ -2306,13 +2329,13 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
      * Insert a 24bit bitmap image in a worksheet.
      *
      * @access public
-     * @param integer $row     The row we are going to insert the bitmap into
-     * @param integer $col     The column we are going to insert the bitmap into
-     * @param mixed   $bitmap  The bitmap filename or GD-image resource
-     * @param integer $x       The horizontal position (offset) of the image inside the cell.
-     * @param integer $y       The vertical position (offset) of the image inside the cell.
-     * @param float   $scale_x The horizontal scale
-     * @param float   $scale_y The vertical scale
+     * @param  integer $row     The row we are going to insert the bitmap into
+     * @param  integer $col     The column we are going to insert the bitmap into
+     * @param  mixed   $bitmap  The bitmap filename or GD-image resource
+     * @param  integer $x       The horizontal position (offset) of the image inside the cell.
+     * @param  integer $y       The vertical position (offset) of the image inside the cell.
+     * @param  float   $scale_x The horizontal scale
+     * @param  float   $scale_y The vertical scale
      */
     public function insertBitmap($row, $col, $bitmap, $x = 0, $y = 0, $scale_x = 1, $scale_y = 1)
     {
@@ -2381,12 +2404,12 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
      *        percentage of 1024.
      *
      * @access private
-     * @param integer $col_start Col containing upper left corner of object
-     * @param integer $row_start Row containing top left corner of object
-     * @param integer $x1        Distance to left side of object
-     * @param integer $y1        Distance to top of object
-     * @param integer $width     Width of image frame
-     * @param integer $height    Height of image frame
+     * @param  integer $col_start Col containing upper left corner of object
+     * @param  integer $row_start Row containing top left corner of object
+     * @param  integer $x1        Distance to left side of object
+     * @param  integer $y1        Distance to top of object
+     * @param  integer $width     Width of image frame
+     * @param  integer $height    Height of image frame
      */
     public function positionImage($col_start, $row_start, $x1, $y1, $width, $height)
     {
@@ -2525,7 +2548,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
      * Convert a GD-image into the internal format.
      *
      * @access private
-     * @param resource $image The image to process
+     * @param  resource $image The image to process
      * @return array Array with data and properties of the bitmap
      */
     public function processBitmapGd($image)
@@ -2556,7 +2579,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
      * MSDN library.
      *
      * @access private
-     * @param string $bitmap The bitmap to process
+     * @param  string $bitmap The bitmap to process
      * @return array Array with data and properties of the bitmap
      */
     public function processBitmap($bitmap)
@@ -2797,45 +2820,45 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
                 // data type
                 $type = $dataValidation->getType();
                 switch ($type) {
-                    case PHPExcel_Cell_DataValidation::TYPE_NONE:
-                        $type = 0x00;
-                        break;
-                    case PHPExcel_Cell_DataValidation::TYPE_WHOLE:
-                        $type = 0x01;
-                        break;
-                    case PHPExcel_Cell_DataValidation::TYPE_DECIMAL:
-                        $type = 0x02;
-                        break;
-                    case PHPExcel_Cell_DataValidation::TYPE_LIST:
-                        $type = 0x03;
-                        break;
-                    case PHPExcel_Cell_DataValidation::TYPE_DATE:
-                        $type = 0x04;
-                        break;
-                    case PHPExcel_Cell_DataValidation::TYPE_TIME:
-                        $type = 0x05;
-                        break;
-                    case PHPExcel_Cell_DataValidation::TYPE_TEXTLENGTH:
-                        $type = 0x06;
-                        break;
-                    case PHPExcel_Cell_DataValidation::TYPE_CUSTOM:
-                        $type = 0x07;
-                        break;
+                case PHPExcel_Cell_DataValidation::TYPE_NONE:
+                    $type = 0x00;
+                    break;
+                case PHPExcel_Cell_DataValidation::TYPE_WHOLE:
+                    $type = 0x01;
+                    break;
+                case PHPExcel_Cell_DataValidation::TYPE_DECIMAL:
+                    $type = 0x02;
+                    break;
+                case PHPExcel_Cell_DataValidation::TYPE_LIST:
+                    $type = 0x03;
+                    break;
+                case PHPExcel_Cell_DataValidation::TYPE_DATE:
+                    $type = 0x04;
+                    break;
+                case PHPExcel_Cell_DataValidation::TYPE_TIME:
+                    $type = 0x05;
+                    break;
+                case PHPExcel_Cell_DataValidation::TYPE_TEXTLENGTH:
+                    $type = 0x06;
+                    break;
+                case PHPExcel_Cell_DataValidation::TYPE_CUSTOM:
+                    $type = 0x07;
+                    break;
                 }
                 $options |= $type << 0;
 
                 // error style
                 $errorStyle = $dataValidation->getType();
                 switch ($errorStyle) {
-                    case PHPExcel_Cell_DataValidation::STYLE_STOP:
-                        $errorStyle = 0x00;
-                        break;
-                    case PHPExcel_Cell_DataValidation::STYLE_WARNING:
-                        $errorStyle = 0x01;
-                        break;
-                    case PHPExcel_Cell_DataValidation::STYLE_INFORMATION:
-                        $errorStyle = 0x02;
-                        break;
+                case PHPExcel_Cell_DataValidation::STYLE_STOP:
+                    $errorStyle = 0x00;
+                    break;
+                case PHPExcel_Cell_DataValidation::STYLE_WARNING:
+                    $errorStyle = 0x01;
+                    break;
+                case PHPExcel_Cell_DataValidation::STYLE_INFORMATION:
+                    $errorStyle = 0x02;
+                    break;
                 }
                 $options |= $errorStyle << 4;
 
@@ -2859,30 +2882,30 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
                 // condition operator
                 $operator = $dataValidation->getOperator();
                 switch ($operator) {
-                    case PHPExcel_Cell_DataValidation::OPERATOR_BETWEEN:
-                        $operator = 0x00;
-                        break;
-                    case PHPExcel_Cell_DataValidation::OPERATOR_NOTBETWEEN:
-                        $operator = 0x01;
-                        break;
-                    case PHPExcel_Cell_DataValidation::OPERATOR_EQUAL:
-                        $operator = 0x02;
-                        break;
-                    case PHPExcel_Cell_DataValidation::OPERATOR_NOTEQUAL:
-                        $operator = 0x03;
-                        break;
-                    case PHPExcel_Cell_DataValidation::OPERATOR_GREATERTHAN:
-                        $operator = 0x04;
-                        break;
-                    case PHPExcel_Cell_DataValidation::OPERATOR_LESSTHAN:
-                        $operator = 0x05;
-                        break;
-                    case PHPExcel_Cell_DataValidation::OPERATOR_GREATERTHANOREQUAL:
-                        $operator = 0x06;
-                        break;
-                    case PHPExcel_Cell_DataValidation::OPERATOR_LESSTHANOREQUAL:
-                        $operator = 0x07;
-                        break;
+                case PHPExcel_Cell_DataValidation::OPERATOR_BETWEEN:
+                    $operator = 0x00;
+                    break;
+                case PHPExcel_Cell_DataValidation::OPERATOR_NOTBETWEEN:
+                    $operator = 0x01;
+                    break;
+                case PHPExcel_Cell_DataValidation::OPERATOR_EQUAL:
+                    $operator = 0x02;
+                    break;
+                case PHPExcel_Cell_DataValidation::OPERATOR_NOTEQUAL:
+                    $operator = 0x03;
+                    break;
+                case PHPExcel_Cell_DataValidation::OPERATOR_GREATERTHAN:
+                    $operator = 0x04;
+                    break;
+                case PHPExcel_Cell_DataValidation::OPERATOR_LESSTHAN:
+                    $operator = 0x05;
+                    break;
+                case PHPExcel_Cell_DataValidation::OPERATOR_GREATERTHANOREQUAL:
+                    $operator = 0x06;
+                    break;
+                case PHPExcel_Cell_DataValidation::OPERATOR_LESSTHANOREQUAL:
+                    $operator = 0x07;
+                    break;
                 }
                 $options |= $operator << 20;
 
@@ -2955,26 +2978,26 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
     /**
      * Map Error code
      *
-     * @param string $errorCode
+     * @param  string $errorCode
      * @return int
      */
     private static function mapErrorCode($errorCode)
     {
         switch ($errorCode) {
-            case '#NULL!':
-                return 0x00;
-            case '#DIV/0!':
-                return 0x07;
-            case '#VALUE!':
-                return 0x0F;
-            case '#REF!':
-                return 0x17;
-            case '#NAME?':
-                return 0x1D;
-            case '#NUM!':
-                return 0x24;
-            case '#N/A':
-                return 0x2A;
+        case '#NULL!':
+            return 0x00;
+        case '#DIV/0!':
+            return 0x07;
+        case '#VALUE!':
+            return 0x0F;
+        case '#REF!':
+            return 0x17;
+        case '#NAME?':
+            return 0x1D;
+        case '#NUM!':
+            return 0x24;
+        case '#N/A':
+            return 0x2A;
         }
 
         return 0;
@@ -3013,6 +3036,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
 
     /**
      * Write CFRule Record
+     *
      * @param PHPExcel_Style_Conditional $conditional
      */
     private function writeCFRule(PHPExcel_Style_Conditional $conditional)
@@ -3028,30 +3052,30 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
             $type = 0x01;
 
             switch ($conditional->getOperatorType()) {
-                case PHPExcel_Style_Conditional::OPERATOR_NONE:
-                    $operatorType = 0x00;
-                    break;
-                case PHPExcel_Style_Conditional::OPERATOR_EQUAL:
-                    $operatorType = 0x03;
-                    break;
-                case PHPExcel_Style_Conditional::OPERATOR_GREATERTHAN:
-                    $operatorType = 0x05;
-                    break;
-                case PHPExcel_Style_Conditional::OPERATOR_GREATERTHANOREQUAL:
-                    $operatorType = 0x07;
-                    break;
-                case PHPExcel_Style_Conditional::OPERATOR_LESSTHAN:
-                    $operatorType = 0x06;
-                    break;
-                case PHPExcel_Style_Conditional::OPERATOR_LESSTHANOREQUAL:
-                    $operatorType = 0x08;
-                    break;
-                case PHPExcel_Style_Conditional::OPERATOR_NOTEQUAL:
-                    $operatorType = 0x04;
-                    break;
-                case PHPExcel_Style_Conditional::OPERATOR_BETWEEN:
-                    $operatorType = 0x01;
-                    break;
+            case PHPExcel_Style_Conditional::OPERATOR_NONE:
+                $operatorType = 0x00;
+                break;
+            case PHPExcel_Style_Conditional::OPERATOR_EQUAL:
+                $operatorType = 0x03;
+                break;
+            case PHPExcel_Style_Conditional::OPERATOR_GREATERTHAN:
+                $operatorType = 0x05;
+                break;
+            case PHPExcel_Style_Conditional::OPERATOR_GREATERTHANOREQUAL:
+                $operatorType = 0x07;
+                break;
+            case PHPExcel_Style_Conditional::OPERATOR_LESSTHAN:
+                $operatorType = 0x06;
+                break;
+            case PHPExcel_Style_Conditional::OPERATOR_LESSTHANOREQUAL:
+                $operatorType = 0x08;
+                break;
+            case PHPExcel_Style_Conditional::OPERATOR_NOTEQUAL:
+                $operatorType = 0x04;
+                break;
+            case PHPExcel_Style_Conditional::OPERATOR_BETWEEN:
+                $operatorType = 0x01;
+                break;
                     // not OPERATOR_NOTBETWEEN 0x02
             }
         }
@@ -3130,7 +3154,8 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
             || $conditional->getStyle()->getFont()->getSubScript() != null
             || $conditional->getStyle()->getFont()->getUnderline() != null
             || $conditional->getStyle()->getFont()->getStrikethrough() != null
-            || $conditional->getStyle()->getFont()->getColor()->getARGB() != null) {
+            || $conditional->getStyle()->getFont()->getColor()->getARGB() != null
+        ) {
             $bFormatFont = 1;
         } else {
             $bFormatFont = 0;
@@ -3211,205 +3236,205 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
             }
             // Underline type
             switch ($conditional->getStyle()->getFont()->getUnderline()) {
-                case PHPExcel_Style_Font::UNDERLINE_NONE:
-                    $dataBlockFont .= pack('C', 0x00);
-                    $fontUnderline = 0;
-                    break;
-                case PHPExcel_Style_Font::UNDERLINE_DOUBLE:
-                    $dataBlockFont .= pack('C', 0x02);
-                    $fontUnderline = 0;
-                    break;
-                case PHPExcel_Style_Font::UNDERLINE_DOUBLEACCOUNTING:
-                    $dataBlockFont .= pack('C', 0x22);
-                    $fontUnderline = 0;
-                    break;
-                case PHPExcel_Style_Font::UNDERLINE_SINGLE:
-                    $dataBlockFont .= pack('C', 0x01);
-                    $fontUnderline = 0;
-                    break;
-                case PHPExcel_Style_Font::UNDERLINE_SINGLEACCOUNTING:
-                    $dataBlockFont .= pack('C', 0x21);
-                    $fontUnderline = 0;
-                    break;
-                default: $dataBlockFont .= pack('C', 0x00);
-                    $fontUnderline = 1;
-                    break;
+            case PHPExcel_Style_Font::UNDERLINE_NONE:
+                $dataBlockFont .= pack('C', 0x00);
+                $fontUnderline = 0;
+                break;
+            case PHPExcel_Style_Font::UNDERLINE_DOUBLE:
+                $dataBlockFont .= pack('C', 0x02);
+                $fontUnderline = 0;
+                break;
+            case PHPExcel_Style_Font::UNDERLINE_DOUBLEACCOUNTING:
+                $dataBlockFont .= pack('C', 0x22);
+                $fontUnderline = 0;
+                break;
+            case PHPExcel_Style_Font::UNDERLINE_SINGLE:
+                $dataBlockFont .= pack('C', 0x01);
+                $fontUnderline = 0;
+                break;
+            case PHPExcel_Style_Font::UNDERLINE_SINGLEACCOUNTING:
+                $dataBlockFont .= pack('C', 0x21);
+                $fontUnderline = 0;
+                break;
+            default: $dataBlockFont .= pack('C', 0x00);
+                $fontUnderline = 1;
+                break;
             }
             // Not used (3)
             $dataBlockFont .= pack('vC', 0x0000, 0x00);
             // Font color index
             switch ($conditional->getStyle()->getFont()->getColor()->getRGB()) {
-                case '000000':
-                    $colorIdx = 0x08;
-                    break;
-                case 'FFFFFF':
-                    $colorIdx = 0x09;
-                    break;
-                case 'FF0000':
-                    $colorIdx = 0x0A;
-                    break;
-                case '00FF00':
-                    $colorIdx = 0x0B;
-                    break;
-                case '0000FF':
-                    $colorIdx = 0x0C;
-                    break;
-                case 'FFFF00':
-                    $colorIdx = 0x0D;
-                    break;
-                case 'FF00FF':
-                    $colorIdx = 0x0E;
-                    break;
-                case '00FFFF':
-                    $colorIdx = 0x0F;
-                    break;
-                case '800000':
-                    $colorIdx = 0x10;
-                    break;
-                case '008000':
-                    $colorIdx = 0x11;
-                    break;
-                case '000080':
-                    $colorIdx = 0x12;
-                    break;
-                case '808000':
-                    $colorIdx = 0x13;
-                    break;
-                case '800080':
-                    $colorIdx = 0x14;
-                    break;
-                case '008080':
-                    $colorIdx = 0x15;
-                    break;
-                case 'C0C0C0':
-                    $colorIdx = 0x16;
-                    break;
-                case '808080':
-                    $colorIdx = 0x17;
-                    break;
-                case '9999FF':
-                    $colorIdx = 0x18;
-                    break;
-                case '993366':
-                    $colorIdx = 0x19;
-                    break;
-                case 'FFFFCC':
-                    $colorIdx = 0x1A;
-                    break;
-                case 'CCFFFF':
-                    $colorIdx = 0x1B;
-                    break;
-                case '660066':
-                    $colorIdx = 0x1C;
-                    break;
-                case 'FF8080':
-                    $colorIdx = 0x1D;
-                    break;
-                case '0066CC':
-                    $colorIdx = 0x1E;
-                    break;
-                case 'CCCCFF':
-                    $colorIdx = 0x1F;
-                    break;
-                case '000080':
-                    $colorIdx = 0x20;
-                    break;
-                case 'FF00FF':
-                    $colorIdx = 0x21;
-                    break;
-                case 'FFFF00':
-                    $colorIdx = 0x22;
-                    break;
-                case '00FFFF':
-                    $colorIdx = 0x23;
-                    break;
-                case '800080':
-                    $colorIdx = 0x24;
-                    break;
-                case '800000':
-                    $colorIdx = 0x25;
-                    break;
-                case '008080':
-                    $colorIdx = 0x26;
-                    break;
-                case '0000FF':
-                    $colorIdx = 0x27;
-                    break;
-                case '00CCFF':
-                    $colorIdx = 0x28;
-                    break;
-                case 'CCFFFF':
-                    $colorIdx = 0x29;
-                    break;
-                case 'CCFFCC':
-                    $colorIdx = 0x2A;
-                    break;
-                case 'FFFF99':
-                    $colorIdx = 0x2B;
-                    break;
-                case '99CCFF':
-                    $colorIdx = 0x2C;
-                    break;
-                case 'FF99CC':
-                    $colorIdx = 0x2D;
-                    break;
-                case 'CC99FF':
-                    $colorIdx = 0x2E;
-                    break;
-                case 'FFCC99':
-                    $colorIdx = 0x2F;
-                    break;
-                case '3366FF':
-                    $colorIdx = 0x30;
-                    break;
-                case '33CCCC':
-                    $colorIdx = 0x31;
-                    break;
-                case '99CC00':
-                    $colorIdx = 0x32;
-                    break;
-                case 'FFCC00':
-                    $colorIdx = 0x33;
-                    break;
-                case 'FF9900':
-                    $colorIdx = 0x34;
-                    break;
-                case 'FF6600':
-                    $colorIdx = 0x35;
-                    break;
-                case '666699':
-                    $colorIdx = 0x36;
-                    break;
-                case '969696':
-                    $colorIdx = 0x37;
-                    break;
-                case '003366':
-                    $colorIdx = 0x38;
-                    break;
-                case '339966':
-                    $colorIdx = 0x39;
-                    break;
-                case '003300':
-                    $colorIdx = 0x3A;
-                    break;
-                case '333300':
-                    $colorIdx = 0x3B;
-                    break;
-                case '993300':
-                    $colorIdx = 0x3C;
-                    break;
-                case '993366':
-                    $colorIdx = 0x3D;
-                    break;
-                case '333399':
-                    $colorIdx = 0x3E;
-                    break;
-                case '333333':
-                    $colorIdx = 0x3F;
-                    break;
-                default:
-                    $colorIdx = 0x00;
-                    break;
+            case '000000':
+                $colorIdx = 0x08;
+                break;
+            case 'FFFFFF':
+                $colorIdx = 0x09;
+                break;
+            case 'FF0000':
+                $colorIdx = 0x0A;
+                break;
+            case '00FF00':
+                $colorIdx = 0x0B;
+                break;
+            case '0000FF':
+                $colorIdx = 0x0C;
+                break;
+            case 'FFFF00':
+                $colorIdx = 0x0D;
+                break;
+            case 'FF00FF':
+                $colorIdx = 0x0E;
+                break;
+            case '00FFFF':
+                $colorIdx = 0x0F;
+                break;
+            case '800000':
+                $colorIdx = 0x10;
+                break;
+            case '008000':
+                $colorIdx = 0x11;
+                break;
+            case '000080':
+                $colorIdx = 0x12;
+                break;
+            case '808000':
+                $colorIdx = 0x13;
+                break;
+            case '800080':
+                $colorIdx = 0x14;
+                break;
+            case '008080':
+                $colorIdx = 0x15;
+                break;
+            case 'C0C0C0':
+                $colorIdx = 0x16;
+                break;
+            case '808080':
+                $colorIdx = 0x17;
+                break;
+            case '9999FF':
+                $colorIdx = 0x18;
+                break;
+            case '993366':
+                $colorIdx = 0x19;
+                break;
+            case 'FFFFCC':
+                $colorIdx = 0x1A;
+                break;
+            case 'CCFFFF':
+                $colorIdx = 0x1B;
+                break;
+            case '660066':
+                $colorIdx = 0x1C;
+                break;
+            case 'FF8080':
+                $colorIdx = 0x1D;
+                break;
+            case '0066CC':
+                $colorIdx = 0x1E;
+                break;
+            case 'CCCCFF':
+                $colorIdx = 0x1F;
+                break;
+            case '000080':
+                $colorIdx = 0x20;
+                break;
+            case 'FF00FF':
+                $colorIdx = 0x21;
+                break;
+            case 'FFFF00':
+                $colorIdx = 0x22;
+                break;
+            case '00FFFF':
+                $colorIdx = 0x23;
+                break;
+            case '800080':
+                $colorIdx = 0x24;
+                break;
+            case '800000':
+                $colorIdx = 0x25;
+                break;
+            case '008080':
+                $colorIdx = 0x26;
+                break;
+            case '0000FF':
+                $colorIdx = 0x27;
+                break;
+            case '00CCFF':
+                $colorIdx = 0x28;
+                break;
+            case 'CCFFFF':
+                $colorIdx = 0x29;
+                break;
+            case 'CCFFCC':
+                $colorIdx = 0x2A;
+                break;
+            case 'FFFF99':
+                $colorIdx = 0x2B;
+                break;
+            case '99CCFF':
+                $colorIdx = 0x2C;
+                break;
+            case 'FF99CC':
+                $colorIdx = 0x2D;
+                break;
+            case 'CC99FF':
+                $colorIdx = 0x2E;
+                break;
+            case 'FFCC99':
+                $colorIdx = 0x2F;
+                break;
+            case '3366FF':
+                $colorIdx = 0x30;
+                break;
+            case '33CCCC':
+                $colorIdx = 0x31;
+                break;
+            case '99CC00':
+                $colorIdx = 0x32;
+                break;
+            case 'FFCC00':
+                $colorIdx = 0x33;
+                break;
+            case 'FF9900':
+                $colorIdx = 0x34;
+                break;
+            case 'FF6600':
+                $colorIdx = 0x35;
+                break;
+            case '666699':
+                $colorIdx = 0x36;
+                break;
+            case '969696':
+                $colorIdx = 0x37;
+                break;
+            case '003366':
+                $colorIdx = 0x38;
+                break;
+            case '339966':
+                $colorIdx = 0x39;
+                break;
+            case '003300':
+                $colorIdx = 0x3A;
+                break;
+            case '333300':
+                $colorIdx = 0x3B;
+                break;
+            case '993300':
+                $colorIdx = 0x3C;
+                break;
+            case '993366':
+                $colorIdx = 0x3D;
+                break;
+            case '333399':
+                $colorIdx = 0x3E;
+                break;
+            case '333333':
+                $colorIdx = 0x3F;
+                break;
+            default:
+                $colorIdx = 0x00;
+                break;
             }
             $dataBlockFont .= pack('V', $colorIdx);
             // Not used (4)
@@ -3440,24 +3465,24 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
             $blockAlign = 0;
             // Alignment and text break
             switch ($conditional->getStyle()->getAlignment()->getHorizontal()) {
-                case PHPExcel_Style_Alignment::HORIZONTAL_GENERAL:
-                    $blockAlign = 0;
-                    break;
-                case PHPExcel_Style_Alignment::HORIZONTAL_LEFT:
-                    $blockAlign = 1;
-                    break;
-                case PHPExcel_Style_Alignment::HORIZONTAL_RIGHT:
-                    $blockAlign = 3;
-                    break;
-                case PHPExcel_Style_Alignment::HORIZONTAL_CENTER:
-                    $blockAlign = 2;
-                    break;
-                case PHPExcel_Style_Alignment::HORIZONTAL_CENTER_CONTINUOUS:
-                    $blockAlign = 6;
-                    break;
-                case PHPExcel_Style_Alignment::HORIZONTAL_JUSTIFY:
-                    $blockAlign = 5;
-                    break;
+            case PHPExcel_Style_Alignment::HORIZONTAL_GENERAL:
+                $blockAlign = 0;
+                break;
+            case PHPExcel_Style_Alignment::HORIZONTAL_LEFT:
+                $blockAlign = 1;
+                break;
+            case PHPExcel_Style_Alignment::HORIZONTAL_RIGHT:
+                $blockAlign = 3;
+                break;
+            case PHPExcel_Style_Alignment::HORIZONTAL_CENTER:
+                $blockAlign = 2;
+                break;
+            case PHPExcel_Style_Alignment::HORIZONTAL_CENTER_CONTINUOUS:
+                $blockAlign = 6;
+                break;
+            case PHPExcel_Style_Alignment::HORIZONTAL_JUSTIFY:
+                $blockAlign = 5;
+                break;
             }
             if ($conditional->getStyle()->getAlignment()->getWrapText() == true) {
                 $blockAlign |= 1 << 3;
@@ -3465,18 +3490,18 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
                 $blockAlign |= 0 << 3;
             }
             switch ($conditional->getStyle()->getAlignment()->getVertical()) {
-                case PHPExcel_Style_Alignment::VERTICAL_BOTTOM:
-                    $blockAlign = 2 << 4;
-                    break;
-                case PHPExcel_Style_Alignment::VERTICAL_TOP:
-                    $blockAlign = 0 << 4;
-                    break;
-                case PHPExcel_Style_Alignment::VERTICAL_CENTER:
-                    $blockAlign = 1 << 4;
-                    break;
-                case PHPExcel_Style_Alignment::VERTICAL_JUSTIFY:
-                    $blockAlign = 3 << 4;
-                    break;
+            case PHPExcel_Style_Alignment::VERTICAL_BOTTOM:
+                $blockAlign = 2 << 4;
+                break;
+            case PHPExcel_Style_Alignment::VERTICAL_TOP:
+                $blockAlign = 0 << 4;
+                break;
+            case PHPExcel_Style_Alignment::VERTICAL_CENTER:
+                $blockAlign = 1 << 4;
+                break;
+            case PHPExcel_Style_Alignment::VERTICAL_JUSTIFY:
+                $blockAlign = 3 << 4;
+                break;
             }
             $blockAlign |= 0 << 7;
 
@@ -3500,180 +3525,180 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
         if ($bFormatBorder == 1) {
             $blockLineStyle = 0;
             switch ($conditional->getStyle()->getBorders()->getLeft()->getBorderStyle()) {
-                case PHPExcel_Style_Border::BORDER_NONE:
-                    $blockLineStyle |= 0x00;
-                    break;
-                case PHPExcel_Style_Border::BORDER_THIN:
-                    $blockLineStyle |= 0x01;
-                    break;
-                case PHPExcel_Style_Border::BORDER_MEDIUM:
-                    $blockLineStyle |= 0x02;
-                    break;
-                case PHPExcel_Style_Border::BORDER_DASHED:
-                    $blockLineStyle |= 0x03;
-                    break;
-                case PHPExcel_Style_Border::BORDER_DOTTED:
-                    $blockLineStyle |= 0x04;
-                    break;
-                case PHPExcel_Style_Border::BORDER_THICK:
-                    $blockLineStyle |= 0x05;
-                    break;
-                case PHPExcel_Style_Border::BORDER_DOUBLE:
-                    $blockLineStyle |= 0x06;
-                    break;
-                case PHPExcel_Style_Border::BORDER_HAIR:
-                    $blockLineStyle |= 0x07;
-                    break;
-                case PHPExcel_Style_Border::BORDER_MEDIUMDASHED:
-                    $blockLineStyle |= 0x08;
-                    break;
-                case PHPExcel_Style_Border::BORDER_DASHDOT:
-                    $blockLineStyle |= 0x09;
-                    break;
-                case PHPExcel_Style_Border::BORDER_MEDIUMDASHDOT:
-                    $blockLineStyle |= 0x0A;
-                    break;
-                case PHPExcel_Style_Border::BORDER_DASHDOTDOT:
-                    $blockLineStyle |= 0x0B;
-                    break;
-                case PHPExcel_Style_Border::BORDER_MEDIUMDASHDOTDOT:
-                    $blockLineStyle |= 0x0C;
-                    break;
-                case PHPExcel_Style_Border::BORDER_SLANTDASHDOT:
-                    $blockLineStyle |= 0x0D;
-                    break;
+            case PHPExcel_Style_Border::BORDER_NONE:
+                $blockLineStyle |= 0x00;
+                break;
+            case PHPExcel_Style_Border::BORDER_THIN:
+                $blockLineStyle |= 0x01;
+                break;
+            case PHPExcel_Style_Border::BORDER_MEDIUM:
+                $blockLineStyle |= 0x02;
+                break;
+            case PHPExcel_Style_Border::BORDER_DASHED:
+                $blockLineStyle |= 0x03;
+                break;
+            case PHPExcel_Style_Border::BORDER_DOTTED:
+                $blockLineStyle |= 0x04;
+                break;
+            case PHPExcel_Style_Border::BORDER_THICK:
+                $blockLineStyle |= 0x05;
+                break;
+            case PHPExcel_Style_Border::BORDER_DOUBLE:
+                $blockLineStyle |= 0x06;
+                break;
+            case PHPExcel_Style_Border::BORDER_HAIR:
+                $blockLineStyle |= 0x07;
+                break;
+            case PHPExcel_Style_Border::BORDER_MEDIUMDASHED:
+                $blockLineStyle |= 0x08;
+                break;
+            case PHPExcel_Style_Border::BORDER_DASHDOT:
+                $blockLineStyle |= 0x09;
+                break;
+            case PHPExcel_Style_Border::BORDER_MEDIUMDASHDOT:
+                $blockLineStyle |= 0x0A;
+                break;
+            case PHPExcel_Style_Border::BORDER_DASHDOTDOT:
+                $blockLineStyle |= 0x0B;
+                break;
+            case PHPExcel_Style_Border::BORDER_MEDIUMDASHDOTDOT:
+                $blockLineStyle |= 0x0C;
+                break;
+            case PHPExcel_Style_Border::BORDER_SLANTDASHDOT:
+                $blockLineStyle |= 0x0D;
+                break;
             }
             switch ($conditional->getStyle()->getBorders()->getRight()->getBorderStyle()) {
-                case PHPExcel_Style_Border::BORDER_NONE:
-                    $blockLineStyle |= 0x00 << 4;
-                    break;
-                case PHPExcel_Style_Border::BORDER_THIN:
-                    $blockLineStyle |= 0x01 << 4;
-                    break;
-                case PHPExcel_Style_Border::BORDER_MEDIUM:
-                    $blockLineStyle |= 0x02 << 4;
-                    break;
-                case PHPExcel_Style_Border::BORDER_DASHED:
-                    $blockLineStyle |= 0x03 << 4;
-                    break;
-                case PHPExcel_Style_Border::BORDER_DOTTED:
-                    $blockLineStyle |= 0x04 << 4;
-                    break;
-                case PHPExcel_Style_Border::BORDER_THICK:
-                    $blockLineStyle |= 0x05 << 4;
-                    break;
-                case PHPExcel_Style_Border::BORDER_DOUBLE:
-                    $blockLineStyle |= 0x06 << 4;
-                    break;
-                case PHPExcel_Style_Border::BORDER_HAIR:
-                    $blockLineStyle |= 0x07 << 4;
-                    break;
-                case PHPExcel_Style_Border::BORDER_MEDIUMDASHED:
-                    $blockLineStyle |= 0x08 << 4;
-                    break;
-                case PHPExcel_Style_Border::BORDER_DASHDOT:
-                    $blockLineStyle |= 0x09 << 4;
-                    break;
-                case PHPExcel_Style_Border::BORDER_MEDIUMDASHDOT:
-                    $blockLineStyle |= 0x0A << 4;
-                    break;
-                case PHPExcel_Style_Border::BORDER_DASHDOTDOT:
-                    $blockLineStyle |= 0x0B << 4;
-                    break;
-                case PHPExcel_Style_Border::BORDER_MEDIUMDASHDOTDOT:
-                    $blockLineStyle |= 0x0C << 4;
-                    break;
-                case PHPExcel_Style_Border::BORDER_SLANTDASHDOT:
-                    $blockLineStyle |= 0x0D << 4;
-                    break;
+            case PHPExcel_Style_Border::BORDER_NONE:
+                $blockLineStyle |= 0x00 << 4;
+                break;
+            case PHPExcel_Style_Border::BORDER_THIN:
+                $blockLineStyle |= 0x01 << 4;
+                break;
+            case PHPExcel_Style_Border::BORDER_MEDIUM:
+                $blockLineStyle |= 0x02 << 4;
+                break;
+            case PHPExcel_Style_Border::BORDER_DASHED:
+                $blockLineStyle |= 0x03 << 4;
+                break;
+            case PHPExcel_Style_Border::BORDER_DOTTED:
+                $blockLineStyle |= 0x04 << 4;
+                break;
+            case PHPExcel_Style_Border::BORDER_THICK:
+                $blockLineStyle |= 0x05 << 4;
+                break;
+            case PHPExcel_Style_Border::BORDER_DOUBLE:
+                $blockLineStyle |= 0x06 << 4;
+                break;
+            case PHPExcel_Style_Border::BORDER_HAIR:
+                $blockLineStyle |= 0x07 << 4;
+                break;
+            case PHPExcel_Style_Border::BORDER_MEDIUMDASHED:
+                $blockLineStyle |= 0x08 << 4;
+                break;
+            case PHPExcel_Style_Border::BORDER_DASHDOT:
+                $blockLineStyle |= 0x09 << 4;
+                break;
+            case PHPExcel_Style_Border::BORDER_MEDIUMDASHDOT:
+                $blockLineStyle |= 0x0A << 4;
+                break;
+            case PHPExcel_Style_Border::BORDER_DASHDOTDOT:
+                $blockLineStyle |= 0x0B << 4;
+                break;
+            case PHPExcel_Style_Border::BORDER_MEDIUMDASHDOTDOT:
+                $blockLineStyle |= 0x0C << 4;
+                break;
+            case PHPExcel_Style_Border::BORDER_SLANTDASHDOT:
+                $blockLineStyle |= 0x0D << 4;
+                break;
             }
             switch ($conditional->getStyle()->getBorders()->getTop()->getBorderStyle()) {
-                case PHPExcel_Style_Border::BORDER_NONE:
-                    $blockLineStyle |= 0x00 << 8;
-                    break;
-                case PHPExcel_Style_Border::BORDER_THIN:
-                    $blockLineStyle |= 0x01 << 8;
-                    break;
-                case PHPExcel_Style_Border::BORDER_MEDIUM:
-                    $blockLineStyle |= 0x02 << 8;
-                    break;
-                case PHPExcel_Style_Border::BORDER_DASHED:
-                    $blockLineStyle |= 0x03 << 8;
-                    break;
-                case PHPExcel_Style_Border::BORDER_DOTTED:
-                    $blockLineStyle |= 0x04 << 8;
-                    break;
-                case PHPExcel_Style_Border::BORDER_THICK:
-                    $blockLineStyle |= 0x05 << 8;
-                    break;
-                case PHPExcel_Style_Border::BORDER_DOUBLE:
-                    $blockLineStyle |= 0x06 << 8;
-                    break;
-                case PHPExcel_Style_Border::BORDER_HAIR:
-                    $blockLineStyle |= 0x07 << 8;
-                    break;
-                case PHPExcel_Style_Border::BORDER_MEDIUMDASHED:
-                    $blockLineStyle |= 0x08 << 8;
-                    break;
-                case PHPExcel_Style_Border::BORDER_DASHDOT:
-                    $blockLineStyle |= 0x09 << 8;
-                    break;
-                case PHPExcel_Style_Border::BORDER_MEDIUMDASHDOT:
-                    $blockLineStyle |= 0x0A << 8;
-                    break;
-                case PHPExcel_Style_Border::BORDER_DASHDOTDOT:
-                    $blockLineStyle |= 0x0B << 8;
-                    break;
-                case PHPExcel_Style_Border::BORDER_MEDIUMDASHDOTDOT:
-                    $blockLineStyle |= 0x0C << 8;
-                    break;
-                case PHPExcel_Style_Border::BORDER_SLANTDASHDOT:
-                    $blockLineStyle |= 0x0D << 8;
-                    break;
+            case PHPExcel_Style_Border::BORDER_NONE:
+                $blockLineStyle |= 0x00 << 8;
+                break;
+            case PHPExcel_Style_Border::BORDER_THIN:
+                $blockLineStyle |= 0x01 << 8;
+                break;
+            case PHPExcel_Style_Border::BORDER_MEDIUM:
+                $blockLineStyle |= 0x02 << 8;
+                break;
+            case PHPExcel_Style_Border::BORDER_DASHED:
+                $blockLineStyle |= 0x03 << 8;
+                break;
+            case PHPExcel_Style_Border::BORDER_DOTTED:
+                $blockLineStyle |= 0x04 << 8;
+                break;
+            case PHPExcel_Style_Border::BORDER_THICK:
+                $blockLineStyle |= 0x05 << 8;
+                break;
+            case PHPExcel_Style_Border::BORDER_DOUBLE:
+                $blockLineStyle |= 0x06 << 8;
+                break;
+            case PHPExcel_Style_Border::BORDER_HAIR:
+                $blockLineStyle |= 0x07 << 8;
+                break;
+            case PHPExcel_Style_Border::BORDER_MEDIUMDASHED:
+                $blockLineStyle |= 0x08 << 8;
+                break;
+            case PHPExcel_Style_Border::BORDER_DASHDOT:
+                $blockLineStyle |= 0x09 << 8;
+                break;
+            case PHPExcel_Style_Border::BORDER_MEDIUMDASHDOT:
+                $blockLineStyle |= 0x0A << 8;
+                break;
+            case PHPExcel_Style_Border::BORDER_DASHDOTDOT:
+                $blockLineStyle |= 0x0B << 8;
+                break;
+            case PHPExcel_Style_Border::BORDER_MEDIUMDASHDOTDOT:
+                $blockLineStyle |= 0x0C << 8;
+                break;
+            case PHPExcel_Style_Border::BORDER_SLANTDASHDOT:
+                $blockLineStyle |= 0x0D << 8;
+                break;
             }
             switch ($conditional->getStyle()->getBorders()->getBottom()->getBorderStyle()) {
-                case PHPExcel_Style_Border::BORDER_NONE:
-                    $blockLineStyle |= 0x00 << 12;
-                    break;
-                case PHPExcel_Style_Border::BORDER_THIN:
-                    $blockLineStyle |= 0x01 << 12;
-                    break;
-                case PHPExcel_Style_Border::BORDER_MEDIUM:
-                    $blockLineStyle |= 0x02 << 12;
-                    break;
-                case PHPExcel_Style_Border::BORDER_DASHED:
-                    $blockLineStyle |= 0x03 << 12;
-                    break;
-                case PHPExcel_Style_Border::BORDER_DOTTED:
-                    $blockLineStyle |= 0x04 << 12;
-                    break;
-                case PHPExcel_Style_Border::BORDER_THICK:
-                    $blockLineStyle |= 0x05 << 12;
-                    break;
-                case PHPExcel_Style_Border::BORDER_DOUBLE:
-                    $blockLineStyle |= 0x06 << 12;
-                    break;
-                case PHPExcel_Style_Border::BORDER_HAIR:
-                    $blockLineStyle |= 0x07 << 12;
-                    break;
-                case PHPExcel_Style_Border::BORDER_MEDIUMDASHED:
-                    $blockLineStyle |= 0x08 << 12;
-                    break;
-                case PHPExcel_Style_Border::BORDER_DASHDOT:
-                    $blockLineStyle |= 0x09 << 12;
-                    break;
-                case PHPExcel_Style_Border::BORDER_MEDIUMDASHDOT:
-                    $blockLineStyle |= 0x0A << 12;
-                    break;
-                case PHPExcel_Style_Border::BORDER_DASHDOTDOT:
-                    $blockLineStyle |= 0x0B << 12;
-                    break;
-                case PHPExcel_Style_Border::BORDER_MEDIUMDASHDOTDOT:
-                    $blockLineStyle |= 0x0C << 12;
-                    break;
-                case PHPExcel_Style_Border::BORDER_SLANTDASHDOT:
-                    $blockLineStyle |= 0x0D << 12;
-                    break;
+            case PHPExcel_Style_Border::BORDER_NONE:
+                $blockLineStyle |= 0x00 << 12;
+                break;
+            case PHPExcel_Style_Border::BORDER_THIN:
+                $blockLineStyle |= 0x01 << 12;
+                break;
+            case PHPExcel_Style_Border::BORDER_MEDIUM:
+                $blockLineStyle |= 0x02 << 12;
+                break;
+            case PHPExcel_Style_Border::BORDER_DASHED:
+                $blockLineStyle |= 0x03 << 12;
+                break;
+            case PHPExcel_Style_Border::BORDER_DOTTED:
+                $blockLineStyle |= 0x04 << 12;
+                break;
+            case PHPExcel_Style_Border::BORDER_THICK:
+                $blockLineStyle |= 0x05 << 12;
+                break;
+            case PHPExcel_Style_Border::BORDER_DOUBLE:
+                $blockLineStyle |= 0x06 << 12;
+                break;
+            case PHPExcel_Style_Border::BORDER_HAIR:
+                $blockLineStyle |= 0x07 << 12;
+                break;
+            case PHPExcel_Style_Border::BORDER_MEDIUMDASHED:
+                $blockLineStyle |= 0x08 << 12;
+                break;
+            case PHPExcel_Style_Border::BORDER_DASHDOT:
+                $blockLineStyle |= 0x09 << 12;
+                break;
+            case PHPExcel_Style_Border::BORDER_MEDIUMDASHDOT:
+                $blockLineStyle |= 0x0A << 12;
+                break;
+            case PHPExcel_Style_Border::BORDER_DASHDOTDOT:
+                $blockLineStyle |= 0x0B << 12;
+                break;
+            case PHPExcel_Style_Border::BORDER_MEDIUMDASHDOTDOT:
+                $blockLineStyle |= 0x0C << 12;
+                break;
+            case PHPExcel_Style_Border::BORDER_SLANTDASHDOT:
+                $blockLineStyle |= 0x0D << 12;
+                break;
             }
             //@todo writeCFRule() => $blockLineStyle => Index Color for left line
             //@todo writeCFRule() => $blockLineStyle => Index Color for right line
@@ -3684,48 +3709,48 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
             //@todo writeCFRule() => $blockColor => Index Color for bottom line
             //@todo writeCFRule() => $blockColor => Index Color for diagonal line
             switch ($conditional->getStyle()->getBorders()->getDiagonal()->getBorderStyle()) {
-                case PHPExcel_Style_Border::BORDER_NONE:
-                    $blockColor |= 0x00 << 21;
-                    break;
-                case PHPExcel_Style_Border::BORDER_THIN:
-                    $blockColor |= 0x01 << 21;
-                    break;
-                case PHPExcel_Style_Border::BORDER_MEDIUM:
-                    $blockColor |= 0x02 << 21;
-                    break;
-                case PHPExcel_Style_Border::BORDER_DASHED:
-                    $blockColor |= 0x03 << 21;
-                    break;
-                case PHPExcel_Style_Border::BORDER_DOTTED:
-                    $blockColor |= 0x04 << 21;
-                    break;
-                case PHPExcel_Style_Border::BORDER_THICK:
-                    $blockColor |= 0x05 << 21;
-                    break;
-                case PHPExcel_Style_Border::BORDER_DOUBLE:
-                    $blockColor |= 0x06 << 21;
-                    break;
-                case PHPExcel_Style_Border::BORDER_HAIR:
-                    $blockColor |= 0x07 << 21;
-                    break;
-                case PHPExcel_Style_Border::BORDER_MEDIUMDASHED:
-                    $blockColor |= 0x08 << 21;
-                    break;
-                case PHPExcel_Style_Border::BORDER_DASHDOT:
-                    $blockColor |= 0x09 << 21;
-                    break;
-                case PHPExcel_Style_Border::BORDER_MEDIUMDASHDOT:
-                    $blockColor |= 0x0A << 21;
-                    break;
-                case PHPExcel_Style_Border::BORDER_DASHDOTDOT:
-                    $blockColor |= 0x0B << 21;
-                    break;
-                case PHPExcel_Style_Border::BORDER_MEDIUMDASHDOTDOT:
-                    $blockColor |= 0x0C << 21;
-                    break;
-                case PHPExcel_Style_Border::BORDER_SLANTDASHDOT:
-                    $blockColor |= 0x0D << 21;
-                    break;
+            case PHPExcel_Style_Border::BORDER_NONE:
+                $blockColor |= 0x00 << 21;
+                break;
+            case PHPExcel_Style_Border::BORDER_THIN:
+                $blockColor |= 0x01 << 21;
+                break;
+            case PHPExcel_Style_Border::BORDER_MEDIUM:
+                $blockColor |= 0x02 << 21;
+                break;
+            case PHPExcel_Style_Border::BORDER_DASHED:
+                $blockColor |= 0x03 << 21;
+                break;
+            case PHPExcel_Style_Border::BORDER_DOTTED:
+                $blockColor |= 0x04 << 21;
+                break;
+            case PHPExcel_Style_Border::BORDER_THICK:
+                $blockColor |= 0x05 << 21;
+                break;
+            case PHPExcel_Style_Border::BORDER_DOUBLE:
+                $blockColor |= 0x06 << 21;
+                break;
+            case PHPExcel_Style_Border::BORDER_HAIR:
+                $blockColor |= 0x07 << 21;
+                break;
+            case PHPExcel_Style_Border::BORDER_MEDIUMDASHED:
+                $blockColor |= 0x08 << 21;
+                break;
+            case PHPExcel_Style_Border::BORDER_DASHDOT:
+                $blockColor |= 0x09 << 21;
+                break;
+            case PHPExcel_Style_Border::BORDER_MEDIUMDASHDOT:
+                $blockColor |= 0x0A << 21;
+                break;
+            case PHPExcel_Style_Border::BORDER_DASHDOTDOT:
+                $blockColor |= 0x0B << 21;
+                break;
+            case PHPExcel_Style_Border::BORDER_MEDIUMDASHDOTDOT:
+                $blockColor |= 0x0C << 21;
+                break;
+            case PHPExcel_Style_Border::BORDER_SLANTDASHDOT:
+                $blockColor |= 0x0D << 21;
+                break;
             }
             $dataBlockBorder = pack('vv', $blockLineStyle, $blockColor);
         }
@@ -3733,420 +3758,420 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
             // Fill Patern Style
             $blockFillPatternStyle = 0;
             switch ($conditional->getStyle()->getFill()->getFillType()) {
-                case PHPExcel_Style_Fill::FILL_NONE:
-                    $blockFillPatternStyle = 0x00;
-                    break;
-                case PHPExcel_Style_Fill::FILL_SOLID:
-                    $blockFillPatternStyle = 0x01;
-                    break;
-                case PHPExcel_Style_Fill::FILL_PATTERN_MEDIUMGRAY:
-                    $blockFillPatternStyle = 0x02;
-                    break;
-                case PHPExcel_Style_Fill::FILL_PATTERN_DARKGRAY:
-                    $blockFillPatternStyle = 0x03;
-                    break;
-                case PHPExcel_Style_Fill::FILL_PATTERN_LIGHTGRAY:
-                    $blockFillPatternStyle = 0x04;
-                    break;
-                case PHPExcel_Style_Fill::FILL_PATTERN_DARKHORIZONTAL:
-                    $blockFillPatternStyle = 0x05;
-                    break;
-                case PHPExcel_Style_Fill::FILL_PATTERN_DARKVERTICAL:
-                    $blockFillPatternStyle = 0x06;
-                    break;
-                case PHPExcel_Style_Fill::FILL_PATTERN_DARKDOWN:
-                    $blockFillPatternStyle = 0x07;
-                    break;
-                case PHPExcel_Style_Fill::FILL_PATTERN_DARKUP:
-                    $blockFillPatternStyle = 0x08;
-                    break;
-                case PHPExcel_Style_Fill::FILL_PATTERN_DARKGRID:
-                    $blockFillPatternStyle = 0x09;
-                    break;
-                case PHPExcel_Style_Fill::FILL_PATTERN_DARKTRELLIS:
-                    $blockFillPatternStyle = 0x0A;
-                    break;
-                case PHPExcel_Style_Fill::FILL_PATTERN_LIGHTHORIZONTAL:
-                    $blockFillPatternStyle = 0x0B;
-                    break;
-                case PHPExcel_Style_Fill::FILL_PATTERN_LIGHTVERTICAL:
-                    $blockFillPatternStyle = 0x0C;
-                    break;
-                case PHPExcel_Style_Fill::FILL_PATTERN_LIGHTDOWN:
-                    $blockFillPatternStyle = 0x0D;
-                    break;
-                case PHPExcel_Style_Fill::FILL_PATTERN_LIGHTUP:
-                    $blockFillPatternStyle = 0x0E;
-                    break;
-                case PHPExcel_Style_Fill::FILL_PATTERN_LIGHTGRID:
-                    $blockFillPatternStyle = 0x0F;
-                    break;
-                case PHPExcel_Style_Fill::FILL_PATTERN_LIGHTTRELLIS:
-                    $blockFillPatternStyle = 0x10;
-                    break;
-                case PHPExcel_Style_Fill::FILL_PATTERN_GRAY125:
-                    $blockFillPatternStyle = 0x11;
-                    break;
-                case PHPExcel_Style_Fill::FILL_PATTERN_GRAY0625:
-                    $blockFillPatternStyle = 0x12;
-                    break;
-                case PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR:
-                    $blockFillPatternStyle = 0x00;
-                    break;    // does not exist in BIFF8
-                case PHPExcel_Style_Fill::FILL_GRADIENT_PATH:
-                    $blockFillPatternStyle = 0x00;
-                    break;    // does not exist in BIFF8
-                default:
-                    $blockFillPatternStyle = 0x00;
-                    break;
+            case PHPExcel_Style_Fill::FILL_NONE:
+                $blockFillPatternStyle = 0x00;
+                break;
+            case PHPExcel_Style_Fill::FILL_SOLID:
+                $blockFillPatternStyle = 0x01;
+                break;
+            case PHPExcel_Style_Fill::FILL_PATTERN_MEDIUMGRAY:
+                $blockFillPatternStyle = 0x02;
+                break;
+            case PHPExcel_Style_Fill::FILL_PATTERN_DARKGRAY:
+                $blockFillPatternStyle = 0x03;
+                break;
+            case PHPExcel_Style_Fill::FILL_PATTERN_LIGHTGRAY:
+                $blockFillPatternStyle = 0x04;
+                break;
+            case PHPExcel_Style_Fill::FILL_PATTERN_DARKHORIZONTAL:
+                $blockFillPatternStyle = 0x05;
+                break;
+            case PHPExcel_Style_Fill::FILL_PATTERN_DARKVERTICAL:
+                $blockFillPatternStyle = 0x06;
+                break;
+            case PHPExcel_Style_Fill::FILL_PATTERN_DARKDOWN:
+                $blockFillPatternStyle = 0x07;
+                break;
+            case PHPExcel_Style_Fill::FILL_PATTERN_DARKUP:
+                $blockFillPatternStyle = 0x08;
+                break;
+            case PHPExcel_Style_Fill::FILL_PATTERN_DARKGRID:
+                $blockFillPatternStyle = 0x09;
+                break;
+            case PHPExcel_Style_Fill::FILL_PATTERN_DARKTRELLIS:
+                $blockFillPatternStyle = 0x0A;
+                break;
+            case PHPExcel_Style_Fill::FILL_PATTERN_LIGHTHORIZONTAL:
+                $blockFillPatternStyle = 0x0B;
+                break;
+            case PHPExcel_Style_Fill::FILL_PATTERN_LIGHTVERTICAL:
+                $blockFillPatternStyle = 0x0C;
+                break;
+            case PHPExcel_Style_Fill::FILL_PATTERN_LIGHTDOWN:
+                $blockFillPatternStyle = 0x0D;
+                break;
+            case PHPExcel_Style_Fill::FILL_PATTERN_LIGHTUP:
+                $blockFillPatternStyle = 0x0E;
+                break;
+            case PHPExcel_Style_Fill::FILL_PATTERN_LIGHTGRID:
+                $blockFillPatternStyle = 0x0F;
+                break;
+            case PHPExcel_Style_Fill::FILL_PATTERN_LIGHTTRELLIS:
+                $blockFillPatternStyle = 0x10;
+                break;
+            case PHPExcel_Style_Fill::FILL_PATTERN_GRAY125:
+                $blockFillPatternStyle = 0x11;
+                break;
+            case PHPExcel_Style_Fill::FILL_PATTERN_GRAY0625:
+                $blockFillPatternStyle = 0x12;
+                break;
+            case PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR:
+                $blockFillPatternStyle = 0x00;
+                break;    // does not exist in BIFF8
+            case PHPExcel_Style_Fill::FILL_GRADIENT_PATH:
+                $blockFillPatternStyle = 0x00;
+                break;    // does not exist in BIFF8
+            default:
+                $blockFillPatternStyle = 0x00;
+                break;
             }
             // Color
             switch ($conditional->getStyle()->getFill()->getStartColor()->getRGB()) {
-                case '000000':
-                    $colorIdxBg = 0x08;
-                    break;
-                case 'FFFFFF':
-                    $colorIdxBg = 0x09;
-                    break;
-                case 'FF0000':
-                    $colorIdxBg = 0x0A;
-                    break;
-                case '00FF00':
-                    $colorIdxBg = 0x0B;
-                    break;
-                case '0000FF':
-                    $colorIdxBg = 0x0C;
-                    break;
-                case 'FFFF00':
-                    $colorIdxBg = 0x0D;
-                    break;
-                case 'FF00FF':
-                    $colorIdxBg = 0x0E;
-                    break;
-                case '00FFFF':
-                    $colorIdxBg = 0x0F;
-                    break;
-                case '800000':
-                    $colorIdxBg = 0x10;
-                    break;
-                case '008000':
-                    $colorIdxBg = 0x11;
-                    break;
-                case '000080':
-                    $colorIdxBg = 0x12;
-                    break;
-                case '808000':
-                    $colorIdxBg = 0x13;
-                    break;
-                case '800080':
-                    $colorIdxBg = 0x14;
-                    break;
-                case '008080':
-                    $colorIdxBg = 0x15;
-                    break;
-                case 'C0C0C0':
-                    $colorIdxBg = 0x16;
-                    break;
-                case '808080':
-                    $colorIdxBg = 0x17;
-                    break;
-                case '9999FF':
-                    $colorIdxBg = 0x18;
-                    break;
-                case '993366':
-                    $colorIdxBg = 0x19;
-                    break;
-                case 'FFFFCC':
-                    $colorIdxBg = 0x1A;
-                    break;
-                case 'CCFFFF':
-                    $colorIdxBg = 0x1B;
-                    break;
-                case '660066':
-                    $colorIdxBg = 0x1C;
-                    break;
-                case 'FF8080':
-                    $colorIdxBg = 0x1D;
-                    break;
-                case '0066CC':
-                    $colorIdxBg = 0x1E;
-                    break;
-                case 'CCCCFF':
-                    $colorIdxBg = 0x1F;
-                    break;
-                case '000080':
-                    $colorIdxBg = 0x20;
-                    break;
-                case 'FF00FF':
-                    $colorIdxBg = 0x21;
-                    break;
-                case 'FFFF00':
-                    $colorIdxBg = 0x22;
-                    break;
-                case '00FFFF':
-                    $colorIdxBg = 0x23;
-                    break;
-                case '800080':
-                    $colorIdxBg = 0x24;
-                    break;
-                case '800000':
-                    $colorIdxBg = 0x25;
-                    break;
-                case '008080':
-                    $colorIdxBg = 0x26;
-                    break;
-                case '0000FF':
-                    $colorIdxBg = 0x27;
-                    break;
-                case '00CCFF':
-                    $colorIdxBg = 0x28;
-                    break;
-                case 'CCFFFF':
-                    $colorIdxBg = 0x29;
-                    break;
-                case 'CCFFCC':
-                    $colorIdxBg = 0x2A;
-                    break;
-                case 'FFFF99':
-                    $colorIdxBg = 0x2B;
-                    break;
-                case '99CCFF':
-                    $colorIdxBg = 0x2C;
-                    break;
-                case 'FF99CC':
-                    $colorIdxBg = 0x2D;
-                    break;
-                case 'CC99FF':
-                    $colorIdxBg = 0x2E;
-                    break;
-                case 'FFCC99':
-                    $colorIdxBg = 0x2F;
-                    break;
-                case '3366FF':
-                    $colorIdxBg = 0x30;
-                    break;
-                case '33CCCC':
-                    $colorIdxBg = 0x31;
-                    break;
-                case '99CC00':
-                    $colorIdxBg = 0x32;
-                    break;
-                case 'FFCC00':
-                    $colorIdxBg = 0x33;
-                    break;
-                case 'FF9900':
-                    $colorIdxBg = 0x34;
-                    break;
-                case 'FF6600':
-                    $colorIdxBg = 0x35;
-                    break;
-                case '666699':
-                    $colorIdxBg = 0x36;
-                    break;
-                case '969696':
-                    $colorIdxBg = 0x37;
-                    break;
-                case '003366':
-                    $colorIdxBg = 0x38;
-                    break;
-                case '339966':
-                    $colorIdxBg = 0x39;
-                    break;
-                case '003300':
-                    $colorIdxBg = 0x3A;
-                    break;
-                case '333300':
-                    $colorIdxBg = 0x3B;
-                    break;
-                case '993300':
-                    $colorIdxBg = 0x3C;
-                    break;
-                case '993366':
-                    $colorIdxBg = 0x3D;
-                    break;
-                case '333399':
-                    $colorIdxBg = 0x3E;
-                    break;
-                case '333333':
-                    $colorIdxBg = 0x3F;
-                    break;
-                default:
-                          $colorIdxBg = 0x41;
-                    break;
+            case '000000':
+                $colorIdxBg = 0x08;
+                break;
+            case 'FFFFFF':
+                $colorIdxBg = 0x09;
+                break;
+            case 'FF0000':
+                $colorIdxBg = 0x0A;
+                break;
+            case '00FF00':
+                $colorIdxBg = 0x0B;
+                break;
+            case '0000FF':
+                $colorIdxBg = 0x0C;
+                break;
+            case 'FFFF00':
+                $colorIdxBg = 0x0D;
+                break;
+            case 'FF00FF':
+                $colorIdxBg = 0x0E;
+                break;
+            case '00FFFF':
+                $colorIdxBg = 0x0F;
+                break;
+            case '800000':
+                $colorIdxBg = 0x10;
+                break;
+            case '008000':
+                $colorIdxBg = 0x11;
+                break;
+            case '000080':
+                $colorIdxBg = 0x12;
+                break;
+            case '808000':
+                $colorIdxBg = 0x13;
+                break;
+            case '800080':
+                $colorIdxBg = 0x14;
+                break;
+            case '008080':
+                $colorIdxBg = 0x15;
+                break;
+            case 'C0C0C0':
+                $colorIdxBg = 0x16;
+                break;
+            case '808080':
+                $colorIdxBg = 0x17;
+                break;
+            case '9999FF':
+                $colorIdxBg = 0x18;
+                break;
+            case '993366':
+                $colorIdxBg = 0x19;
+                break;
+            case 'FFFFCC':
+                $colorIdxBg = 0x1A;
+                break;
+            case 'CCFFFF':
+                $colorIdxBg = 0x1B;
+                break;
+            case '660066':
+                $colorIdxBg = 0x1C;
+                break;
+            case 'FF8080':
+                $colorIdxBg = 0x1D;
+                break;
+            case '0066CC':
+                $colorIdxBg = 0x1E;
+                break;
+            case 'CCCCFF':
+                $colorIdxBg = 0x1F;
+                break;
+            case '000080':
+                $colorIdxBg = 0x20;
+                break;
+            case 'FF00FF':
+                $colorIdxBg = 0x21;
+                break;
+            case 'FFFF00':
+                $colorIdxBg = 0x22;
+                break;
+            case '00FFFF':
+                $colorIdxBg = 0x23;
+                break;
+            case '800080':
+                $colorIdxBg = 0x24;
+                break;
+            case '800000':
+                $colorIdxBg = 0x25;
+                break;
+            case '008080':
+                $colorIdxBg = 0x26;
+                break;
+            case '0000FF':
+                $colorIdxBg = 0x27;
+                break;
+            case '00CCFF':
+                $colorIdxBg = 0x28;
+                break;
+            case 'CCFFFF':
+                $colorIdxBg = 0x29;
+                break;
+            case 'CCFFCC':
+                $colorIdxBg = 0x2A;
+                break;
+            case 'FFFF99':
+                $colorIdxBg = 0x2B;
+                break;
+            case '99CCFF':
+                $colorIdxBg = 0x2C;
+                break;
+            case 'FF99CC':
+                $colorIdxBg = 0x2D;
+                break;
+            case 'CC99FF':
+                $colorIdxBg = 0x2E;
+                break;
+            case 'FFCC99':
+                $colorIdxBg = 0x2F;
+                break;
+            case '3366FF':
+                $colorIdxBg = 0x30;
+                break;
+            case '33CCCC':
+                $colorIdxBg = 0x31;
+                break;
+            case '99CC00':
+                $colorIdxBg = 0x32;
+                break;
+            case 'FFCC00':
+                $colorIdxBg = 0x33;
+                break;
+            case 'FF9900':
+                $colorIdxBg = 0x34;
+                break;
+            case 'FF6600':
+                $colorIdxBg = 0x35;
+                break;
+            case '666699':
+                $colorIdxBg = 0x36;
+                break;
+            case '969696':
+                $colorIdxBg = 0x37;
+                break;
+            case '003366':
+                $colorIdxBg = 0x38;
+                break;
+            case '339966':
+                $colorIdxBg = 0x39;
+                break;
+            case '003300':
+                $colorIdxBg = 0x3A;
+                break;
+            case '333300':
+                $colorIdxBg = 0x3B;
+                break;
+            case '993300':
+                $colorIdxBg = 0x3C;
+                break;
+            case '993366':
+                $colorIdxBg = 0x3D;
+                break;
+            case '333399':
+                $colorIdxBg = 0x3E;
+                break;
+            case '333333':
+                $colorIdxBg = 0x3F;
+                break;
+            default:
+                      $colorIdxBg = 0x41;
+                break;
             }
             // Fg Color
             switch ($conditional->getStyle()->getFill()->getEndColor()->getRGB()) {
-                case '000000':
-                    $colorIdxFg = 0x08;
-                    break;
-                case 'FFFFFF':
-                    $colorIdxFg = 0x09;
-                    break;
-                case 'FF0000':
-                    $colorIdxFg = 0x0A;
-                    break;
-                case '00FF00':
-                    $colorIdxFg = 0x0B;
-                    break;
-                case '0000FF':
-                    $colorIdxFg = 0x0C;
-                    break;
-                case 'FFFF00':
-                    $colorIdxFg = 0x0D;
-                    break;
-                case 'FF00FF':
-                    $colorIdxFg = 0x0E;
-                    break;
-                case '00FFFF':
-                    $colorIdxFg = 0x0F;
-                    break;
-                case '800000':
-                    $colorIdxFg = 0x10;
-                    break;
-                case '008000':
-                    $colorIdxFg = 0x11;
-                    break;
-                case '000080':
-                    $colorIdxFg = 0x12;
-                    break;
-                case '808000':
-                    $colorIdxFg = 0x13;
-                    break;
-                case '800080':
-                    $colorIdxFg = 0x14;
-                    break;
-                case '008080':
-                    $colorIdxFg = 0x15;
-                    break;
-                case 'C0C0C0':
-                    $colorIdxFg = 0x16;
-                    break;
-                case '808080':
-                    $colorIdxFg = 0x17;
-                    break;
-                case '9999FF':
-                    $colorIdxFg = 0x18;
-                    break;
-                case '993366':
-                    $colorIdxFg = 0x19;
-                    break;
-                case 'FFFFCC':
-                    $colorIdxFg = 0x1A;
-                    break;
-                case 'CCFFFF':
-                    $colorIdxFg = 0x1B;
-                    break;
-                case '660066':
-                    $colorIdxFg = 0x1C;
-                    break;
-                case 'FF8080':
-                    $colorIdxFg = 0x1D;
-                    break;
-                case '0066CC':
-                    $colorIdxFg = 0x1E;
-                    break;
-                case 'CCCCFF':
-                    $colorIdxFg = 0x1F;
-                    break;
-                case '000080':
-                    $colorIdxFg = 0x20;
-                    break;
-                case 'FF00FF':
-                    $colorIdxFg = 0x21;
-                    break;
-                case 'FFFF00':
-                    $colorIdxFg = 0x22;
-                    break;
-                case '00FFFF':
-                    $colorIdxFg = 0x23;
-                    break;
-                case '800080':
-                    $colorIdxFg = 0x24;
-                    break;
-                case '800000':
-                    $colorIdxFg = 0x25;
-                    break;
-                case '008080':
-                    $colorIdxFg = 0x26;
-                    break;
-                case '0000FF':
-                    $colorIdxFg = 0x27;
-                    break;
-                case '00CCFF':
-                    $colorIdxFg = 0x28;
-                    break;
-                case 'CCFFFF':
-                    $colorIdxFg = 0x29;
-                    break;
-                case 'CCFFCC':
-                    $colorIdxFg = 0x2A;
-                    break;
-                case 'FFFF99':
-                    $colorIdxFg = 0x2B;
-                    break;
-                case '99CCFF':
-                    $colorIdxFg = 0x2C;
-                    break;
-                case 'FF99CC':
-                    $colorIdxFg = 0x2D;
-                    break;
-                case 'CC99FF':
-                    $colorIdxFg = 0x2E;
-                    break;
-                case 'FFCC99':
-                    $colorIdxFg = 0x2F;
-                    break;
-                case '3366FF':
-                    $colorIdxFg = 0x30;
-                    break;
-                case '33CCCC':
-                    $colorIdxFg = 0x31;
-                    break;
-                case '99CC00':
-                    $colorIdxFg = 0x32;
-                    break;
-                case 'FFCC00':
-                    $colorIdxFg = 0x33;
-                    break;
-                case 'FF9900':
-                    $colorIdxFg = 0x34;
-                    break;
-                case 'FF6600':
-                    $colorIdxFg = 0x35;
-                    break;
-                case '666699':
-                    $colorIdxFg = 0x36;
-                    break;
-                case '969696':
-                    $colorIdxFg = 0x37;
-                    break;
-                case '003366':
-                    $colorIdxFg = 0x38;
-                    break;
-                case '339966':
-                    $colorIdxFg = 0x39;
-                    break;
-                case '003300':
-                    $colorIdxFg = 0x3A;
-                    break;
-                case '333300':
-                    $colorIdxFg = 0x3B;
-                    break;
-                case '993300':
-                    $colorIdxFg = 0x3C;
-                    break;
-                case '993366':
-                    $colorIdxFg = 0x3D;
-                    break;
-                case '333399':
-                    $colorIdxFg = 0x3E;
-                    break;
-                case '333333':
-                    $colorIdxFg = 0x3F;
-                    break;
-                default:
-                          $colorIdxFg = 0x40;
-                    break;
+            case '000000':
+                $colorIdxFg = 0x08;
+                break;
+            case 'FFFFFF':
+                $colorIdxFg = 0x09;
+                break;
+            case 'FF0000':
+                $colorIdxFg = 0x0A;
+                break;
+            case '00FF00':
+                $colorIdxFg = 0x0B;
+                break;
+            case '0000FF':
+                $colorIdxFg = 0x0C;
+                break;
+            case 'FFFF00':
+                $colorIdxFg = 0x0D;
+                break;
+            case 'FF00FF':
+                $colorIdxFg = 0x0E;
+                break;
+            case '00FFFF':
+                $colorIdxFg = 0x0F;
+                break;
+            case '800000':
+                $colorIdxFg = 0x10;
+                break;
+            case '008000':
+                $colorIdxFg = 0x11;
+                break;
+            case '000080':
+                $colorIdxFg = 0x12;
+                break;
+            case '808000':
+                $colorIdxFg = 0x13;
+                break;
+            case '800080':
+                $colorIdxFg = 0x14;
+                break;
+            case '008080':
+                $colorIdxFg = 0x15;
+                break;
+            case 'C0C0C0':
+                $colorIdxFg = 0x16;
+                break;
+            case '808080':
+                $colorIdxFg = 0x17;
+                break;
+            case '9999FF':
+                $colorIdxFg = 0x18;
+                break;
+            case '993366':
+                $colorIdxFg = 0x19;
+                break;
+            case 'FFFFCC':
+                $colorIdxFg = 0x1A;
+                break;
+            case 'CCFFFF':
+                $colorIdxFg = 0x1B;
+                break;
+            case '660066':
+                $colorIdxFg = 0x1C;
+                break;
+            case 'FF8080':
+                $colorIdxFg = 0x1D;
+                break;
+            case '0066CC':
+                $colorIdxFg = 0x1E;
+                break;
+            case 'CCCCFF':
+                $colorIdxFg = 0x1F;
+                break;
+            case '000080':
+                $colorIdxFg = 0x20;
+                break;
+            case 'FF00FF':
+                $colorIdxFg = 0x21;
+                break;
+            case 'FFFF00':
+                $colorIdxFg = 0x22;
+                break;
+            case '00FFFF':
+                $colorIdxFg = 0x23;
+                break;
+            case '800080':
+                $colorIdxFg = 0x24;
+                break;
+            case '800000':
+                $colorIdxFg = 0x25;
+                break;
+            case '008080':
+                $colorIdxFg = 0x26;
+                break;
+            case '0000FF':
+                $colorIdxFg = 0x27;
+                break;
+            case '00CCFF':
+                $colorIdxFg = 0x28;
+                break;
+            case 'CCFFFF':
+                $colorIdxFg = 0x29;
+                break;
+            case 'CCFFCC':
+                $colorIdxFg = 0x2A;
+                break;
+            case 'FFFF99':
+                $colorIdxFg = 0x2B;
+                break;
+            case '99CCFF':
+                $colorIdxFg = 0x2C;
+                break;
+            case 'FF99CC':
+                $colorIdxFg = 0x2D;
+                break;
+            case 'CC99FF':
+                $colorIdxFg = 0x2E;
+                break;
+            case 'FFCC99':
+                $colorIdxFg = 0x2F;
+                break;
+            case '3366FF':
+                $colorIdxFg = 0x30;
+                break;
+            case '33CCCC':
+                $colorIdxFg = 0x31;
+                break;
+            case '99CC00':
+                $colorIdxFg = 0x32;
+                break;
+            case 'FFCC00':
+                $colorIdxFg = 0x33;
+                break;
+            case 'FF9900':
+                $colorIdxFg = 0x34;
+                break;
+            case 'FF6600':
+                $colorIdxFg = 0x35;
+                break;
+            case '666699':
+                $colorIdxFg = 0x36;
+                break;
+            case '969696':
+                $colorIdxFg = 0x37;
+                break;
+            case '003366':
+                $colorIdxFg = 0x38;
+                break;
+            case '339966':
+                $colorIdxFg = 0x39;
+                break;
+            case '003300':
+                $colorIdxFg = 0x3A;
+                break;
+            case '333300':
+                $colorIdxFg = 0x3B;
+                break;
+            case '993300':
+                $colorIdxFg = 0x3C;
+                break;
+            case '993366':
+                $colorIdxFg = 0x3D;
+                break;
+            case '333399':
+                $colorIdxFg = 0x3E;
+                break;
+            case '333333':
+                $colorIdxFg = 0x3F;
+                break;
+            default:
+                      $colorIdxFg = 0x40;
+                break;
             }
             $dataBlockFill = pack('v', $blockFillPatternStyle);
             $dataBlockFill .= pack('v', $colorIdxFg | ($colorIdxBg << 7));
@@ -4203,7 +4228,8 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
         foreach ($this->phpSheet->getConditionalStylesCollection() as $cellCoordinate => $conditionalStyles) {
             foreach ($conditionalStyles as $conditional) {
                 if ($conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_EXPRESSION
-                        || $conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_CELLIS) {
+                    || $conditional->getConditionType() == PHPExcel_Style_Conditional::CONDITION_CELLIS
+                ) {
                     if (!in_array($conditional->getHashCode(), $arrConditional)) {
                         $arrConditional[] = $conditional->getHashCode();
                     }

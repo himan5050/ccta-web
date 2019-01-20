@@ -17,12 +17,12 @@
             <div class="panel panel-default" id="">
                 <div class="panel-heading">
                   <h5>Edit Phase</h5>
-                  <?php if (isset($error_msg)) { ?>
-						<h5><b style="color: red;"><?php echo $error_msg ?></b></h5>
-						<?php } ?>
-						<?php if (isset($success_msg)) { ?>
-						<h5><b style="color: green;"><?php echo $success_msg ?></b></h5>
-						<?php } ?>
+                    <?php if (isset($error_msg)) { ?>
+                        <h5><b style="color: red;"><?php echo $error_msg ?></b></h5>
+                    <?php } ?>
+        <?php if (isset($success_msg)) { ?>
+                        <h5><b style="color: green;"><?php echo $success_msg ?></b></h5>
+        <?php } ?>
                 </div>
                 <div class="panel-body">
                   <div class="row">
@@ -61,7 +61,7 @@
                                 <option value="">0</option>
                                 <?php for($i=1;$i<50;$i++): ?>
                                     <option value="<?php echo $i ?>" > <?php echo $i ?> </option>
-                                  <?php endfor;; ?>
+                                <?php endfor;; ?>
                               </select>
                             </div>
                           </div>

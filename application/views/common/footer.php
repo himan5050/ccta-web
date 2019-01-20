@@ -1,10 +1,10 @@
-		<div class="container-fluid" id="footer">
-	        <div class="row">
-	           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-	              <p class="footer-para">©2018 FicusDash. All Rights Reserved.<span style="float: right;">20180930 V1.1</span></p>
-	           </div>
-	      </div>
-    	</div>
+        <div class="container-fluid" id="footer">
+            <div class="row">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <p class="footer-para">©2018 FicusDash. All Rights Reserved.<span style="float: right;">20180930 V1.1</span></p>
+               </div>
+          </div>
+        </div>
 
 <link rel="stylesheet" href="<?php echo base_url(); ?>asset/plugins/bootstrap_datetime/bootstrap-datetimepicker.css">
 <script src="<?php echo base_url(); ?>asset/plugins/bootstrap_datetime/moment.js"></script>

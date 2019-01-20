@@ -18,32 +18,47 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 
-/** Error reporting */
+/**
+ * 
+ * Error reporting 
+ */
 error_reporting(E_ALL);
 
 date_default_timezone_set('Europe/London');
 
-/** PHPExcel_IOFactory */
+/**
+* 
+ * PHPExcel_IOFactory 
+*/
 require_once dirname(__FILE__) . '/../Classes/PHPExcel/IOFactory.php';
 
 
 echo date('H:i:s') , " Load from XML file" , PHP_EOL;
 $inputFileName = "XMLTest.xml";
 
-/**  Identify the type of $inputFileName  **/
+/**
+* 
+  * Identify the type of $inputFileName  
+**/
 $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
 echo 'Loading ' , $inputFileName , ' using ' , $inputFileType , " Reader" , PHP_EOL;
 
-/**  Create a new Reader of the type that has been identified  **/
+/**
+* 
+  * Create a new Reader of the type that has been identified  
+**/
 $objReader = PHPExcel_IOFactory::createReader($inputFileType);
-/**  Load $inputFileName to a PHPExcel Object  **/
+/**
+* 
+  * Load $inputFileName to a PHPExcel Object  
+**/
 $objPHPExcel = $objReader->load($inputFileName);
 
 

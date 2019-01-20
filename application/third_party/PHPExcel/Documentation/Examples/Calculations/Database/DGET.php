@@ -20,11 +20,17 @@ date_default_timezone_set('Europe/London');
 <h2>Extracts a single value from a column of a list or database that matches conditions that you specify.</h2>
 <?php
 
-/** Include path **/
+/**
+ * 
+ * Include path 
+ **/
 set_include_path(get_include_path() . PATH_SEPARATOR . '../../../../Classes/');
 
-/** Include PHPExcel */
-include 'PHPExcel.php';
+/**
+* 
+ * Include PHPExcel 
+*/
+require 'PHPExcel.php';
 
 
 // Create new PHPExcel object
@@ -41,12 +47,12 @@ $database = array( array( 'Tree',  'Height', 'Age', 'Yield', 'Profit' ),
                    array( 'Apple',   8,        9,     6,       45.00  ),
                  );
 $criteria = array( array( 'Tree',      'Height', 'Age', 'Yield', 'Profit', 'Height' ),
-                   array( '="=Apple"', '>10',    NULL,  NULL,    NULL,     '<16'    ),
-                   array( '="=Pear"',  NULL,     NULL,  NULL,    NULL,     NULL     )
+                   array( '="=Apple"', '>10',    null,  null,    null,     '<16'    ),
+                   array( '="=Pear"',  null,     null,  null,    null,     null     )
                  );
 
-$worksheet->fromArray( $criteria, NULL, 'A1' );
-$worksheet->fromArray( $database, NULL, 'A4' );
+$worksheet->fromArray($criteria, null, 'A1');
+$worksheet->fromArray($database, null, 'A4');
 
 $worksheet->setCellValue('A12', 'The height of the Apple tree between 10\' and 16\' tall');
 $worksheet->setCellValue('B12', '=DGET(A4:E10,"Height",A1:F2)');
@@ -57,7 +63,7 @@ echo '<hr />';
 
 echo '<h4>Database</h4>';
 
-$databaseData = $worksheet->rangeToArray('A4:E10',null,true,true,true);
+$databaseData = $worksheet->rangeToArray('A4:E10', null, true, true, true);
 var_dump($databaseData);
 
 
@@ -74,7 +80,7 @@ echo 'DMAX() Result is ' . $worksheet->getCell("B12")->getCalculatedValue() .'<b
 
 echo '<h4>Criteria</h4>';
 
-$criteriaData = $worksheet->rangeToArray('A1:A2',null,true,true,true);
+$criteriaData = $worksheet->rangeToArray('A1:A2', null, true, true, true);
 var_dump($criteriaData);
 
 echo $worksheet->getCell("A13")->getValue() .'<br />';

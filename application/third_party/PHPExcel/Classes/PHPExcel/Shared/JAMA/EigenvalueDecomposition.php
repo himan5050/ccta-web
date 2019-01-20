@@ -1,6 +1,6 @@
 <?php
 /**
- *    @package JAMA
+ * @package JAMA
  *
  *    Class to obtain eigenvalues and eigenvectors of a real matrix.
  *
@@ -17,60 +17,67 @@
  *    conditioned, or even singular, so the validity of the equation
  *    A = V*D*inverse(V) depends upon V.cond().
  *
- *    @author  Paul Meagher
- *    @license PHP v3.0
- *    @version 1.1
+ * @author  Paul Meagher
+ * @license PHP v3.0
+ * @version 1.1
  */
 class EigenvalueDecomposition
 {
     /**
      *    Row and column dimension (square matrix).
-     *    @var int
+     *
+     * @var int
      */
     private $n;
 
     /**
      *    Internal symmetry flag.
-     *    @var int
+     *
+     * @var int
      */
     private $issymmetric;
 
     /**
      *    Arrays for internal storage of eigenvalues.
-     *    @var array
+     *
+     * @var array
      */
     private $d = array();
     private $e = array();
 
     /**
      *    Array for internal storage of eigenvectors.
-     *    @var array
+     *
+     * @var array
      */
     private $V = array();
 
     /**
-    *    Array for internal storage of nonsymmetric Hessenberg form.
-    *    @var array
-    */
+     *    Array for internal storage of nonsymmetric Hessenberg form.
+     *
+     * @var array
+     */
     private $H = array();
 
     /**
-    *    Working storage for nonsymmetric algorithm.
-    *    @var array
-    */
+     *    Working storage for nonsymmetric algorithm.
+     *
+     * @var array
+     */
     private $ort;
 
     /**
-    *    Used for complex scalar division.
-    *    @var float
-    */
+     *    Used for complex scalar division.
+     *
+     * @var float
+     */
     private $cdivr;
     private $cdivi;
 
     /**
      *    Symmetric Householder reduction to tridiagonal form.
      *
-     *    @access private
+     * @access private
      */
     private function tred2()
     {
@@ -179,7 +186,7 @@ class EigenvalueDecomposition
      *    Auto. Comp., Vol.ii-Linear Algebra, and the corresponding
      *    Fortran subroutine in EISPACK.
      *
-     *    @access private
+     * @access private
      */
     private function tql2()
     {
@@ -251,7 +258,7 @@ class EigenvalueDecomposition
                     $p = -$s * $s2 * $c3 * $el1 * $this->e[$l] / $dl1;
                     $this->e[$l] = $s * $p;
                     $this->d[$l] = $c * $p;
-                // Check for convergence.
+                    // Check for convergence.
                 } while (abs($this->e[$l]) > $eps * $tst1);
             }
             $this->d[$l] = $this->d[$l] + $f;
@@ -288,7 +295,7 @@ class EigenvalueDecomposition
      *    Vol.ii-Linear Algebra, and the corresponding
      *    Fortran subroutines in EISPACK.
      *
-     *    @access private
+     * @access private
      */
     private function orthes()
     {
@@ -370,7 +377,7 @@ class EigenvalueDecomposition
     /**
      *    Performs complex division.
      *
-     *    @access private
+     * @access private
      */
     private function cdiv($xr, $xi, $yr, $yi)
     {
@@ -395,7 +402,7 @@ class EigenvalueDecomposition
      *    Vol.ii-Linear Algebra, and the corresponding
      *    Fortran subroutine in EISPACK.
      *
-     *    @access private
+     * @access private
      */
     private function hqr2()
     {
@@ -443,7 +450,7 @@ class EigenvalueDecomposition
                 $this->e[$n] = 0.0;
                 --$n;
                 $iter = 0;
-            // Two roots found
+                // Two roots found
             } elseif ($l == $n-1) {
                 $w = $this->H[$n][$n-1] * $this->H[$n-1][$n];
                 $p = ($this->H[$n-1][$n-1] - $this->H[$n][$n]) / 2.0;
@@ -491,7 +498,7 @@ class EigenvalueDecomposition
                         $this->V[$i][$n-1] = $q * $z + $p * $this->V[$i][$n];
                         $this->V[$i][$n] = $q * $this->V[$i][$n] - $p * $z;
                     }
-                // Complex pair
+                    // Complex pair
                 } else {
                     $this->d[$n-1] = $x + $p;
                     $this->d[$n] = $x + $p;
@@ -500,7 +507,7 @@ class EigenvalueDecomposition
                 }
                 $n = $n - 2;
                 $iter = 0;
-            // No convergence yet
+                // No convergence yet
             } else {
                 // Form shift
                 $x = $this->H[$n][$n];
@@ -555,8 +562,8 @@ class EigenvalueDecomposition
                     if ($m == $l) {
                         break;
                     }
-                    if (abs($this->H[$m][$m-1]) * (abs($q) + abs($r)) <
-                        $eps * (abs($p) * (abs($this->H[$m-1][$m-1]) + abs($z) + abs($this->H[$m+1][$m+1])))) {
+                    if (abs($this->H[$m][$m-1]) * (abs($q) + abs($r)) <$eps * (abs($p) * (abs($this->H[$m-1][$m-1]) + abs($z) + abs($this->H[$m+1][$m+1])))
+                    ) {
                         break;
                     }
                     --$m;
@@ -664,7 +671,7 @@ class EigenvalueDecomposition
                             } else {
                                 $this->H[$i][$n] = -$r / ($eps * $norm);
                             }
-                        // Solve real equations
+                            // Solve real equations
                         } else {
                             $x = $this->H[$i][$i+1];
                             $y = $this->H[$i+1][$i];
@@ -686,7 +693,7 @@ class EigenvalueDecomposition
                         }
                     }
                 }
-            // Complex vector
+                // Complex vector
             } elseif ($q < 0) {
                 $l = $n-1;
                 // Last vector component imaginary so matrix is triangular
@@ -777,9 +784,9 @@ class EigenvalueDecomposition
     /**
      *    Constructor: Check for symmetry, then construct the eigenvalue decomposition
      *
-     *    @access public
-     *    @param A  Square matrix
-     *    @return Structure to access D and V.
+     * @access public
+     * @param  A  Square matrix
+     * @return Structure to access D and V.
      */
     public function __construct($Arg)
     {
@@ -812,8 +819,8 @@ class EigenvalueDecomposition
     /**
      *    Return the eigenvector matrix
      *
-     *    @access public
-     *    @return V
+     * @access public
+     * @return V
      */
     public function getV()
     {
@@ -823,8 +830,8 @@ class EigenvalueDecomposition
     /**
      *    Return the real parts of the eigenvalues
      *
-     *    @access public
-     *    @return real(diag(D))
+     * @access public
+     * @return real(diag(D))
      */
     public function getRealEigenvalues()
     {
@@ -834,8 +841,8 @@ class EigenvalueDecomposition
     /**
      *    Return the imaginary parts of the eigenvalues
      *
-     *    @access public
-     *    @return imag(diag(D))
+     * @access public
+     * @return imag(diag(D))
      */
     public function getImagEigenvalues()
     {
@@ -845,8 +852,8 @@ class EigenvalueDecomposition
     /**
      *    Return the block diagonal eigenvalue matrix
      *
-     *    @access public
-     *    @return D
+     * @access public
+     * @return D
      */
     public function getD()
     {

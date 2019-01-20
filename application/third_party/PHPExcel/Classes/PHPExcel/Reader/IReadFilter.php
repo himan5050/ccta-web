@@ -19,21 +19,21 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Reader
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Reader
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 interface PHPExcel_Reader_IReadFilter
 {
     /**
      * Should this cell be read?
      *
-     * @param    $column           Column address (as a string value like "A", or "IV")
-     * @param    $row              Row number
-     * @param    $worksheetName    Optional worksheet name
-     * @return   boolean
+     * @param  $column           Column address (as a string value like "A", or "IV")
+     * @param  $row              Row number
+     * @param  $worksheetName    Optional worksheet name
+     * @return boolean
      */
     public function readCell($column, $row, $worksheetName = '');
 }

@@ -18,28 +18,32 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 
-/** Error reporting */
+/**
+ * Error reporting 
+ */
 error_reporting(E_ALL);
-ini_set('display_errors', TRUE);
-ini_set('display_startup_errors', TRUE);
+ini_set('display_errors', true);
+ini_set('display_startup_errors', true);
 
-define('EOL',(PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
+define('EOL', (PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
 
 date_default_timezone_set('Europe/London');
 
-/** Include PHPExcel */
+/**
+ * Include PHPExcel 
+*/
 require_once dirname(__FILE__) . '/../Classes/PHPExcel.php';
 
 
-//	Change these values to select the PDF Rendering library that you wish to use
-//		and its directory location on your server
+//    Change these values to select the PDF Rendering library that you wish to use
+//        and its directory location on your server
 //$rendererName = PHPExcel_Settings::PDF_RENDERER_TCPDF;
 //$rendererName = PHPExcel_Settings::PDF_RENDERER_MPDF;
 $rendererName = PHPExcel_Settings::PDF_RENDERER_DOMPDF;
@@ -54,7 +58,9 @@ echo date('H:i:s') , " Load Excel2007 template file" , EOL;
 $objReader = PHPExcel_IOFactory::createReader('Excel2007');
 $objPHPExcel = $objReader->load("templates/26template.xlsx");
 
-/** at this point, we could do some manipulations with the template, but we skip this step */
+/**
+ * at this point, we could do some manipulations with the template, but we skip this step 
+*/
 
 // Export to Excel2007 (.xlsx)
 echo date('H:i:s') , " Write to Excel5 format" , EOL;
@@ -77,23 +83,24 @@ echo date('H:i:s') , " File written to " , str_replace('.php', '.htm', pathinfo(
 // Export to PDF (.pdf)
 echo date('H:i:s') , " Write to PDF format" , EOL;
 try {
-	if (!PHPExcel_Settings::setPdfRenderer(
-		$rendererName,
-		$rendererLibraryPath
-	)) {
-		echo (
-			'NOTICE: Please set the $rendererName and $rendererLibraryPath values' .
-			EOL .
-			'at the top of this script as appropriate for your directory structure' .
-			EOL
-		);
-	} else {
-		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'PDF');
-		$objWriter->save(str_replace('.php', '.pdf', __FILE__));
-		echo date('H:i:s') , " File written to " , str_replace('.php', '.pdf', pathinfo(__FILE__, PATHINFO_BASENAME)) , EOL;
-	}
+    if (!PHPExcel_Settings::setPdfRenderer(
+        $rendererName,
+        $rendererLibraryPath
+    )
+    ) {
+        echo (
+        'NOTICE: Please set the $rendererName and $rendererLibraryPath values' .
+        EOL .
+        'at the top of this script as appropriate for your directory structure' .
+        EOL
+        );
+    } else {
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'PDF');
+        $objWriter->save(str_replace('.php', '.pdf', __FILE__));
+        echo date('H:i:s') , " File written to " , str_replace('.php', '.pdf', pathinfo(__FILE__, PATHINFO_BASENAME)) , EOL;
+    }
 } catch (Exception $e) {
-	echo date('H:i:s') , ' EXCEPTION: ', $e->getMessage() , EOL;
+    echo date('H:i:s') , ' EXCEPTION: ', $e->getMessage() , EOL;
 }
 
 // Remove first two rows with field headers before exporting to CSV

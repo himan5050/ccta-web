@@ -19,21 +19,27 @@ date_default_timezone_set('Europe/London');
 <h2>Simple File Reader using PHPExcel_IOFactory::load()</h2>
 <?php
 
-/** Include path **/
+/**
+ * 
+ * Include path 
+ **/
 set_include_path(get_include_path() . PATH_SEPARATOR . '../../../Classes/');
 
-/** PHPExcel_IOFactory */
-include 'PHPExcel/IOFactory.php';
+/**
+* 
+ * PHPExcel_IOFactory 
+*/
+require 'PHPExcel/IOFactory.php';
 
 
 $inputFileName = './sampleData/example1.xls';
-echo 'Loading file ',pathinfo($inputFileName,PATHINFO_BASENAME),' using IOFactory to identify the format<br />';
+echo 'Loading file ',pathinfo($inputFileName, PATHINFO_BASENAME),' using IOFactory to identify the format<br />';
 $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
 
 
 echo '<hr />';
 
-$sheetData = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
 var_dump($sheetData);
 
 

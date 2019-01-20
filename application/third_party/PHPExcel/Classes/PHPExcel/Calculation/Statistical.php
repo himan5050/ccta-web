@@ -1,28 +1,38 @@
 <?php
 
-/** PHPExcel root directory */
+/**
+ * PHPExcel root directory 
+ */
 if (!defined('PHPEXCEL_ROOT')) {
     /**
      * @ignore
      */
     define('PHPEXCEL_ROOT', dirname(__FILE__) . '/../../');
-    require(PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php');
+    include PHPEXCEL_ROOT . 'PHPExcel/Autoloader.php';
 }
 
 
 require_once PHPEXCEL_ROOT . 'PHPExcel/Shared/trend/trendClass.php';
 
 
-/** LOG_GAMMA_X_MAX_VALUE */
+/**
+ * LOG_GAMMA_X_MAX_VALUE 
+*/
 define('LOG_GAMMA_X_MAX_VALUE', 2.55e305);
 
-/** XMININ */
+/**
+ * XMININ 
+*/
 define('XMININ', 2.23e-308);
 
-/** EPS */
+/**
+ * EPS 
+*/
 define('EPS', 2.22e-16);
 
-/** SQRT2PI */
+/**
+ * SQRT2PI 
+*/
 define('SQRT2PI', 2.5066282746310005024157652848110452530069867406099);
 
 /**
@@ -44,11 +54,11 @@ define('SQRT2PI', 2.5066282746310005024157652848110452530069867406099);
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  *
- * @category    PHPExcel
- * @package        PHPExcel_Calculation
- * @copyright    Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license        http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version        ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Calculation
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_Calculation_Statistical
 {
@@ -87,8 +97,8 @@ class PHPExcel_Calculation_Statistical
      *
      * @author Jaco van Kooten
      *
-     * @param p require p>0
-     * @param q require q>0
+     * @param  p require p>0
+     * @param  q require q>0
      * @return 0 if p<=0, q<=0 or p+q>2.55E305 to avoid errors and over/underflow
      */
     private static function beta($p, $q)
@@ -108,9 +118,9 @@ class PHPExcel_Calculation_Statistical
      * @author Paul Meagher
      *
      * The computation is based on formulas from Numerical Recipes, Chapter 6.4 (W.H. Press et al, 1992).
-     * @param x require 0<=x<=1
-     * @param p require p>0
-     * @param q require q>0
+     * @param  x require 0<=x<=1
+     * @param  p require p>0
+     * @param  q require q>0
      * @return 0 if x<0, p<=0, q<=0 or p+q>2.55E305 and 1 if x>1 to avoid errors and over/underflow
      */
     private static function incompleteBeta($x, $p, $q)
@@ -139,8 +149,8 @@ class PHPExcel_Calculation_Statistical
     /**
      * The natural logarithm of the beta function.
      *
-     * @param p require p>0
-     * @param q require q>0
+     * @param  p require p>0
+     * @param  q require q>0
      * @return 0 if p<=0, q<=0 or p+q>2.55E305 to avoid errors and over/underflow
      * @author Jaco van Kooten
      */
@@ -162,6 +172,7 @@ class PHPExcel_Calculation_Statistical
     /**
      * Evaluates of continued fraction part of incomplete beta function.
      * Based on an idea from Numerical Recipes (W.H. Press et al, 1992).
+     *
      * @author Jaco van Kooten
      */
     private static function betaFraction($x, $p, $q)
@@ -215,7 +226,7 @@ class PHPExcel_Calculation_Statistical
      * logGamma function
      *
      * @version 1.1
-     * @author Jaco van Kooten
+     * @author  Jaco van Kooten
      *
      * Original author was Jaco van Kooten. Ported to PHP by Paul Meagher.
      *
@@ -251,7 +262,7 @@ class PHPExcel_Calculation_Statistical
      * The program returns the value XINF for X .LE. 0.0 or when overflow would occur.
      * The computation is believed to be free of underflow and overflow.
      * </p>
-     * @return MAX_VALUE for x < 0.0 or when overflow would occur, i.e. x > 2.55E305
+     * @return  MAX_VALUE for x < 0.0 or when overflow would occur, i.e. x > 2.55E305
      */
 
     // Function cache for logGamma
@@ -487,7 +498,6 @@ class PHPExcel_Calculation_Statistical
      *    begin                : Friday, January 16, 2004
      *    copyright            : (C) 2004 Michael Nickerson
      *    email                : nickersonm@yahoo.com
-     *
      ***************************************************************************/
     private static function inverseNcdf($p)
     {
@@ -695,7 +705,7 @@ class PHPExcel_Calculation_Statistical
                 $z = ((((((($c7 * $R + $c6) * $R + $c5) * $R + $c4) * $R + $c3) * $R + $c2) * $R + $c1) * $R + $c0) /
                      ((((((($d7 * $R + $d6) * $R + $d5) * $R + $d4) * $R + $d3) * $R + $d2) * $R + $d1) * $R + 1);
             } else {
-            //    computation for p near 0 or 1.
+                //    computation for p near 0 or 1.
                 $R = $R - $split2;
                 $z = ((((((($e7 * $R + $e6) * $R + $e5) * $R + $e4) * $R + $e3) * $R + $e2) * $R + $e1) * $R + $e0) /
                      ((((((($f7 * $R + $f6) * $R + $f5) * $R + $f4) * $R + $f3) * $R + $f2) * $R + $f1) * $R + 1);
@@ -717,10 +727,10 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        AVEDEV(value1[,value2[, ...]])
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @return    float
+     * @param    mixed $arg,... Data values
+     * @return   float
      */
     public static function AVEDEV()
     {
@@ -733,8 +743,9 @@ class PHPExcel_Calculation_Statistical
         if ($aMean != PHPExcel_Calculation_Functions::DIV0()) {
             $aCount = 0;
             foreach ($aArgs as $k => $arg) {
-                if ((is_bool($arg)) &&
-                    ((!PHPExcel_Calculation_Functions::isCellValue($k)) || (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_OPENOFFICE))) {
+                if ((is_bool($arg)) 
+                    && ((!PHPExcel_Calculation_Functions::isCellValue($k)) || (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_OPENOFFICE))
+                ) {
                     $arg = (integer) $arg;
                 }
                 // Is it a numeric value?
@@ -766,10 +777,10 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        AVERAGE(value1[,value2[, ...]])
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @return    float
+     * @param    mixed $arg,... Data values
+     * @return   float
      */
     public static function AVERAGE()
     {
@@ -777,8 +788,9 @@ class PHPExcel_Calculation_Statistical
 
         // Loop through arguments
         foreach (PHPExcel_Calculation_Functions::flattenArrayIndexed(func_get_args()) as $k => $arg) {
-            if ((is_bool($arg)) &&
-                ((!PHPExcel_Calculation_Functions::isCellValue($k)) || (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_OPENOFFICE))) {
+            if ((is_bool($arg)) 
+                && ((!PHPExcel_Calculation_Functions::isCellValue($k)) || (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_OPENOFFICE))
+            ) {
                 $arg = (integer) $arg;
             }
             // Is it a numeric value?
@@ -809,10 +821,10 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        AVERAGEA(value1[,value2[, ...]])
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @return    float
+     * @param    mixed $arg,... Data values
+     * @return   float
      */
     public static function AVERAGEA()
     {
@@ -821,8 +833,9 @@ class PHPExcel_Calculation_Statistical
         $aCount = 0;
         // Loop through arguments
         foreach (PHPExcel_Calculation_Functions::flattenArrayIndexed(func_get_args()) as $k => $arg) {
-            if ((is_bool($arg)) &&
-                (!PHPExcel_Calculation_Functions::isMatrixValue($k))) {
+            if ((is_bool($arg)) 
+                && (!PHPExcel_Calculation_Functions::isMatrixValue($k))
+            ) {
             } else {
                 if ((is_numeric($arg)) || (is_bool($arg)) || ((is_string($arg) && ($arg != '')))) {
                     if (is_bool($arg)) {
@@ -856,12 +869,12 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        AVERAGEIF(value1[,value2[, ...]],condition)
      *
-     * @access    public
+     * @access   public
      * @category Mathematical and Trigonometric Functions
-     * @param    mixed        $arg,...        Data values
-     * @param    string        $condition        The criteria that defines which cells will be checked.
-     * @param    mixed[]        $averageArgs    Data values
-     * @return    float
+     * @param    mixed   $arg,...     Data values
+     * @param    string  $condition   The criteria that defines which cells will be checked.
+     * @param    mixed[] $averageArgs Data values
+     * @return   float
      */
     public static function AVERAGEIF($aArgs, $condition, $averageArgs = array())
     {
@@ -900,12 +913,11 @@ class PHPExcel_Calculation_Statistical
      *
      * Returns the beta distribution.
      *
-     * @param    float        $value            Value at which you want to evaluate the distribution
-     * @param    float        $alpha            Parameter to the distribution
-     * @param    float        $beta            Parameter to the distribution
-     * @param    boolean        $cumulative
-     * @return    float
-     *
+     * @param  float   $value      Value at which you want to evaluate the distribution
+     * @param  float   $alpha      Parameter to the distribution
+     * @param  float   $beta       Parameter to the distribution
+     * @param  boolean $cumulative
+     * @return float
      */
     public static function BETADIST($value, $alpha, $beta, $rMin = 0, $rMax = 1)
     {
@@ -937,14 +949,13 @@ class PHPExcel_Calculation_Statistical
      *
      * Returns the inverse of the beta distribution.
      *
-     * @param    float        $probability    Probability at which you want to evaluate the distribution
-     * @param    float        $alpha            Parameter to the distribution
-     * @param    float        $beta            Parameter to the distribution
-     * @param    float        $rMin            Minimum value
-     * @param    float        $rMax            Maximum value
-     * @param    boolean        $cumulative
-     * @return    float
-     *
+     * @param  float   $probability Probability at which you want to evaluate the distribution
+     * @param  float   $alpha       Parameter to the distribution
+     * @param  float   $beta        Parameter to the distribution
+     * @param  float   $rMin        Minimum value
+     * @param  float   $rMax        Maximum value
+     * @param  boolean $cumulative
+     * @return float
      */
     public static function BETAINV($probability, $alpha, $beta, $rMin = 0, $rMax = 1)
     {
@@ -996,14 +1007,13 @@ class PHPExcel_Calculation_Statistical
      *        experiment. For example, BINOMDIST can calculate the probability that two of the next three
      *        babies born are male.
      *
-     * @param    float        $value            Number of successes in trials
-     * @param    float        $trials            Number of trials
-     * @param    float        $probability    Probability of success on each trial
-     * @param    boolean        $cumulative
-     * @return    float
+     * @param  float   $value       Number of successes in trials
+     * @param  float   $trials      Number of trials
+     * @param  float   $probability Probability of success on each trial
+     * @param  boolean $cumulative
+     * @return float
      *
-     * @todo    Cumulative distribution function
-     *
+     * @todo Cumulative distribution function
      */
     public static function BINOMDIST($value, $trials, $probability, $cumulative)
     {
@@ -1026,7 +1036,7 @@ class PHPExcel_Calculation_Statistical
                     }
                     return $summer;
                 } else {
-                    return PHPExcel_Calculation_MathTrig::COMBIN($trials, $value) * pow($probability, $value) * pow(1 - $probability, $trials - $value) ;
+                    return PHPExcel_Calculation_MathTrig::COMBIN($trials, $value) * pow($probability, $value) * pow(1 - $probability, $trials - $value);
                 }
             }
         }
@@ -1039,9 +1049,9 @@ class PHPExcel_Calculation_Statistical
      *
      * Returns the one-tailed probability of the chi-squared distribution.
      *
-     * @param    float        $value            Value for the function
-     * @param    float        $degrees        degrees of freedom
-     * @return    float
+     * @param  float $value   Value for the function
+     * @param  float $degrees degrees of freedom
+     * @return float
      */
     public static function CHIDIST($value, $degrees)
     {
@@ -1069,9 +1079,9 @@ class PHPExcel_Calculation_Statistical
      *
      * Returns the one-tailed probability of the chi-squared distribution.
      *
-     * @param    float        $probability    Probability for the function
-     * @param    float        $degrees        degrees of freedom
-     * @return    float
+     * @param  float $probability Probability for the function
+     * @param  float $degrees     degrees of freedom
+     * @return float
      */
     public static function CHIINV($probability, $degrees)
     {
@@ -1125,11 +1135,10 @@ class PHPExcel_Calculation_Statistical
      *
      * Returns the confidence interval for a population mean
      *
-     * @param    float        $alpha
-     * @param    float        $stdDev        Standard Deviation
-     * @param    float        $size
-     * @return    float
-     *
+     * @param  float $alpha
+     * @param  float $stdDev Standard Deviation
+     * @param  float $size
+     * @return float
      */
     public static function CONFIDENCE($alpha, $stdDev, $size)
     {
@@ -1155,9 +1164,9 @@ class PHPExcel_Calculation_Statistical
      *
      * Returns covariance, the average of the products of deviations for each data point pair.
      *
-     * @param    array of mixed        Data Series Y
-     * @param    array of mixed        Data Series X
-     * @return    float
+     * @param  array of mixed        Data Series Y
+     * @param  array of mixed        Data Series X
+     * @return float
      */
     public static function CORREL($yValues, $xValues = null)
     {
@@ -1189,10 +1198,10 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        COUNT(value1[,value2[, ...]])
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @return    int
+     * @param    mixed $arg,... Data values
+     * @return   int
      */
     public static function COUNT()
     {
@@ -1201,8 +1210,9 @@ class PHPExcel_Calculation_Statistical
         // Loop through arguments
         $aArgs = PHPExcel_Calculation_Functions::flattenArrayIndexed(func_get_args());
         foreach ($aArgs as $k => $arg) {
-            if ((is_bool($arg)) &&
-                ((!PHPExcel_Calculation_Functions::isCellValue($k)) || (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_OPENOFFICE))) {
+            if ((is_bool($arg)) 
+                && ((!PHPExcel_Calculation_Functions::isCellValue($k)) || (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_OPENOFFICE))
+            ) {
                 $arg = (integer) $arg;
             }
             // Is it a numeric value?
@@ -1223,10 +1233,10 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        COUNTA(value1[,value2[, ...]])
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @return    int
+     * @param    mixed $arg,... Data values
+     * @return   int
      */
     public static function COUNTA()
     {
@@ -1253,10 +1263,10 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        COUNTBLANK(value1[,value2[, ...]])
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @return    int
+     * @param    mixed $arg,... Data values
+     * @return   int
      */
     public static function COUNTBLANK()
     {
@@ -1283,11 +1293,11 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        COUNTIF(value1[,value2[, ...]],condition)
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @param    string        $condition        The criteria that defines which cells will be counted.
-     * @return    int
+     * @param    mixed  $arg,...   Data values
+     * @param    string $condition The criteria that defines which cells will be counted.
+     * @return   int
      */
     public static function COUNTIF($aArgs, $condition)
     {
@@ -1316,9 +1326,9 @@ class PHPExcel_Calculation_Statistical
      *
      * Returns covariance, the average of the products of deviations for each data point pair.
      *
-     * @param    array of mixed        Data Series Y
-     * @param    array of mixed        Data Series X
-     * @return    float
+     * @param  array of mixed        Data Series Y
+     * @param  array of mixed        Data Series X
+     * @return float
      */
     public static function COVAR($yValues, $xValues)
     {
@@ -1347,16 +1357,15 @@ class PHPExcel_Calculation_Statistical
      *
      * See http://support.microsoft.com/kb/828117/ for details of the algorithm used
      *
-     * @param    float        $trials            number of Bernoulli trials
-     * @param    float        $probability    probability of a success on each trial
-     * @param    float        $alpha            criterion value
-     * @return    int
+     * @param  float $trials      number of Bernoulli trials
+     * @param  float $probability probability of a success on each trial
+     * @param  float $alpha       criterion value
+     * @return int
      *
-     * @todo    Warning. This implementation differs from the algorithm detailed on the MS
+     * @todo Warning. This implementation differs from the algorithm detailed on the MS
      *            web site in that $CumPGuessMinus1 = $CumPGuess - 1 rather than $CumPGuess - $PGuess
      *            This eliminates a potential endless loop error, but may have an adverse affect on the
      *            accuracy of the function (although all my tests have so far returned correct results).
-     *
      */
     public static function CRITBINOM($trials, $probability, $alpha)
     {
@@ -1438,7 +1447,7 @@ class PHPExcel_Calculation_Statistical
             $PGuess = $UnscaledPGuess / $TotalUnscaledProbability;
             $CumPGuess = $UnscaledCumPGuess / $TotalUnscaledProbability;
 
-//            $CumPGuessMinus1 = $CumPGuess - $PGuess;
+            //            $CumPGuessMinus1 = $CumPGuess - $PGuess;
             $CumPGuessMinus1 = $CumPGuess - 1;
 
             while (true) {
@@ -1471,10 +1480,10 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        DEVSQ(value1[,value2[, ...]])
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @return    float
+     * @param    mixed $arg,... Data values
+     * @return   float
      */
     public static function DEVSQ()
     {
@@ -1488,9 +1497,10 @@ class PHPExcel_Calculation_Statistical
             $aCount = -1;
             foreach ($aArgs as $k => $arg) {
                 // Is it a numeric value?
-                if ((is_bool($arg)) &&
-                    ((!PHPExcel_Calculation_Functions::isCellValue($k)) ||
-                    (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_OPENOFFICE))) {
+                if ((is_bool($arg)) 
+                    && ((!PHPExcel_Calculation_Functions::isCellValue($k)) 
+                    || (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_OPENOFFICE))
+                ) {
                     $arg = (integer) $arg;
                 }
                 if ((is_numeric($arg)) && (!is_string($arg))) {
@@ -1521,10 +1531,10 @@ class PHPExcel_Calculation_Statistical
      *        such as how long an automated bank teller takes to deliver cash. For example, you can
      *        use EXPONDIST to determine the probability that the process takes at most 1 minute.
      *
-     * @param    float        $value            Value of the function
-     * @param    float        $lambda            The parameter value
-     * @param    boolean        $cumulative
-     * @return    float
+     * @param  float   $value      Value of the function
+     * @param  float   $lambda     The parameter value
+     * @param  boolean $cumulative
+     * @return float
      */
     public static function EXPONDIST($value, $lambda, $cumulative)
     {
@@ -1555,8 +1565,8 @@ class PHPExcel_Calculation_Statistical
      *        is normally distributed rather than skewed. Use this function to perform hypothesis
      *        testing on the correlation coefficient.
      *
-     * @param    float        $value
-     * @return    float
+     * @param  float $value
+     * @return float
      */
     public static function FISHER($value)
     {
@@ -1579,8 +1589,8 @@ class PHPExcel_Calculation_Statistical
      *        analyzing correlations between ranges or arrays of data. If y = FISHER(x), then
      *        FISHERINV(y) = x.
      *
-     * @param    float        $value
-     * @return    float
+     * @param  float $value
+     * @return float
      */
     public static function FISHERINV($value)
     {
@@ -1598,10 +1608,10 @@ class PHPExcel_Calculation_Statistical
      *
      * Calculates, or predicts, a future value by using existing values. The predicted value is a y-value for a given x-value.
      *
-     * @param    float                Value of X for which we want to find Y
-     * @param    array of mixed        Data Series Y
-     * @param    array of mixed        Data Series X
-     * @return    float
+     * @param  float                Value of X for which we want to find Y
+     * @param  array of mixed        Data Series Y
+     * @param  array of mixed        Data Series X
+     * @return float
      */
     public static function FORECAST($xValue, $yValues, $xValues)
     {
@@ -1630,12 +1640,11 @@ class PHPExcel_Calculation_Statistical
      *
      * Returns the gamma distribution.
      *
-     * @param    float        $value            Value at which you want to evaluate the distribution
-     * @param    float        $a                Parameter to the distribution
-     * @param    float        $b                Parameter to the distribution
-     * @param    boolean        $cumulative
-     * @return    float
-     *
+     * @param  float   $value      Value at which you want to evaluate the distribution
+     * @param  float   $a          Parameter to the distribution
+     * @param  float   $b          Parameter to the distribution
+     * @param  boolean $cumulative
+     * @return float
      */
     public static function GAMMADIST($value, $a, $b, $cumulative)
     {
@@ -1664,11 +1673,10 @@ class PHPExcel_Calculation_Statistical
      *
      * Returns the inverse of the beta distribution.
      *
-     * @param    float        $probability    Probability at which you want to evaluate the distribution
-     * @param    float        $alpha            Parameter to the distribution
-     * @param    float        $beta            Parameter to the distribution
-     * @return    float
-     *
+     * @param  float $probability Probability at which you want to evaluate the distribution
+     * @param  float $alpha       Parameter to the distribution
+     * @param  float $beta        Parameter to the distribution
+     * @return float
      */
     public static function GAMMAINV($probability, $alpha, $beta)
     {
@@ -1726,8 +1734,8 @@ class PHPExcel_Calculation_Statistical
      *
      * Returns the natural logarithm of the gamma function.
      *
-     * @param    float        $value
-     * @return    float
+     * @param  float $value
+     * @return float
      */
     public static function GAMMALN($value)
     {
@@ -1753,10 +1761,10 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        GEOMEAN(value1[,value2[, ...]])
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @return    float
+     * @param    mixed $arg,... Data values
+     * @return   float
      */
     public static function GEOMEAN()
     {
@@ -1764,7 +1772,7 @@ class PHPExcel_Calculation_Statistical
 
         $aMean = PHPExcel_Calculation_MathTrig::PRODUCT($aArgs);
         if (is_numeric($aMean) && ($aMean > 0)) {
-            $aCount = self::COUNT($aArgs) ;
+            $aCount = self::COUNT($aArgs);
             if (self::MIN($aArgs) > 0) {
                 return pow($aMean, (1 / $aCount));
             }
@@ -1778,11 +1786,11 @@ class PHPExcel_Calculation_Statistical
      *
      * Returns values along a predicted emponential trend
      *
-     * @param    array of mixed        Data Series Y
-     * @param    array of mixed        Data Series X
-     * @param    array of mixed        Values of X for which we want to find Y
-     * @param    boolean                A logical value specifying whether to force the intersect to equal 0.
-     * @return    array of float
+     * @param  array of mixed        Data Series Y
+     * @param  array of mixed        Data Series X
+     * @param  array of mixed        Values of X for which we want to find Y
+     * @param  boolean                A logical value specifying whether to force the intersect to equal 0.
+     * @return array of float
      */
     public static function GROWTH($yValues, $xValues = array(), $newValues = array(), $const = true)
     {
@@ -1814,10 +1822,10 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        HARMEAN(value1[,value2[, ...]])
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @return    float
+     * @param    mixed $arg,... Data values
+     * @return   float
      */
     public static function HARMEAN()
     {
@@ -1860,12 +1868,11 @@ class PHPExcel_Calculation_Statistical
      * Returns the hypergeometric distribution. HYPGEOMDIST returns the probability of a given number of
      * sample successes, given the sample size, population successes, and population size.
      *
-     * @param    float        $sampleSuccesses        Number of successes in the sample
-     * @param    float        $sampleNumber            Size of the sample
-     * @param    float        $populationSuccesses    Number of successes in the population
-     * @param    float        $populationNumber        Population size
-     * @return    float
-     *
+     * @param  float $sampleSuccesses     Number of successes in the sample
+     * @param  float $sampleNumber        Size of the sample
+     * @param  float $populationSuccesses Number of successes in the population
+     * @param  float $populationNumber    Population size
+     * @return float
      */
     public static function HYPGEOMDIST($sampleSuccesses, $sampleNumber, $populationSuccesses, $populationNumber)
     {
@@ -1897,9 +1904,9 @@ class PHPExcel_Calculation_Statistical
      *
      * Calculates the point at which a line will intersect the y-axis by using existing x-values and y-values.
      *
-     * @param    array of mixed        Data Series Y
-     * @param    array of mixed        Data Series X
-     * @return    float
+     * @param  array of mixed        Data Series Y
+     * @param  array of mixed        Data Series X
+     * @return float
      */
     public static function INTERCEPT($yValues, $xValues)
     {
@@ -1928,8 +1935,8 @@ class PHPExcel_Calculation_Statistical
      * kurtosis indicates a relatively peaked distribution. Negative kurtosis indicates a
      * relatively flat distribution.
      *
-     * @param    array    Data Series
-     * @return    float
+     * @param  array    Data Series
+     * @return float
      */
     public static function KURT()
     {
@@ -1941,8 +1948,9 @@ class PHPExcel_Calculation_Statistical
             $count = $summer = 0;
             // Loop through arguments
             foreach ($aArgs as $k => $arg) {
-                if ((is_bool($arg)) &&
-                    (!PHPExcel_Calculation_Functions::isMatrixValue($k))) {
+                if ((is_bool($arg)) 
+                    && (!PHPExcel_Calculation_Functions::isMatrixValue($k))
+                ) {
                 } else {
                     // Is it a numeric value?
                     if ((is_numeric($arg)) && (!is_string($arg))) {
@@ -1970,12 +1978,11 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        LARGE(value1[,value2[, ...]],entry)
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @param    int            $entry            Position (ordered from the largest) in the array or range of data to return
-     * @return    float
-     *
+     * @param    mixed $arg,... Data values
+     * @param    int   $entry   Position (ordered from the largest) in the array or range of data to return
+     * @return   float
      */
     public static function LARGE()
     {
@@ -2010,11 +2017,11 @@ class PHPExcel_Calculation_Statistical
      * Calculates the statistics for a line by using the "least squares" method to calculate a straight line that best fits your data,
      *        and then returns an array that describes the line.
      *
-     * @param    array of mixed        Data Series Y
-     * @param    array of mixed        Data Series X
-     * @param    boolean                A logical value specifying whether to force the intersect to equal 0.
-     * @param    boolean                A logical value specifying whether to return additional regression statistics.
-     * @return    array
+     * @param  array of mixed        Data Series Y
+     * @param  array of mixed        Data Series X
+     * @param  boolean                A logical value specifying whether to force the intersect to equal 0.
+     * @param  boolean                A logical value specifying whether to return additional regression statistics.
+     * @return array
      */
     public static function LINEST($yValues, $xValues = null, $const = true, $stats = false)
     {
@@ -2070,11 +2077,11 @@ class PHPExcel_Calculation_Statistical
      * Calculates an exponential curve that best fits the X and Y data series,
      *        and then returns an array that describes the line.
      *
-     * @param    array of mixed        Data Series Y
-     * @param    array of mixed        Data Series X
-     * @param    boolean                A logical value specifying whether to force the intersect to equal 0.
-     * @param    boolean                A logical value specifying whether to return additional regression statistics.
-     * @return    array
+     * @param  array of mixed        Data Series Y
+     * @param  array of mixed        Data Series X
+     * @param  boolean                A logical value specifying whether to force the intersect to equal 0.
+     * @param  boolean                A logical value specifying whether to return additional regression statistics.
+     * @return array
      */
     public static function LOGEST($yValues, $xValues = null, $const = true, $stats = false)
     {
@@ -2135,12 +2142,12 @@ class PHPExcel_Calculation_Statistical
      *
      * Returns the inverse of the normal cumulative distribution
      *
-     * @param    float        $probability
-     * @param    float        $mean
-     * @param    float        $stdDev
-     * @return    float
+     * @param  float $probability
+     * @param  float $mean
+     * @param  float $stdDev
+     * @return float
      *
-     * @todo    Try implementing P J Acklam's refinement algorithm for greater
+     * @todo Try implementing P J Acklam's refinement algorithm for greater
      *            accuracy if I can get my head round the mathematics
      *            (as described at) http://home.online.no/~pjacklam/notes/invnorm/
      */
@@ -2166,10 +2173,10 @@ class PHPExcel_Calculation_Statistical
      * Returns the cumulative lognormal distribution of x, where ln(x) is normally distributed
      * with parameters mean and standard_dev.
      *
-     * @param    float        $value
-     * @param    float        $mean
-     * @param    float        $stdDev
-     * @return    float
+     * @param  float $value
+     * @param  float $mean
+     * @param  float $stdDev
+     * @return float
      */
     public static function LOGNORMDIST($value, $mean, $stdDev)
     {
@@ -2196,10 +2203,10 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        MAX(value1[,value2[, ...]])
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @return    float
+     * @param    mixed $arg,... Data values
+     * @return   float
      */
     public static function MAX()
     {
@@ -2231,10 +2238,10 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        MAXA(value1[,value2[, ...]])
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @return    float
+     * @param    mixed $arg,... Data values
+     * @return   float
      */
     public static function MAXA()
     {
@@ -2271,11 +2278,11 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        MAXIF(value1[,value2[, ...]],condition)
      *
-     * @access    public
+     * @access   public
      * @category Mathematical and Trigonometric Functions
-     * @param    mixed        $arg,...        Data values
-     * @param    string        $condition        The criteria that defines which cells will be checked.
-     * @return    float
+     * @param    mixed  $arg,...   Data values
+     * @param    string $condition The criteria that defines which cells will be checked.
+     * @return   float
      */
     public static function MAXIF($aArgs, $condition, $sumArgs = array())
     {
@@ -2311,10 +2318,10 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        MEDIAN(value1[,value2[, ...]])
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @return    float
+     * @param    mixed $arg,... Data values
+     * @return   float
      */
     public static function MEDIAN()
     {
@@ -2355,10 +2362,10 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        MIN(value1[,value2[, ...]])
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @return    float
+     * @param    mixed $arg,... Data values
+     * @return   float
      */
     public static function MIN()
     {
@@ -2390,10 +2397,10 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        MINA(value1[,value2[, ...]])
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @return    float
+     * @param    mixed $arg,... Data values
+     * @return   float
      */
     public static function MINA()
     {
@@ -2430,11 +2437,11 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        MINIF(value1[,value2[, ...]],condition)
      *
-     * @access    public
+     * @access   public
      * @category Mathematical and Trigonometric Functions
-     * @param    mixed        $arg,...        Data values
-     * @param    string        $condition        The criteria that defines which cells will be checked.
-     * @return    float
+     * @param    mixed  $arg,...   Data values
+     * @param    string $condition The criteria that defines which cells will be checked.
+     * @return   float
      */
     public static function MINIF($aArgs, $condition, $sumArgs = array())
     {
@@ -2508,10 +2515,10 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        MODE(value1[,value2[, ...]])
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @return    float
+     * @param    mixed $arg,... Data values
+     * @return   float
      */
     public static function MODE()
     {
@@ -2545,11 +2552,10 @@ class PHPExcel_Calculation_Statistical
      *        distribution, except that the number of successes is fixed, and the number of trials is
      *        variable. Like the binomial, trials are assumed to be independent.
      *
-     * @param    float        $failures        Number of Failures
-     * @param    float        $successes        Threshold number of Successes
-     * @param    float        $probability    Probability of success on each trial
-     * @return    float
-     *
+     * @param  float $failures    Number of Failures
+     * @param  float $successes   Threshold number of Successes
+     * @param  float $probability Probability of success on each trial
+     * @return float
      */
     public static function NEGBINOMDIST($failures, $successes, $probability)
     {
@@ -2581,12 +2587,11 @@ class PHPExcel_Calculation_Statistical
      * function has a very wide range of applications in statistics, including hypothesis
      * testing.
      *
-     * @param    float        $value
-     * @param    float        $mean        Mean Value
-     * @param    float        $stdDev        Standard Deviation
-     * @param    boolean        $cumulative
-     * @return    float
-     *
+     * @param  float   $value
+     * @param  float   $mean       Mean Value
+     * @param  float   $stdDev     Standard Deviation
+     * @param  boolean $cumulative
+     * @return float
      */
     public static function NORMDIST($value, $mean, $stdDev, $cumulative)
     {
@@ -2615,11 +2620,10 @@ class PHPExcel_Calculation_Statistical
      *
      * Returns the inverse of the normal cumulative distribution for the specified mean and standard deviation.
      *
-     * @param    float        $value
-     * @param    float        $mean        Mean Value
-     * @param    float        $stdDev        Standard Deviation
-     * @return    float
-     *
+     * @param  float $value
+     * @param  float $mean   Mean Value
+     * @param  float $stdDev Standard Deviation
+     * @return float
      */
     public static function NORMINV($probability, $mean, $stdDev)
     {
@@ -2647,8 +2651,8 @@ class PHPExcel_Calculation_Statistical
      * a mean of 0 (zero) and a standard deviation of one. Use this function in place of a
      * table of standard normal curve areas.
      *
-     * @param    float        $value
-     * @return    float
+     * @param  float $value
+     * @return float
      */
     public static function NORMSDIST($value)
     {
@@ -2663,8 +2667,8 @@ class PHPExcel_Calculation_Statistical
      *
      * Returns the inverse of the standard normal cumulative distribution
      *
-     * @param    float        $value
-     * @return    float
+     * @param  float $value
+     * @return float
      */
     public static function NORMSINV($value)
     {
@@ -2680,11 +2684,11 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        PERCENTILE(value1[,value2[, ...]],entry)
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @param    float        $entry            Percentile value in the range 0..1, inclusive.
-     * @return    float
+     * @param    mixed $arg,... Data values
+     * @param    float $entry   Percentile value in the range 0..1, inclusive.
+     * @return   float
      */
     public static function PERCENTILE()
     {
@@ -2728,10 +2732,10 @@ class PHPExcel_Calculation_Statistical
      *
      * Returns the rank of a value in a data set as a percentage of the data set.
      *
-     * @param    array of number        An array of, or a reference to, a list of numbers.
-     * @param    number                The number whose rank you want to find.
-     * @param    number                The number of significant digits for the returned percentage value.
-     * @return    float
+     * @param  array of number        An array of, or a reference to, a list of numbers.
+     * @param  number                The number whose rank you want to find.
+     * @param  number                The number of significant digits for the returned percentage value.
+     * @return float
      */
     public static function PERCENTRANK($valueSet, $value, $significance = 3)
     {
@@ -2779,9 +2783,9 @@ class PHPExcel_Calculation_Statistical
      *        combinations, for which the internal order is not significant. Use this function
      *        for lottery-style probability calculations.
      *
-     * @param    int        $numObjs    Number of different objects
-     * @param    int        $numInSet    Number of objects in each permutation
-     * @return    int        Number of permutations
+     * @param  int $numObjs  Number of different objects
+     * @param  int $numInSet Number of objects in each permutation
+     * @return int        Number of permutations
      */
     public static function PERMUT($numObjs, $numInSet)
     {
@@ -2806,11 +2810,10 @@ class PHPExcel_Calculation_Statistical
      * is predicting the number of events over a specific time, such as the number of
      * cars arriving at a toll plaza in 1 minute.
      *
-     * @param    float        $value
-     * @param    float        $mean        Mean Value
-     * @param    boolean        $cumulative
-     * @return    float
-     *
+     * @param  float   $value
+     * @param  float   $mean       Mean Value
+     * @param  boolean $cumulative
+     * @return float
      */
     public static function POISSON($value, $mean, $cumulative)
     {
@@ -2845,11 +2848,11 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        QUARTILE(value1[,value2[, ...]],entry)
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @param    int            $entry            Quartile value in the range 1..3, inclusive.
-     * @return    float
+     * @param    mixed $arg,... Data values
+     * @param    int   $entry   Quartile value in the range 1..3, inclusive.
+     * @return   float
      */
     public static function QUARTILE()
     {
@@ -2874,10 +2877,10 @@ class PHPExcel_Calculation_Statistical
      *
      * Returns the rank of a number in a list of numbers.
      *
-     * @param    number                The number whose rank you want to find.
-     * @param    array of number        An array of, or a reference to, a list of numbers.
-     * @param    mixed                Order to sort the values in the value set
-     * @return    float
+     * @param  number                The number whose rank you want to find.
+     * @param  array of number        An array of, or a reference to, a list of numbers.
+     * @param  mixed                Order to sort the values in the value set
+     * @return float
      */
     public static function RANK($value, $valueSet, $order = 0)
     {
@@ -2910,9 +2913,9 @@ class PHPExcel_Calculation_Statistical
      *
      * Returns the square of the Pearson product moment correlation coefficient through data points in known_y's and known_x's.
      *
-     * @param    array of mixed        Data Series Y
-     * @param    array of mixed        Data Series X
-     * @return    float
+     * @param  array of mixed        Data Series Y
+     * @param  array of mixed        Data Series X
+     * @return float
      */
     public static function RSQ($yValues, $xValues)
     {
@@ -2941,8 +2944,8 @@ class PHPExcel_Calculation_Statistical
      * asymmetric tail extending toward more positive values. Negative skewness indicates a
      * distribution with an asymmetric tail extending toward more negative values.
      *
-     * @param    array    Data Series
-     * @return    float
+     * @param  array    Data Series
+     * @return float
      */
     public static function SKEW()
     {
@@ -2953,8 +2956,9 @@ class PHPExcel_Calculation_Statistical
         $count = $summer = 0;
         // Loop through arguments
         foreach ($aArgs as $k => $arg) {
-            if ((is_bool($arg)) &&
-                (!PHPExcel_Calculation_Functions::isMatrixValue($k))) {
+            if ((is_bool($arg)) 
+                && (!PHPExcel_Calculation_Functions::isMatrixValue($k))
+            ) {
             } else {
                 // Is it a numeric value?
                 if ((is_numeric($arg)) && (!is_string($arg))) {
@@ -2976,9 +2980,9 @@ class PHPExcel_Calculation_Statistical
      *
      * Returns the slope of the linear regression line through data points in known_y's and known_x's.
      *
-     * @param    array of mixed        Data Series Y
-     * @param    array of mixed        Data Series X
-     * @return    float
+     * @param  array of mixed        Data Series Y
+     * @param  array of mixed        Data Series X
+     * @return float
      */
     public static function SLOPE($yValues, $xValues)
     {
@@ -3008,11 +3012,11 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        SMALL(value1[,value2[, ...]],entry)
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @param    int            $entry            Position (ordered from the smallest) in the array or range of data to return
-     * @return    float
+     * @param    mixed $arg,... Data values
+     * @param    int   $entry   Position (ordered from the smallest) in the array or range of data to return
+     * @return   float
      */
     public static function SMALL()
     {
@@ -3046,10 +3050,10 @@ class PHPExcel_Calculation_Statistical
      *
      * Returns a normalized value from a distribution characterized by mean and standard_dev.
      *
-     * @param    float    $value        Value to normalize
-     * @param    float    $mean        Mean Value
-     * @param    float    $stdDev        Standard Deviation
-     * @return    float    Standardized value
+     * @param  float $value  Value to normalize
+     * @param  float $mean   Mean Value
+     * @param  float $stdDev Standard Deviation
+     * @return float    Standardized value
      */
     public static function STANDARDIZE($value, $mean, $stdDev)
     {
@@ -3076,10 +3080,10 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        STDEV(value1[,value2[, ...]])
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @return    float
+     * @param    mixed $arg,... Data values
+     * @return   float
      */
     public static function STDEV()
     {
@@ -3092,8 +3096,9 @@ class PHPExcel_Calculation_Statistical
         if (!is_null($aMean)) {
             $aCount = -1;
             foreach ($aArgs as $k => $arg) {
-                if ((is_bool($arg)) &&
-                    ((!PHPExcel_Calculation_Functions::isCellValue($k)) || (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_OPENOFFICE))) {
+                if ((is_bool($arg)) 
+                    && ((!PHPExcel_Calculation_Functions::isCellValue($k)) || (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_OPENOFFICE))
+                ) {
                     $arg = (integer) $arg;
                 }
                 // Is it a numeric value?
@@ -3124,10 +3129,10 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        STDEVA(value1[,value2[, ...]])
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @return    float
+     * @param    mixed $arg,... Data values
+     * @return   float
      */
     public static function STDEVA()
     {
@@ -3139,8 +3144,9 @@ class PHPExcel_Calculation_Statistical
         if (!is_null($aMean)) {
             $aCount = -1;
             foreach ($aArgs as $k => $arg) {
-                if ((is_bool($arg)) &&
-                    (!PHPExcel_Calculation_Functions::isMatrixValue($k))) {
+                if ((is_bool($arg)) 
+                    && (!PHPExcel_Calculation_Functions::isMatrixValue($k))
+                ) {
                 } else {
                     // Is it a numeric value?
                     if ((is_numeric($arg)) || (is_bool($arg)) || ((is_string($arg) & ($arg != '')))) {
@@ -3175,10 +3181,10 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        STDEVP(value1[,value2[, ...]])
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @return    float
+     * @param    mixed $arg,... Data values
+     * @return   float
      */
     public static function STDEVP()
     {
@@ -3190,8 +3196,9 @@ class PHPExcel_Calculation_Statistical
         if (!is_null($aMean)) {
             $aCount = 0;
             foreach ($aArgs as $k => $arg) {
-                if ((is_bool($arg)) &&
-                    ((!PHPExcel_Calculation_Functions::isCellValue($k)) || (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_OPENOFFICE))) {
+                if ((is_bool($arg)) 
+                    && ((!PHPExcel_Calculation_Functions::isCellValue($k)) || (PHPExcel_Calculation_Functions::getCompatibilityMode() == PHPExcel_Calculation_Functions::COMPATIBILITY_OPENOFFICE))
+                ) {
                     $arg = (integer) $arg;
                 }
                 // Is it a numeric value?
@@ -3221,10 +3228,10 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        STDEVPA(value1[,value2[, ...]])
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @return    float
+     * @param    mixed $arg,... Data values
+     * @return   float
      */
     public static function STDEVPA()
     {
@@ -3236,8 +3243,9 @@ class PHPExcel_Calculation_Statistical
         if (!is_null($aMean)) {
             $aCount = 0;
             foreach ($aArgs as $k => $arg) {
-                if ((is_bool($arg)) &&
-                    (!PHPExcel_Calculation_Functions::isMatrixValue($k))) {
+                if ((is_bool($arg)) 
+                    && (!PHPExcel_Calculation_Functions::isMatrixValue($k))
+                ) {
                 } else {
                     // Is it a numeric value?
                     if ((is_numeric($arg)) || (is_bool($arg)) || ((is_string($arg) & ($arg != '')))) {
@@ -3269,9 +3277,9 @@ class PHPExcel_Calculation_Statistical
      *
      * Returns the standard error of the predicted y-value for each x in the regression.
      *
-     * @param    array of mixed        Data Series Y
-     * @param    array of mixed        Data Series X
-     * @return    float
+     * @param  array of mixed        Data Series Y
+     * @param  array of mixed        Data Series X
+     * @return float
      */
     public static function STEYX($yValues, $xValues)
     {
@@ -3297,10 +3305,10 @@ class PHPExcel_Calculation_Statistical
      *
      * Returns the probability of Student's T distribution.
      *
-     * @param    float        $value            Value for the function
-     * @param    float        $degrees        degrees of freedom
-     * @param    float        $tails            number of tails (1 or 2)
-     * @return    float
+     * @param  float $value   Value for the function
+     * @param  float $degrees degrees of freedom
+     * @param  float $tails   number of tails (1 or 2)
+     * @return float
      */
     public static function TDIST($value, $degrees, $tails)
     {
@@ -3361,9 +3369,9 @@ class PHPExcel_Calculation_Statistical
      *
      * Returns the one-tailed probability of the chi-squared distribution.
      *
-     * @param    float        $probability    Probability for the function
-     * @param    float        $degrees        degrees of freedom
-     * @return    float
+     * @param  float $probability Probability for the function
+     * @param  float $degrees     degrees of freedom
+     * @return float
      */
     public static function TINV($probability, $degrees)
     {
@@ -3417,11 +3425,11 @@ class PHPExcel_Calculation_Statistical
      *
      * Returns values along a linear trend
      *
-     * @param    array of mixed        Data Series Y
-     * @param    array of mixed        Data Series X
-     * @param    array of mixed        Values of X for which we want to find Y
-     * @param    boolean                A logical value specifying whether to force the intersect to equal 0.
-     * @return    array of float
+     * @param  array of mixed        Data Series Y
+     * @param  array of mixed        Data Series X
+     * @param  array of mixed        Values of X for which we want to find Y
+     * @param  boolean                A logical value specifying whether to force the intersect to equal 0.
+     * @return array of float
      */
     public static function TREND($yValues, $xValues = array(), $newValues = array(), $const = true)
     {
@@ -3454,11 +3462,11 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        TRIMEAN(value1[,value2[, ...]], $discard)
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @param    float        $discard        Percentage to discard
-     * @return    float
+     * @param    mixed $arg,... Data values
+     * @param    float $discard Percentage to discard
+     * @return   float
      */
     public static function TRIMMEAN()
     {
@@ -3498,10 +3506,10 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        VAR(value1[,value2[, ...]])
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @return    float
+     * @param    mixed $arg,... Data values
+     * @return   float
      */
     public static function VARFunc()
     {
@@ -3541,10 +3549,10 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        VARA(value1[,value2[, ...]])
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @return    float
+     * @param    mixed $arg,... Data values
+     * @return   float
      */
     public static function VARA()
     {
@@ -3556,11 +3564,13 @@ class PHPExcel_Calculation_Statistical
         $aArgs = PHPExcel_Calculation_Functions::flattenArrayIndexed(func_get_args());
         $aCount = 0;
         foreach ($aArgs as $k => $arg) {
-            if ((is_string($arg)) &&
-                (PHPExcel_Calculation_Functions::isValue($k))) {
+            if ((is_string($arg)) 
+                && (PHPExcel_Calculation_Functions::isValue($k))
+            ) {
                 return PHPExcel_Calculation_Functions::VALUE();
-            } elseif ((is_string($arg)) &&
-                (!PHPExcel_Calculation_Functions::isMatrixValue($k))) {
+            } elseif ((is_string($arg)) 
+                && (!PHPExcel_Calculation_Functions::isMatrixValue($k))
+            ) {
             } else {
                 // Is it a numeric value?
                 if ((is_numeric($arg)) || (is_bool($arg)) || ((is_string($arg) & ($arg != '')))) {
@@ -3593,10 +3603,10 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        VARP(value1[,value2[, ...]])
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @return    float
+     * @param    mixed $arg,... Data values
+     * @return   float
      */
     public static function VARP()
     {
@@ -3637,10 +3647,10 @@ class PHPExcel_Calculation_Statistical
      * Excel Function:
      *        VARPA(value1[,value2[, ...]])
      *
-     * @access    public
+     * @access   public
      * @category Statistical Functions
-     * @param    mixed        $arg,...        Data values
-     * @return    float
+     * @param    mixed $arg,... Data values
+     * @return   float
      */
     public static function VARPA()
     {
@@ -3652,11 +3662,13 @@ class PHPExcel_Calculation_Statistical
         $aArgs = PHPExcel_Calculation_Functions::flattenArrayIndexed(func_get_args());
         $aCount = 0;
         foreach ($aArgs as $k => $arg) {
-            if ((is_string($arg)) &&
-                (PHPExcel_Calculation_Functions::isValue($k))) {
+            if ((is_string($arg)) 
+                && (PHPExcel_Calculation_Functions::isValue($k))
+            ) {
                 return PHPExcel_Calculation_Functions::VALUE();
-            } elseif ((is_string($arg)) &&
-                (!PHPExcel_Calculation_Functions::isMatrixValue($k))) {
+            } elseif ((is_string($arg)) 
+                && (!PHPExcel_Calculation_Functions::isMatrixValue($k))
+            ) {
             } else {
                 // Is it a numeric value?
                 if ((is_numeric($arg)) || (is_bool($arg)) || ((is_string($arg) & ($arg != '')))) {
@@ -3687,12 +3699,11 @@ class PHPExcel_Calculation_Statistical
      * Returns the Weibull distribution. Use this distribution in reliability
      * analysis, such as calculating a device's mean time to failure.
      *
-     * @param    float        $value
-     * @param    float        $alpha        Alpha Parameter
-     * @param    float        $beta        Beta Parameter
-     * @param    boolean        $cumulative
-     * @return    float
-     *
+     * @param  float   $value
+     * @param  float   $alpha      Alpha Parameter
+     * @param  float   $beta       Beta Parameter
+     * @param  boolean $cumulative
+     * @return float
      */
     public static function WEIBULL($value, $alpha, $beta, $cumulative)
     {
@@ -3722,12 +3733,11 @@ class PHPExcel_Calculation_Statistical
      * Returns the Weibull distribution. Use this distribution in reliability
      * analysis, such as calculating a device's mean time to failure.
      *
-     * @param    float        $dataSet
-     * @param    float        $m0        Alpha Parameter
-     * @param    float        $sigma    Beta Parameter
-     * @param    boolean        $cumulative
-     * @return    float
-     *
+     * @param  float   $dataSet
+     * @param  float   $m0         Alpha Parameter
+     * @param  float   $sigma      Beta Parameter
+     * @param  boolean $cumulative
+     * @return float
      */
     public static function ZTEST($dataSet, $m0, $sigma = null)
     {

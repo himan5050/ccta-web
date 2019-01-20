@@ -1,48 +1,54 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (! defined('BASEPATH')) { exit('No direct script access allowed');
+}
 
 /**
  * @file
  * Model Financial Plan.
  */
-class Financial_Plans extends CI_Model {
-  /**
-   * get Rows of financial Plans.
-   * @param  int $id
-   *  The project id.
-   *
-   * @return array
-   *  List of financial plans.
-   */
-  public function getRows($id = "") {
-    if (!empty($id)) {
-      $query = $this->db->get_where('financial_plan', ['financial_id' => $id]);
-      return $query->row_array();
-    } else {
-      if ($this->session->userdata('project_id')) {
-        $project_id = $this->session->userdata('project_id');
-        $query = $this->db->get_where('financial_plan', ['project_id' => $project_id]);
-        return $query->result_array();
-      }
+class Financial_Plans extends CI_Model
+{
+    /**
+     * get Rows of financial Plans.
+     *
+     * @param int $id
+     *  The project id.
+     *
+     * @return array
+     *  List of financial plans.
+     */
+    public function getRows($id = "")
+    {
+        if (!empty($id)) {
+            $query = $this->db->get_where('financial_plan', ['financial_id' => $id]);
+            return $query->row_array();
+        } else {
+            if ($this->session->userdata('project_id')) {
+                $project_id = $this->session->userdata('project_id');
+                $query = $this->db->get_where('financial_plan', ['project_id' => $project_id]);
+                return $query->result_array();
+            }
+        }
     }
-  }
 
-  /**
-   * [getRowsByTokens description]
-   *
-   * @param  array  $tokens
-   *  Array containing project info.
-   *
-   * @return array
-   *  List of financial plan.
-   */
-  public function getRowsByTokens($tokens = []) {
-    if(!empty($tokens)) {
-      $query = $this->db->get_where('financial_plan', ['project_id' => $tokens['project_id'], 'project_phase_contract_id' => $tokens['project_phase_contract_id'], 'fund_id' => $tokens['fund_id']]);
-        return $query->row_array();
+    /**
+     * [getRowsByTokens description]
+     *
+     * @param array $tokens
+     *  Array containing project info.
+     *
+     * @return array
+     *  List of financial plan.
+     */
+    public function getRowsByTokens($tokens = [])
+    {
+        if(!empty($tokens)) {
+            $query = $this->db->get_where('financial_plan', ['project_id' => $tokens['project_id'], 'project_phase_contract_id' => $tokens['project_phase_contract_id'], 'fund_id' => $tokens['fund_id']]);
+            return $query->row_array();
+        }
     }
-  }
 
-    public function getRowsByFundAllocation($fund_id, $project_id){
+    public function getRowsByFundAllocation($fund_id, $project_id)
+    {
         if(!empty($fund_id)) {
             $query = $this->db->get_where('financial_plan', array('project_id' => $project_id, 'fund_id' => $fund_id));
             return $query->row_array();
@@ -51,8 +57,7 @@ class Financial_Plans extends CI_Model {
 
     public function getyears($id)
     {
-        if(!empty($id))
-        {
+        if(!empty($id)) {
             $query = $this->db->get_where('financial_plan_to_years', array('financial_id' => $id));
             return $query->result_array();
         }
@@ -60,8 +65,7 @@ class Financial_Plans extends CI_Model {
 
     public function get_year_wise_totolamount($id)
     {
-        if(!empty($id))
-        {
+        if(!empty($id)) {
             $this->db->select_sum('amount');
             $query = $this->db->get_where('financial_plan_to_years', array('financial_id' => $id));
 
@@ -72,40 +76,44 @@ class Financial_Plans extends CI_Model {
         }
     }
 
-    public function add($data = array()) {
+    public function add($data = array())
+    {
         $insert = $this->db->insert('financial_plan', $data);
-        if($insert){
+        if($insert) {
             return $this->db->insert_id();
         }else{
             return false;
         }
     }
 
-    public function addversion($data = array()) {
+    public function addversion($data = array())
+    {
         $insert = $this->db->insert('financial_plan_version_control', $data);
-        if($insert){
+        if($insert) {
             return $this->db->insert_id();
         }else{
             return false;
         }
     }
 
-    public function addyear($data = array()) {
+    public function addyear($data = array())
+    {
         $insert = $this->db->insert('financial_plan_to_years', $data);
-        if($insert){
+        if($insert) {
             return $this->db->insert_id();
         }else{
             return false;
         }
     }
 
-    public function addVersionControl($data = array()) {
+    public function addVersionControl($data = array())
+    {
         $insert = $this->db->insert('master_project_version_control', $data);
     }
 
-    public function update($data, $id) {
-        if(!empty($data) && !empty($id))
-        {
+    public function update($data, $id)
+    {
+        if(!empty($data) && !empty($id)) {
             $update = $this->db->update('financial_plan', $data, array('financial_id'=>$id));
             return $update?true:false;
         }else{
@@ -113,18 +121,21 @@ class Financial_Plans extends CI_Model {
         }
     }
 
-    public function delete($id){
-        $delete = $this->db->delete('financial_plan',array('financial_id'=>$id));
+    public function delete($id)
+    {
+        $delete = $this->db->delete('financial_plan', array('financial_id'=>$id));
         return $delete?true:false;
     }
 
-    public function deleteyears($id){
-        $delete = $this->db->delete('financial_plan_to_years',array('financial_id'=>$id));
+    public function deleteyears($id)
+    {
+        $delete = $this->db->delete('financial_plan_to_years', array('financial_id'=>$id));
         return $delete?true:false;
     }
 
-    public function deleteyearbyfy($id, $year){
-        $delete = $this->db->delete('financial_plan_to_years',array('financial_id'=>$id, 'financial_years' => $year));
+    public function deleteyearbyfy($id, $year)
+    {
+        $delete = $this->db->delete('financial_plan_to_years', array('financial_id'=>$id, 'financial_years' => $year));
         return $delete?true:false;
     }
 
@@ -157,28 +168,30 @@ class Financial_Plans extends CI_Model {
 
         foreach ($query->result() as $row)
         {
-           $phase_name = $this->getPhaseName($row->phase);
+            $phase_name = $this->getPhaseName($row->phase);
             return $phase_name;
         }
 
     }
 
-    public function getPhaseId($project_phase_contract_id) {
+    public function getPhaseId($project_phase_contract_id)
+    {
         $query = $this->db->query("SELECT phase_id AS phase FROM `map_project_phase_contract` WHERE project_phase_contract_id = '". $project_phase_contract_id ."'");
         if ($query) {
-          foreach ($query->result() as $row) {
-             return $row->phase;
-          }
+            foreach ($query->result() as $row) {
+                return $row->phase;
+            }
         }
         return false;
     }
 
-    public function getPhaseWeight($phase_id) {
+    public function getPhaseWeight($phase_id)
+    {
         $query = $this->db->query("SELECT weight AS weight FROM `master_phase` WHERE phase_id = '" . $phase_id . "'");
         if ($query) {
-          foreach ($query->result() as $row) {
-             return $row->weight;
-          }
+            foreach ($query->result() as $row) {
+                return $row->weight;
+            }
         }
         return false;
     }
@@ -205,7 +218,8 @@ class Financial_Plans extends CI_Model {
 
     }
 
-    public function getFundSubTotal($fund_id, $project_id) {
+    public function getFundSubTotal($fund_id, $project_id)
+    {
         $amount = 0;
         $query = $this->db->query("SELECT SUM(eac) AS amount FROM `financial_plan` WHERE fund_id = '". $fund_id ."' AND project_id = '" . $project_id . "'");
         foreach ($query->result() as $row) {
@@ -216,26 +230,30 @@ class Financial_Plans extends CI_Model {
 
     /**
      * [getSumRows description]
+     *
      * @param  [type] $fund_id    [description]
      * @param  [type] $project_id [description]
      * @return [type]             [description]
      */
-    public function getSumRows($project_id) {
-      $amount = 0;
-      $query = $this->db->query("SELECT SUM(eac) AS amount FROM `financial_plan` WHERE project_id = '" . $project_id . "'");
-      foreach ($query->result() as $row) {
-        $amount = isset($row->amount) ? $row->amount : 0;
-      }
+    public function getSumRows($project_id)
+    {
+        $amount = 0;
+        $query = $this->db->query("SELECT SUM(eac) AS amount FROM `financial_plan` WHERE project_id = '" . $project_id . "'");
+        foreach ($query->result() as $row) {
+            $amount = isset($row->amount) ? $row->amount : 0;
+        }
 
-      return $amount;
+        return $amount;
     }
 
-    public function getPhaseList(){
+    public function getPhaseList()
+    {
         $query = $this->db->get('master_phase');
         return $query->result_array();
     }
 
-    public function getFundList(){
+    public function getFundList()
+    {
         $query = $this->db->get('master_fund_source');
         return $query->result_array();
     }
@@ -273,7 +291,8 @@ class Financial_Plans extends CI_Model {
         }
     }
 
-    public function getTotalFundAllocatedToContracts($project_id, $fund_id) {
+    public function getTotalFundAllocatedToContracts($project_id, $fund_id)
+    {
         $this->db->select_sum('eac');
         $query = $this->db->get_where('financial_plan', array('project_id' => $project_id, 'fund_id' => $fund_id));
         foreach ($query->result() as $row) {
@@ -281,13 +300,15 @@ class Financial_Plans extends CI_Model {
         }
     }
 
-    public function contractlist($phase_id, $project_id){
-      //  $query = $this->db->get_where('map_project_phase_contract', array('phase_id' => $phase_id, 'project_id' => $project_id, 'status' => ));
+    public function contractlist($phase_id, $project_id)
+    {
+        //  $query = $this->db->get_where('map_project_phase_contract', array('phase_id' => $phase_id, 'project_id' => $project_id, 'status' => ));
         $query = $this->db->query("SELECT * FROM `map_project_phase_contract` WHERE phase_id = '". $phase_id ."' AND project_id = '" . $project_id . "' AND status IN (1, 3)");
         return $query->result_array();
     }
 
-    public function getPhaseContractId($phase_id, $contract_name, $project_id) {
+    public function getPhaseContractId($phase_id, $contract_name, $project_id)
+    {
         $query = $this->db->query("SELECT project_phase_contract_id AS phase_contract_id FROM `map_project_phase_contract` WHERE phase_id = '". $phase_id ."' AND TRIM(contract) = '". $contract_name ."' AND project_id = '" . $project_id . "'");
         foreach ($query->result() as $row) {
             return $row->phase_contract_id;
@@ -314,7 +335,8 @@ class Financial_Plans extends CI_Model {
         }
     }
 
-    public function returnfundamount($fund_id, $project_id) {
+    public function returnfundamount($fund_id, $project_id)
+    {
         $query = $this->db->query("SELECT available_amount AS available FROM `master_project_fund_source` WHERE fund_id = '". $fund_id ."' AND project_id = '" . $project_id . "'");
         foreach ($query->result() as $row) {
             return $row->available;
@@ -333,8 +355,7 @@ class Financial_Plans extends CI_Model {
 
     public function updateavailableamount($fund_id, $amount, $project_id)
     {
-        if(!empty($fund_id) && ($amount >= 0)&& !empty($project_id))
-        {
+        if(!empty($fund_id) && ($amount >= 0)&& !empty($project_id)) {
             $this->db->query("UPDATE master_fund_source SET `available_amount` = '". $amount ."' WHERE `fund_id` = '". $fund_id ."'");
             $this->db->query("UPDATE master_project_fund_source SET `available_amount` = '". $amount ."' WHERE `fund_id` = '". $fund_id ."' AND `project_id` = '". $project_id ."'");
         }
@@ -342,26 +363,24 @@ class Financial_Plans extends CI_Model {
 
     public function updateallocatedamount($fund_id, $amount)
     {
-        if(!empty($fund_id) && !empty($amount))
-        {
+        if(!empty($fund_id) && !empty($amount)) {
             $this->db->query("UPDATE master_fund_source SET `allocated_amount` = '". $amount ."' WHERE `fund_id` = '". $fund_id ."'");
         }
     }
 
     public function updateInvoiceFYData($financial_id, $fybalance, $fytodate)
     {
-        if(!empty($financial_id))
-        {
+        if(!empty($financial_id)) {
             $update = $this->db->query("UPDATE financial_plan SET `fytodate` = '". $fytodate ."', `fybalance` = '". $fybalance ."' WHERE `financial_id` = '". $financial_id ."'");
             return $update?true:false;
         } else {
-        	return false;
+            return false;
         }
     }
 
-    public function history($financial_id){
-        if(!empty($financial_id))
-        {
+    public function history($financial_id)
+    {
+        if(!empty($financial_id)) {
             $query = $this->db->get_where('financial_plan_version_control', array('financial_id' => $financial_id));
             return $query->result_array();
         }
@@ -387,98 +406,103 @@ class Financial_Plans extends CI_Model {
 
     public function getfilter4($project_phases, $project_id)
     {
-		$this->db->select('*');
-		$this->db->from('financial_plan');
-		$this->db->where_in('project_phase_contract_id', $project_phases);
-		$this->db->where('project_id', $project_id);
-		$query = $this->db->get();
+        $this->db->select('*');
+        $this->db->from('financial_plan');
+        $this->db->where_in('project_phase_contract_id', $project_phases);
+        $this->db->where('project_id', $project_id);
+        $query = $this->db->get();
         return $query->result_array();
     }
 
-    public function getTotalFundFinancialPlans($fund_id, $project_id, $field_name) {
+    public function getTotalFundFinancialPlans($fund_id, $project_id, $field_name)
+    {
         $this->db->select_sum($field_name);
         $query = $this->db->get_where('financial_plan', array('project_id' => $project_id, 'fund_id' => $fund_id));
         foreach ($query->result() as $row) {
-        	if ($row->$field_name) {
-        		return $row->$field_name;
-        	} else {
-        		return 0.0;
-        	}
+            if ($row->$field_name) {
+                return $row->$field_name;
+            } else {
+                return 0.0;
+            }
 
         }
     }
 
-    public function getTotalFundFY($fund_id, $project_id, $fy) {
-    	$query = $this->db->get_where('financial_plan', array('project_id' => $project_id, 'fund_id' => $fund_id));
-    	$financials = $query->result_array();
-    	if (!empty($financials)) {
-    		foreach ($financials as $financial) {
-    			$finance[] = $financial['financial_id'];
-    		}
-    		$sum = $this->getTotalFYYear($project_id, $finance, $fy);
-    	} else {
-    		return 0.0;
-    	}
+    public function getTotalFundFY($fund_id, $project_id, $fy)
+    {
+        $query = $this->db->get_where('financial_plan', array('project_id' => $project_id, 'fund_id' => $fund_id));
+        $financials = $query->result_array();
+        if (!empty($financials)) {
+            foreach ($financials as $financial) {
+                $finance[] = $financial['financial_id'];
+            }
+            $sum = $this->getTotalFYYear($project_id, $finance, $fy);
+        } else {
+            return 0.0;
+        }
 
-    	return $sum['amount'];
+        return $sum['amount'];
     }
 
-    public function getTotalFYYear($project_id, $finance, $fy) {
-    	$this->db->select_sum('amount');
-		$this->db->from('financial_plan_to_years');
-		$this->db->where_in('financial_id', $finance);
-		$this->db->where('financial_years', $fy);
-		$query = $this->db->get();
-		if (!empty($query->row_array())) {
-			return $query->row_array();
-		}
+    public function getTotalFYYear($project_id, $finance, $fy)
+    {
+        $this->db->select_sum('amount');
+        $this->db->from('financial_plan_to_years');
+        $this->db->where_in('financial_id', $finance);
+        $this->db->where('financial_years', $fy);
+        $query = $this->db->get();
+        if (!empty($query->row_array())) {
+            return $query->row_array();
+        }
         return ['amount' => 0.0];
     }
 
     /**
      * Get sum of remaining phase to contract.
      *
-     * @param  int $project_phase_contract_id
+     * @param int $project_phase_contract_id
      *  Project phase to contract Id
-     * @param  int $financial_id
+     * @param int $financial_id
      *  Financial Id.
      *
      * @return int
      *  Sum of remaining phase to contract entries.
      */
-    public function getRemainSumByPhaseToContract($project_phase_contract_id, $financial_id) {
-      if ((is_numeric($project_phase_contract_id)) && (is_numeric($financial_id))) {
-        $this->db->select_sum('eac')->from('financial_plan');
-        $this->db->where('project_phase_contract_id', $project_phase_contract_id);
-        $this->db->where('financial_id != ', $financial_id);
-        $query = $this->db->get();
-        if (!empty($query->row_array())) {
-          return $query->row_array();
+    public function getRemainSumByPhaseToContract($project_phase_contract_id, $financial_id)
+    {
+        if ((is_numeric($project_phase_contract_id)) && (is_numeric($financial_id))) {
+            $this->db->select_sum('eac')->from('financial_plan');
+            $this->db->where('project_phase_contract_id', $project_phase_contract_id);
+            $this->db->where('financial_id != ', $financial_id);
+            $query = $this->db->get();
+            if (!empty($query->row_array())) {
+                return $query->row_array();
+            }
         }
-      }
 
-      return ['eac' => 0.0];
+        return ['eac' => 0.0];
     }
 
     /**
      * Get sum of phase to contract.
      *
-     * @param  int $project_phase_contract_id
+     * @param int $project_phase_contract_id
      *  Project phase to contract Id
      *
      * @return int
      *  Sum of remaining phase to contract entries.
      */
-    public function getSumByPhaseToContract($project_phase_contract_id) {
-      if ((is_numeric($project_phase_contract_id))) {
-        $this->db->select_sum('eac')->from('financial_plan');
-        $this->db->where('project_phase_contract_id', $project_phase_contract_id);
-        $query = $this->db->get();
-        if (!empty($query->row_array())) {
-          return $query->row_array();
+    public function getSumByPhaseToContract($project_phase_contract_id)
+    {
+        if ((is_numeric($project_phase_contract_id))) {
+            $this->db->select_sum('eac')->from('financial_plan');
+            $this->db->where('project_phase_contract_id', $project_phase_contract_id);
+            $query = $this->db->get();
+            if (!empty($query->row_array())) {
+                return $query->row_array();
+            }
         }
-      }
 
-      return ['eac' => 0.0];
+        return ['eac' => 0.0];
     }
 }

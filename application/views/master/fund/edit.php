@@ -18,12 +18,12 @@
             <div class="panel panel-default" id="">
                 <div class="panel-heading">
                   <h5>Edit Funds</h5>
-                  <?php if (isset($error_msg)) { ?>
-						<h5><b style="color: red;"><?php echo $error_msg ?></b></h5>
-						<?php } ?>
-						<?php if (isset($success_msg)) { ?>
-						<h5><b style="color: green;"><?php echo $success_msg ?></b></h5>
-						<?php } ?>
+                    <?php if (isset($error_msg)) { ?>
+                        <h5><b style="color: red;"><?php echo $error_msg ?></b></h5>
+                    <?php } ?>
+        <?php if (isset($success_msg)) { ?>
+                        <h5><b style="color: green;"><?php echo $success_msg ?></b></h5>
+        <?php } ?>
                 </div>
                 <div class="panel-body">
                   <div class="row">
@@ -89,9 +89,10 @@
                             <div class="col-sm-12">
                               <select class="form-control" name="is_active">
                                 <?php if($post['is_active'] != 0 ) { ?>
-                                <?php echo "<option value='0'>InActive</option><option value='1' selected='selected'>Active</option>"; ?>
+                                    <?php echo "<option value='0'>InActive</option><option value='1' selected='selected'>Active</option>"; ?>
                                 <?php }else{?>
-                                <?php echo "<option value='0' selected='selected'>InActive</option><option value='1'>Active</option>"; }?>
+                                    <?php echo "<option value='0' selected='selected'>InActive</option><option value='1'>Active</option>"; 
+                                }?>
                               </select>
                             </div>
                           </div>
@@ -120,7 +121,7 @@
                       <table id="dataTable_exp" class="table table-striped">
                         <thead>
                           <tr>
-                          	<th>Fund Code</th>
+                              <th>Fund Code</th>
                             <th>Fund Source</th>
                             <th>Allocated Amount</th>
                             <th>Available Amount</th>
@@ -138,7 +139,8 @@
                               <td>
                                 <?php if($fund_list['is_active'] != 0) { echo "Active"; ?>
                                 <?php  } else {?>
-                                <?php echo "InActive"; } ?>
+                                    <?php echo "InActive"; 
+                                } ?>
                               </td>
                               <td>
                                 <a href="<?php echo site_url('fund/edit/'.$fund_list['fund_id']); ?>" class="btn btn-warning btn-sm" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>

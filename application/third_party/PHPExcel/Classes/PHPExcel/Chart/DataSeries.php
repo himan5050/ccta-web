@@ -18,20 +18,20 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category    PHPExcel
- * @package        PHPExcel_Chart
- * @copyright    Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license        http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Chart
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 
 
 /**
  * PHPExcel_Chart_DataSeries
  *
- * @category    PHPExcel
- * @package        PHPExcel_Chart
- * @copyright    Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @category  PHPExcel
+ * @package   PHPExcel_Chart
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
 class PHPExcel_Chart_DataSeries
 {
@@ -174,7 +174,7 @@ class PHPExcel_Chart_DataSeries
     /**
      * Set Plot Type
      *
-     * @param string $plotType
+     * @param  string $plotType
      * @return PHPExcel_Chart_DataSeries
      */
     public function setPlotType($plotType = '')
@@ -196,7 +196,7 @@ class PHPExcel_Chart_DataSeries
     /**
      * Set Plot Grouping Type
      *
-     * @param string $groupingType
+     * @param  string $groupingType
      * @return PHPExcel_Chart_DataSeries
      */
     public function setPlotGrouping($groupingType = null)
@@ -218,7 +218,7 @@ class PHPExcel_Chart_DataSeries
     /**
      * Set Plot Direction
      *
-     * @param string $plotDirection
+     * @param  string $plotDirection
      * @return PHPExcel_Chart_DataSeries
      */
     public function setPlotDirection($plotDirection = null)
@@ -302,7 +302,7 @@ class PHPExcel_Chart_DataSeries
     /**
      * Set Plot Style
      *
-     * @param string $plotStyle
+     * @param  string $plotStyle
      * @return PHPExcel_Chart_DataSeries
      */
     public function setPlotStyle($plotStyle = null)
@@ -360,7 +360,7 @@ class PHPExcel_Chart_DataSeries
     /**
      * Set Smooth Line
      *
-     * @param boolean $smoothLine
+     * @param  boolean $smoothLine
      * @return PHPExcel_Chart_DataSeries
      */
     public function setSmoothLine($smoothLine = true)

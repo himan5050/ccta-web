@@ -19,11 +19,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_DocumentSecurity
 {
@@ -100,7 +100,7 @@ class PHPExcel_DocumentSecurity
     /**
      * Set LockRevision
      *
-     * @param boolean $pValue
+     * @param  boolean $pValue
      * @return PHPExcel_DocumentSecurity
      */
     public function setLockRevision($pValue = false)
@@ -122,7 +122,7 @@ class PHPExcel_DocumentSecurity
     /**
      * Set LockStructure
      *
-     * @param boolean $pValue
+     * @param  boolean $pValue
      * @return PHPExcel_DocumentSecurity
      */
     public function setLockStructure($pValue = false)
@@ -144,7 +144,7 @@ class PHPExcel_DocumentSecurity
     /**
      * Set LockWindows
      *
-     * @param boolean $pValue
+     * @param  boolean $pValue
      * @return PHPExcel_DocumentSecurity
      */
     public function setLockWindows($pValue = false)
@@ -166,8 +166,8 @@ class PHPExcel_DocumentSecurity
     /**
      * Set RevisionsPassword
      *
-     * @param string     $pValue
-     * @param boolean     $pAlreadyHashed If the password has already been hashed, set this to true
+     * @param  string  $pValue
+     * @param  boolean $pAlreadyHashed If the password has already been hashed, set this to true
      * @return PHPExcel_DocumentSecurity
      */
     public function setRevisionsPassword($pValue = '', $pAlreadyHashed = false)
@@ -192,8 +192,8 @@ class PHPExcel_DocumentSecurity
     /**
      * Set WorkbookPassword
      *
-     * @param string     $pValue
-     * @param boolean     $pAlreadyHashed If the password has already been hashed, set this to true
+     * @param  string  $pValue
+     * @param  boolean $pAlreadyHashed If the password has already been hashed, set this to true
      * @return PHPExcel_DocumentSecurity
      */
     public function setWorkbookPassword($pValue = '', $pAlreadyHashed = false)

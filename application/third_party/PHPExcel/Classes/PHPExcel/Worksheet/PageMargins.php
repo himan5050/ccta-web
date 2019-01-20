@@ -18,20 +18,20 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Worksheet
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Worksheet
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 
 
 /**
  * PHPExcel_Worksheet_PageMargins
  *
- * @category   PHPExcel
- * @package    PHPExcel_Worksheet
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @category  PHPExcel
+ * @package   PHPExcel_Worksheet
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
 class PHPExcel_Worksheet_PageMargins
 {
@@ -97,7 +97,7 @@ class PHPExcel_Worksheet_PageMargins
     /**
      * Set Left
      *
-     * @param double $pValue
+     * @param  double $pValue
      * @return PHPExcel_Worksheet_PageMargins
      */
     public function setLeft($pValue)
@@ -119,7 +119,7 @@ class PHPExcel_Worksheet_PageMargins
     /**
      * Set Right
      *
-     * @param double $pValue
+     * @param  double $pValue
      * @return PHPExcel_Worksheet_PageMargins
      */
     public function setRight($pValue)
@@ -141,7 +141,7 @@ class PHPExcel_Worksheet_PageMargins
     /**
      * Set Top
      *
-     * @param double $pValue
+     * @param  double $pValue
      * @return PHPExcel_Worksheet_PageMargins
      */
     public function setTop($pValue)
@@ -163,7 +163,7 @@ class PHPExcel_Worksheet_PageMargins
     /**
      * Set Bottom
      *
-     * @param double $pValue
+     * @param  double $pValue
      * @return PHPExcel_Worksheet_PageMargins
      */
     public function setBottom($pValue)
@@ -185,7 +185,7 @@ class PHPExcel_Worksheet_PageMargins
     /**
      * Set Header
      *
-     * @param double $pValue
+     * @param  double $pValue
      * @return PHPExcel_Worksheet_PageMargins
      */
     public function setHeader($pValue)
@@ -207,7 +207,7 @@ class PHPExcel_Worksheet_PageMargins
     /**
      * Set Footer
      *
-     * @param double $pValue
+     * @param  double $pValue
      * @return PHPExcel_Worksheet_PageMargins
      */
     public function setFooter($pValue)

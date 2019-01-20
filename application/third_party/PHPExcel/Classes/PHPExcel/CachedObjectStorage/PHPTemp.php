@@ -19,11 +19,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_CachedObjectStorage
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_CachedObjectStorage
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_CachedObjectStorage_PHPTemp extends PHPExcel_CachedObjectStorage_CacheBase implements PHPExcel_CachedObjectStorage_ICache
 {
@@ -45,8 +45,8 @@ class PHPExcel_CachedObjectStorage_PHPTemp extends PHPExcel_CachedObjectStorage_
      * Store cell data in cache for the current cell object if it's "dirty",
      *     and the 'nullify' the current cell object
      *
-     * @return    void
-     * @throws    PHPExcel_Exception
+     * @return void
+     * @throws PHPExcel_Exception
      */
     protected function storeData()
     {
@@ -68,10 +68,10 @@ class PHPExcel_CachedObjectStorage_PHPTemp extends PHPExcel_CachedObjectStorage_
     /**
      * Add or Update a cell in cache identified by coordinate address
      *
-     * @param    string            $pCoord        Coordinate address of the cell to update
-     * @param    PHPExcel_Cell    $cell        Cell to update
-     * @return    PHPExcel_Cell
-     * @throws    PHPExcel_Exception
+     * @param  string        $pCoord Coordinate address of the cell to update
+     * @param  PHPExcel_Cell $cell   Cell to update
+     * @return PHPExcel_Cell
+     * @throws PHPExcel_Exception
      */
     public function addCacheData($pCoord, PHPExcel_Cell $cell)
     {
@@ -90,9 +90,9 @@ class PHPExcel_CachedObjectStorage_PHPTemp extends PHPExcel_CachedObjectStorage_
     /**
      * Get cell at a specific coordinate
      *
-     * @param     string             $pCoord        Coordinate of the cell
-     * @throws     PHPExcel_Exception
-     * @return     PHPExcel_Cell     Cell that was found, or null if not found
+     * @param  string $pCoord Coordinate of the cell
+     * @throws PHPExcel_Exception
+     * @return PHPExcel_Cell     Cell that was found, or null if not found
      */
     public function getCacheData($pCoord)
     {
@@ -121,7 +121,7 @@ class PHPExcel_CachedObjectStorage_PHPTemp extends PHPExcel_CachedObjectStorage_
     /**
      * Get a list of all cell addresses currently held in cache
      *
-     * @return  string[]
+     * @return string[]
      */
     public function getCellList()
     {
@@ -135,8 +135,8 @@ class PHPExcel_CachedObjectStorage_PHPTemp extends PHPExcel_CachedObjectStorage_
     /**
      * Clone the cell collection
      *
-     * @param    PHPExcel_Worksheet    $parent        The new worksheet
-     * @return    void
+     * @param  PHPExcel_Worksheet $parent The new worksheet
+     * @return void
      */
     public function copyCellCollection(PHPExcel_Worksheet $parent)
     {
@@ -154,7 +154,7 @@ class PHPExcel_CachedObjectStorage_PHPTemp extends PHPExcel_CachedObjectStorage_
     /**
      * Clear the cell collection and disconnect from our parent
      *
-     * @return    void
+     * @return void
      */
     public function unsetWorksheetCells()
     {
@@ -174,8 +174,8 @@ class PHPExcel_CachedObjectStorage_PHPTemp extends PHPExcel_CachedObjectStorage_
     /**
      * Initialise this new cell collection
      *
-     * @param    PHPExcel_Worksheet    $parent        The worksheet for this cell collection
-     * @param    array of mixed        $arguments    Additional initialisation arguments
+     * @param PHPExcel_Worksheet $parent    The worksheet for this cell collection
+     * @param array of mixed     $arguments Additional initialisation arguments
      */
     public function __construct(PHPExcel_Worksheet $parent, $arguments)
     {

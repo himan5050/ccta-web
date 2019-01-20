@@ -19,11 +19,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_CachedObjectStorage
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_CachedObjectStorage
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_CachedObjectStorageFactory
 {
@@ -161,9 +161,9 @@ class PHPExcel_CachedObjectStorageFactory
     /**
      * Identify the cache storage method to use
      *
-     * @param    string            $method        Name of the method to use for cell cacheing
-     * @param    array of mixed    $arguments    Additional arguments to pass to the cell caching class
-     *                                        when instantiating
+     * @param  string         $method    Name of the method to use for cell cacheing
+     * @param  array of mixed $arguments Additional arguments to pass to the cell caching class
+     *                                   when instantiating
      * @return boolean
      **/
     public static function initialize($method = self::cache_in_memory, $arguments = array())
@@ -173,8 +173,11 @@ class PHPExcel_CachedObjectStorageFactory
         }
 
         $cacheStorageClass = 'PHPExcel_CachedObjectStorage_'.$method;
-        if (!call_user_func(array( $cacheStorageClass,
-                                   'cacheMethodIsAvailable'))) {
+        if (!call_user_func(
+            array( $cacheStorageClass,
+            'cacheMethodIsAvailable')
+        )
+        ) {
             return false;
         }
 
@@ -195,8 +198,8 @@ class PHPExcel_CachedObjectStorageFactory
     /**
      * Initialise the cache storage
      *
-     * @param    PHPExcel_Worksheet     $parent        Enable cell caching for this worksheet
-     * @return    PHPExcel_CachedObjectStorage_ICache
+     * @param  PHPExcel_Worksheet $parent Enable cell caching for this worksheet
+     * @return PHPExcel_CachedObjectStorage_ICache
      **/
     public static function getInstance(PHPExcel_Worksheet $parent)
     {
@@ -220,7 +223,6 @@ class PHPExcel_CachedObjectStorageFactory
 
     /**
      * Clear the cache storage
-     *
      **/
     public static function finalize()
     {

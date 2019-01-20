@@ -19,11 +19,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Style
+ * @category  PHPExcel
+ * @package   PHPExcel_Style
  * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version ##VERSION##, ##DATE##
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_Style_Color extends PHPExcel_Style_Supervisor implements PHPExcel_IComparable
 {
@@ -64,13 +64,13 @@ class PHPExcel_Style_Color extends PHPExcel_Style_Supervisor implements PHPExcel
     /**
      * Create a new PHPExcel_Style_Color
      *
-     * @param    string    $pARGB            ARGB value for the colour
-     * @param    boolean    $isSupervisor    Flag indicating if this is a supervisor or not
-     *                                    Leave this value at default unless you understand exactly what
-     *                                        its ramifications are
-     * @param    boolean    $isConditional    Flag indicating if this is a conditional style or not
-     *                                    Leave this value at default unless you understand exactly what
-     *                                        its ramifications are
+     * @param string  $pARGB         ARGB value for the colour
+     * @param boolean $isSupervisor  Flag indicating if this is a supervisor or not
+     *                               Leave this value at default unless you
+     *                               understand exactly what its ramifications are
+     * @param boolean $isConditional Flag indicating if this is a conditional style or not
+     *                               Leave this value at default unless you understand
+     *                               exactly what its ramifications are
      */
     public function __construct($pARGB = PHPExcel_Style_Color::COLOR_BLACK, $isSupervisor = false, $isConditional = false)
     {
@@ -86,8 +86,8 @@ class PHPExcel_Style_Color extends PHPExcel_Style_Supervisor implements PHPExcel
     /**
      * Bind parent. Only used for supervisor
      *
-     * @param mixed $parent
-     * @param string $parentPropertyName
+     * @param  mixed  $parent
+     * @param  string $parentPropertyName
      * @return PHPExcel_Style_Color
      */
     public function bindParent($parent, $parentPropertyName = null)
@@ -106,33 +106,33 @@ class PHPExcel_Style_Color extends PHPExcel_Style_Supervisor implements PHPExcel
     public function getSharedComponent()
     {
         switch ($this->parentPropertyName) {
-            case 'endColor':
-                return $this->parent->getSharedComponent()->getEndColor();
-            case 'color':
-                return $this->parent->getSharedComponent()->getColor();
-            case 'startColor':
-                return $this->parent->getSharedComponent()->getStartColor();
+        case 'endColor':
+            return $this->parent->getSharedComponent()->getEndColor();
+        case 'color':
+            return $this->parent->getSharedComponent()->getColor();
+        case 'startColor':
+            return $this->parent->getSharedComponent()->getStartColor();
         }
     }
 
     /**
      * Build style array from subcomponents
      *
-     * @param array $array
+     * @param  array $array
      * @return array
      */
     public function getStyleArray($array)
     {
         switch ($this->parentPropertyName) {
-            case 'endColor':
-                $key = 'endcolor';
-                break;
-            case 'color':
-                $key = 'color';
-                break;
-            case 'startColor':
-                $key = 'startcolor';
-                break;
+        case 'endColor':
+            $key = 'endcolor';
+            break;
+        case 'color':
+            $key = 'color';
+            break;
+        case 'startColor':
+            $key = 'startcolor';
+            break;
 
         }
         return $this->parent->getStyleArray(array($key => $array));
@@ -145,8 +145,8 @@ class PHPExcel_Style_Color extends PHPExcel_Style_Supervisor implements PHPExcel
      * $objPHPExcel->getActiveSheet()->getStyle('B2')->getFont()->getColor()->applyFromArray( array('rgb' => '808080') );
      * </code>
      *
-     * @param    array    $pStyles    Array containing style information
-     * @throws    PHPExcel_Exception
+     * @param  array $pStyles Array containing style information
+     * @throws PHPExcel_Exception
      * @return PHPExcel_Style_Color
      */
     public function applyFromArray($pStyles = null)
@@ -184,7 +184,7 @@ class PHPExcel_Style_Color extends PHPExcel_Style_Supervisor implements PHPExcel
     /**
      * Set ARGB
      *
-     * @param string $pValue
+     * @param  string $pValue
      * @return PHPExcel_Style_Color
      */
     public function setARGB($pValue = PHPExcel_Style_Color::COLOR_BLACK)
@@ -217,7 +217,7 @@ class PHPExcel_Style_Color extends PHPExcel_Style_Supervisor implements PHPExcel
     /**
      * Set RGB
      *
-     * @param    string    $pValue    RGB value
+     * @param  string $pValue RGB value
      * @return PHPExcel_Style_Color
      */
     public function setRGB($pValue = '000000')
@@ -238,11 +238,11 @@ class PHPExcel_Style_Color extends PHPExcel_Style_Supervisor implements PHPExcel
      * Get a specified colour component of an RGB value
      *
      * @private
-     * @param    string        $RGB        The colour as an RGB value (e.g. FF00CCCC or CCDDEE
-     * @param    int            $offset        Position within the RGB value to extract
-     * @param    boolean        $hex        Flag indicating whether the component should be returned as a hex or a
-     *                                    decimal value
-     * @return    string        The extracted colour component
+     * @param   string  $RGB    The colour as an RGB value (e.g. FF00CCCC or CCDDEE
+     * @param   int     $offset Position within the RGB value to extract
+     * @param   boolean $hex    Flag indicating whether the component should be returned as a hex or a
+     *                          decimal value
+     * @return  string        The extracted colour component
      */
     private static function getColourComponent($RGB, $offset, $hex = true)
     {
@@ -256,10 +256,10 @@ class PHPExcel_Style_Color extends PHPExcel_Style_Supervisor implements PHPExcel
     /**
      * Get the red colour component of an RGB value
      *
-     * @param    string        $RGB        The colour as an RGB value (e.g. FF00CCCC or CCDDEE
-     * @param    boolean        $hex        Flag indicating whether the component should be returned as a hex or a
-     *                                    decimal value
-     * @return    string        The red colour component
+     * @param  string  $RGB The colour as an RGB value (e.g. FF00CCCC or CCDDEE
+     * @param  boolean $hex Flag indicating whether the component should be returned as a hex or a
+     *                      decimal value
+     * @return string        The red colour component
      */
     public static function getRed($RGB, $hex = true)
     {
@@ -269,10 +269,10 @@ class PHPExcel_Style_Color extends PHPExcel_Style_Supervisor implements PHPExcel
     /**
      * Get the green colour component of an RGB value
      *
-     * @param    string        $RGB        The colour as an RGB value (e.g. FF00CCCC or CCDDEE
-     * @param    boolean        $hex        Flag indicating whether the component should be returned as a hex or a
-     *                                    decimal value
-     * @return    string        The green colour component
+     * @param  string  $RGB The colour as an RGB value (e.g. FF00CCCC or CCDDEE
+     * @param  boolean $hex Flag indicating whether the component should be returned as a hex or a
+     *                      decimal value
+     * @return string        The green colour component
      */
     public static function getGreen($RGB, $hex = true)
     {
@@ -282,10 +282,10 @@ class PHPExcel_Style_Color extends PHPExcel_Style_Supervisor implements PHPExcel
     /**
      * Get the blue colour component of an RGB value
      *
-     * @param    string        $RGB        The colour as an RGB value (e.g. FF00CCCC or CCDDEE
-     * @param    boolean        $hex        Flag indicating whether the component should be returned as a hex or a
-     *                                    decimal value
-     * @return    string        The blue colour component
+     * @param  string  $RGB The colour as an RGB value (e.g. FF00CCCC or CCDDEE
+     * @param  boolean $hex Flag indicating whether the component should be returned as a hex or a
+     *                      decimal value
+     * @return string        The blue colour component
      */
     public static function getBlue($RGB, $hex = true)
     {
@@ -295,9 +295,9 @@ class PHPExcel_Style_Color extends PHPExcel_Style_Supervisor implements PHPExcel
     /**
      * Adjust the brightness of a color
      *
-     * @param    string        $hex    The colour as an RGBA or RGB value (e.g. FF00CCCC or CCDDEE)
-     * @param    float        $adjustPercentage    The percentage by which to adjust the colour as a float from -1 to 1
-     * @return    string        The adjusted colour as an RGBA or RGB value (e.g. FF00CCCC or CCDDEE)
+     * @param  string $hex              The colour as an RGBA or RGB value (e.g. FF00CCCC or CCDDEE)
+     * @param  float  $adjustPercentage The percentage by which to adjust the colour as a float from -1 to 1
+     * @return string        The adjusted colour as an RGBA or RGB value (e.g. FF00CCCC or CCDDEE)
      */
     public static function changeBrightness($hex, $adjustPercentage)
     {
@@ -343,10 +343,10 @@ class PHPExcel_Style_Color extends PHPExcel_Style_Supervisor implements PHPExcel
     /**
      * Get indexed color
      *
-     * @param    int            $pIndex            Index entry point into the colour array
-     * @param    boolean        $background        Flag to indicate whether default background or foreground colour
-     *                                            should be returned if the indexed colour doesn't exist
-     * @return    PHPExcel_Style_Color
+     * @param  int     $pIndex     Index entry point into the colour array
+     * @param  boolean $background Flag to indicate whether default background or foreground colour
+     *                             should be returned if the indexed colour doesn't exist
+     * @return PHPExcel_Style_Color
      */
     public static function indexedColor($pIndex, $background = false)
     {

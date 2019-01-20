@@ -16,7 +16,7 @@
                     <a href="<?php echo site_url('report3'); ?>" class="active" id="">Report 3</a>
                 </span>
                 <span class="project_name">
-                  <?php echo $project_name; ?>
+                    <?php echo $project_name; ?>
                 </span>
             </h4>
           </div>
@@ -40,18 +40,18 @@
                         </tr>
                       </thead>
                         <tbody>
-                          <?php foreach($phase_estimated_costs as $estimated_costs): ?>
-                            <?php if ($estimated_costs['amount']): ?>
+                            <?php foreach($phase_estimated_costs as $estimated_costs): ?>
+                                <?php if ($estimated_costs['amount']) : ?>
                             <tr>
                               <td><?php echo $estimated_costs['phase_name'] ?></td>
-                              <?php if ($estimated_costs['amount']) { ?>
+                                    <?php if ($estimated_costs['amount']) { ?>
                                 <td>$ <?php echo number_format(preg_replace('/\s+/', '', $estimated_costs['amount'])) ?></td>
-                              <?php } else {?>
+                                    <?php } else {?>
                                 <td><?php echo "-" ?></td>
-                              <?php } ?>
+                                    <?php } ?>
                             </tr>
-                          <?php endif; ?>
-                          <?php endforeach; ?>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
                         </tbody>
                         <tfoot>
                           <tr>
@@ -80,20 +80,20 @@
                         </tr>
                       </thead>
                         <tbody>
-                          <?php foreach($fund_costs as $fund_cost): ?>
-                            <?php if ($fund_cost['amount']): ?>
+                            <?php foreach($fund_costs as $fund_cost): ?>
+                                <?php if ($fund_cost['amount']) : ?>
                             <tr>
                               <td><?php echo $fund_cost['fund_name'] ?></td>
 
-                              <?php if ($fund_cost['amount']) { ?>
+                                    <?php if ($fund_cost['amount']) { ?>
                                 <td>$ <?php echo number_format(preg_replace('/\s+/', '', $fund_cost['amount'])) ?></td>
-                              <?php } else {?>
+                                    <?php } else {?>
                                 <td><?php echo "-" ?></td>
-                              <?php } ?>
+                                    <?php } ?>
 
                             </tr>
-                          <?php endif; ?>
-                          <?php endforeach; ?>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
                         </tbody>
                         <tfoot>
                           <tr>
@@ -124,26 +124,26 @@
                         </tr>
                       </thead>
                         <tbody>
-                          <?php foreach($phase_schedules as $phase_schedule): ?>
-                            <?php if ($phase_schedule['start_date']): ?>
+                            <?php foreach($phase_schedules as $phase_schedule): ?>
+                                <?php if ($phase_schedule['start_date']) : ?>
                             <tr>
                               <td><?php echo $phase_schedule['phase_name'] ?></td>
 
-                              <?php if ($phase_schedule['start_date']) { ?>
+                                    <?php if ($phase_schedule['start_date']) { ?>
                                 <td><?php echo $phase_schedule['start_date'] ?></td>
-                              <?php } else {?>
+                                    <?php } else {?>
                                 <td><?php echo "-" ?></td>
-                              <?php } ?>
+                                    <?php } ?>
 
-                              <?php if ($phase_schedule['end_date']) { ?>
+                                    <?php if ($phase_schedule['end_date']) { ?>
                                 <td> <?php echo $phase_schedule['end_date'] ?></td>
-                              <?php } else {?>
+                                    <?php } else {?>
                                 <td><?php echo "-" ?></td>
-                              <?php } ?>
+                                    <?php } ?>
 
                             </tr>
-                          <?php endif; ?>
-                          <?php endforeach; ?>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                   </div>

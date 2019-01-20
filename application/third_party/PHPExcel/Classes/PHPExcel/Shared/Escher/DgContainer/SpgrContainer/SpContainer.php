@@ -19,11 +19,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Shared_Escher
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Shared_Escher
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_Shared_Escher_DgContainer_SpgrContainer_SpContainer
 {
@@ -214,7 +214,7 @@ class PHPExcel_Shared_Escher_DgContainer_SpgrContainer_SpContainer
     /**
      * Set an option for the Shape Group Container
      *
-     * @param int $property The number specifies the option
+     * @param int   $property The number specifies the option
      * @param mixed $value
      */
     public function setOPT($property, $value)
@@ -225,7 +225,7 @@ class PHPExcel_Shared_Escher_DgContainer_SpgrContainer_SpContainer
     /**
      * Get an option for the Shape Group Container
      *
-     * @param int $property The number specifies the option
+     * @param  int $property The number specifies the option
      * @return mixed
      */
     public function getOPT($property)
