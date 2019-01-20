@@ -658,7 +658,7 @@ class Financial_Plan extends CI_Controller
                 if($fund_source) {
                     $project_phase_contract = $this->financial_plans->getPhaseContractId($project_phase, $Contract, $this->session->userdata('project_id'));
 
-                    $results = $this->financial_plans->getfilter1($project_phase_contract, $fund_source);
+                    $results = $this->financial_plans->getfilter1($project_phase_contract, $fund_source, $this->session->userdata('project_id'));
 
                     foreach ($results as $result)
                     {
@@ -692,7 +692,7 @@ class Financial_Plan extends CI_Controller
                 {
                     $project_phase_contract = $this->financial_plans->getPhaseContractId($project_phase, $Contract, $this->session->userdata('project_id'));
 
-                    $results = $this->financial_plans->getfilter2($project_phase_contract);
+                    $results = $this->financial_plans->getfilter2($project_phase_contract, $this->session->userdata('project_id'));
 
                     foreach ($results as $result)
                     {
@@ -726,7 +726,7 @@ class Financial_Plan extends CI_Controller
             else
             {
                 if($fund_source) {
-                    $results = $this->financial_plans->getfilter3($fund_source);
+                    $results = $this->financial_plans->getfilter3($fund_source, $this->session->userdata('project_id'));
 
                     foreach ($results as $result)
                     {
