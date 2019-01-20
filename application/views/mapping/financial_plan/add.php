@@ -114,15 +114,6 @@
                                   <input type="text" name="fybalance" class="form-control number" value="0" id="fybalance" placeholder="" readonly="readonly" onblur="verify3(this)">
                                 </td>
 
-                                <!--
-                                <td>
-                                   <input type='text' name="start_date" class="form-control" id='datetimepicker4' required="required" />
-                                </td>
-
-                                <td>
-                                   <input type='text' name="end_date" class="form-control" id='datetimepicker5' required="required" />
-                                </td> -->
-
                                 <td id="yearicon" style="display: none;">
                                    <button type="button" class="btn  btn-primary" onclick="openyearmodal()" ><i class="fa fa-calendar" aria-hidden="true"></i></button>
                                 </td>
@@ -455,10 +446,10 @@
     $('#dataTable_exp_wrapper').find(".row").eq(0).find(".col-sm-6").removeClass("col-sm-6").addClass("col-sm-2");
 
     var dt_filter = '<div class="col-md-8" style="padding:0;"><form class="form-horizontal" action="" method="post" id="formfilters">'+
-            '<div class="col-md-4"><div class="row" style="margin:0;"> <label class="col-sm-6 " style="font-weight:500;">Project Phase:</label> <div class="col-sm-6" style="padding:0;"> <select class="form-control input-sm" name="phasefilter" id="phasefilter" style="width:100%;" onchange="populateContractfilter(this)"><option value="">--select--</option><?php foreach($phases as $phase): ?><option value="<?php echo $phase['phase_id'] ?>"><?php echo $phase['phase_name'] ?></option><?php 
+            '<div class="col-md-4"><div class="row" style="margin:0;"> <label class="col-sm-6 " style="font-weight:500;">Project Phase:</label> <div class="col-sm-6" style="padding:0;"> <select class="form-control input-sm" name="phasefilter" id="phasefilter" style="width:100%;" onchange="populateContractfilter(this)"><option value="">--select--</option><?php foreach($phases as $phase): ?><option value="<?php echo $phase['phase_id'] ?>"><?php echo $phase['phase_name'] ?></option><?php
            endforeach; ?></select></div></div></div>'+
             '<div class="col-md-3" style="padding:0;"><div class="row" style="margin:0;"> <label class="col-sm-5 " style="font-weight:500;">Contract:</label> <div class="col-sm-7" style="padding:0;"><select class="form-control contract" name="contractfilter" id="contractfilter" disabled="true" style="width:100%;" ><option>--None--</option></select></div></div></div>'+
-            '<div class="col-md-3" style="padding:0;"><div class="row" style="margin:0;"> <label class="col-sm-7 " style="font-weight:500;">Fund Source:</label> <div class="col-sm-5" style="padding:0;"> <select class="form-control input-sm" name="fundfilter" id="fundfilter" style="width:100%;"><option value="">--select--</option><?php foreach($funds as $fund): ?><option value="<?php echo $fund['fund_id'] ?>"><?php echo $fund['fund_name'] ?></option><?php 
+            '<div class="col-md-3" style="padding:0;"><div class="row" style="margin:0;"> <label class="col-sm-7 " style="font-weight:500;">Fund Source:</label> <div class="col-sm-5" style="padding:0;"> <select class="form-control input-sm" name="fundfilter" id="fundfilter" style="width:100%;"><option value="">--select--</option><?php foreach($funds as $fund): ?><option value="<?php echo $fund['fund_id'] ?>"><?php echo $fund['fund_name'] ?></option><?php
            endforeach; ?></select> </div></div></div>'+
             '<div class="col-md-2"><input type="submit" name="postFilter" class="btn btn-sm btn-success" value="Apply"/></form></div>'+
 
@@ -1006,19 +997,6 @@
 
   function checkform()
   {
-  //  var fieldDateFirst = document.getElementById('datetimepicker4').value;
-  //  var fieldDateSecound = document.getElementById('datetimepicker5').value;
-
-  //  fieldDateFirst = fieldDateFirst.split("/");
-  //  var Date1 = new Date();
-  //  Date1.setFullYear(fieldDateFirst[2],fieldDateFirst[0]-1,fieldDateFirst[1]);
-
-  //  fieldDateSecound = fieldDateSecound.split("/");
-  //  var Date2 = new Date();
-  //  Date2.setFullYear(fieldDateSecound[2],fieldDateSecound[0]-1,fieldDateSecound[1]);
-
-  //  if (Date1 < Date2)
-  //  {
       var x = $("#contract0").val();
       if(x)
       {
@@ -1029,13 +1007,6 @@
         alert("Please select Project Phase");
         $("#phase0").prop('selectedIndex',0);
       }
-
-  //  }
-  //  else
-//    {
-  //    alert("Please ensure that the End Date is greater than or equal to the Start Date.");
-  //    return false;
-  //  }
   }
 
   function openyearmodal()
