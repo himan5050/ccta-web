@@ -261,76 +261,48 @@ class Report3 extends CI_Controller
 
     function getstart_time($phase_id, $project_id)
     {
-        $start_date = '';
+        $start_date = 0;
+        $dates = [];
         $phase_contract_ids = $this->master_report->getProjectPhaseContractId($phase_id, $project_id);
 
         foreach ($phase_contract_ids as $phase_contract_id)
         {
-            $results = $this->master_report->getphasewise_startdate($project_id, $phase_contract_id['project_phase_contract_id']);
-
-            for($i = 0; $i<count($results); $i++)
-            {
-                $x = $results[$i]['dates'];
-
-                if($start_date) {
-                    $covDate1 = str_replace('/', '-', $start_date);
-                    $covDate1 = date('Y-m-d', strtotime($covDate1));
-
-                    $covDate2 = str_replace('/', '-', $x);
-                    $covDate2 = date('Y-m-d', strtotime($covDate2));
-
-                    $a = strtotime($covDate1);
-                    $b = strtotime($covDate2);
-
-                    if($a > $b) {
-                        $start_date = $x;
-                    }
-                }
-                else
-                {
-                    $start_date = $x;
-                }
-            }
+            $dates[] = $this->master_report->getphasewise_startdate($project_id, $phase_contract_id['project_phase_contract_id']);
         }
 
-        return $start_date;
+        $start_date = strtotime($dates[0]);
+        for ($i=0;$i<count($dates);$i++)
+        {
+          $curr_date = strtotime($dates[$i]);
+          if ($curr_date < $start_date)
+          {
+            $start_date = $curr_date;
+          }
+        }
+
+        return date('m/d/Y', $start_date);
     }
 
     function getend_time($phase_id, $project_id)
     {
-        $end_date = '';
+        $end_date = 0;
         $phase_contract_ids = $this->master_report->getProjectPhaseContractId($phase_id, $project_id);
 
         foreach ($phase_contract_ids as $phase_contract_id)
         {
-            $results = $this->master_report->getphasewise_enddate($project_id, $phase_contract_id['project_phase_contract_id']);
-
-            for($i = 0; $i<count($results); $i++)
-            {
-                $x = $results[$i]['dates'];
-
-                if($end_date) {
-                    $covDate1 = str_replace('/', '-', $end_date);
-                    $covDate1 = date('Y-m-d', strtotime($covDate1));
-
-                    $covDate2 = str_replace('/', '-', $x);
-                    $covDate2 = date('Y-m-d', strtotime($covDate2));
-
-                    $a = strtotime($covDate1);
-                    $b = strtotime($covDate2);
-
-                    if($a < $b) {
-                        $end_date = $x;
-                    }
-                }
-                else
-                {
-                    $end_date = $x;
-                }
-            }
+            $dates[] = $this->master_report->getphasewise_enddate($project_id, $phase_contract_id['project_phase_contract_id']);
         }
-        return $end_date;
+
+        $end_date = strtotime($dates[0]);
+        for ($i=0;$i<count($dates);$i++)
+        {
+          $curr_date = strtotime($dates[$i]);
+          if ($curr_date > $end_date)
+          {
+            $end_date = $curr_date;
+          }
+        }
+
+        return date('m/d/Y', $end_date);
     }
-
-
 }
