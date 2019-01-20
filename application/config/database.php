@@ -4,7 +4,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = true;
 
-$db['default'] = array(
+
+// set base url based on environment.
+switch ($_SERVER["HTTP_HOST"]) {
+case 'localhost':
+  $db['default'] = array(
     'dsn'    => '',
     'hostname' => 'localhost',
     'username' => 'root',
@@ -24,10 +28,10 @@ $db['default'] = array(
     'stricton' => false,
     'failover' => array(),
     'save_queries' => true
-);
-
-/*
-$db['default'] = array(
+  );
+    break;
+case 'www.qa.vuonsite.com':
+  $db['default'] = array(
     'dsn'    => '',
     'hostname' => 'localhost',
     'username' => 'ypwkce7g_qaccta',
@@ -47,29 +51,29 @@ $db['default'] = array(
     'stricton' => FALSE,
     'failover' => array(),
     'save_queries' => TRUE
-);
-); */
-/*
-$db['default'] = array(
-'dsn'    => '',
-'hostname' => 'localhost',
-'username' => 'ypwkce7g_bluedom',
-'password' => 'ohnrf]lOxY{D',
-'database' => 'ypwkce7g_bluedometech',
-'dbdriver' => 'mysqli',
-'dbprefix' => '',
-'pconnect' => FALSE,
-'db_debug' => (ENVIRONMENT !== 'production'),
-'cache_on' => FALSE,
-'cachedir' => '',
-'char_set' => 'utf8',
-'dbcollat' => 'utf8_general_ci',
-'swap_pre' => '',
-'encrypt' => FALSE,
-'compress' => FALSE,
-'stricton' => FALSE,
-'failover' => array(),
-'save_queries' => TRUE
-);
-
-*/
+  );
+    break;
+case 'www.vuonsite.com':
+    $base_url = 'http://www.vuonsite.com/invoices';
+    $db['default'] = array(
+    'dsn'    => '',
+    'hostname' => 'localhost',
+    'username' => 'ypwkce7g_bluedom',
+    'password' => 'ohnrf]lOxY{D',
+    'database' => 'ypwkce7g_bluedometech',
+    'dbdriver' => 'mysqli',
+    'dbprefix' => '',
+    'pconnect' => FALSE,
+    'db_debug' => (ENVIRONMENT !== 'production'),
+    'cache_on' => FALSE,
+    'cachedir' => '',
+    'char_set' => 'utf8',
+    'dbcollat' => 'utf8_general_ci',
+    'swap_pre' => '',
+    'encrypt' => FALSE,
+    'compress' => FALSE,
+    'stricton' => FALSE,
+    'failover' => array(),
+    'save_queries' => TRUE
+    );
+}
