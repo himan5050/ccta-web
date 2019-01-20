@@ -311,90 +311,137 @@ class Financial_Plan extends CI_Controller
             }
             else
             {
-                if($fund_source) {
-                    $results = $this->financial_plans->getfilter3($fund_source, $this->session->userdata('project_id'));
+              if ($project_phase && $fund_source) {
+                $phase_to_contracts = $this->projects_phases_contracts->getRowsByPhaseProject($project_phase, $this->session->userdata('project_id'));
+                foreach($phase_to_contracts as $phase_to_contract) {
+                     $phase_contracts[] = $phase_to_contract['project_phase_contract_id'];
+                }
+                $results = $this->financial_plans->getfilter5($phase_contracts, $fund_source, $this->session->userdata('project_id'));
 
-                    $prop_base = 0.0;
-                    $eac = 0.0;
+                $prop_base = 0.0;
+                $eac = 0.0;
+                if (!empty($results)) {
                     foreach ($results as $result)
-                    {
+                     {
                         $phase_id = $this->financial_plans->getPhaseId($result['project_phase_contract_id']);
                         $data['financial_plan_lists'][] = array(
-                                'financial_id'                  => $result['financial_id'],
-                                'project_phase'                 => $this->financial_plans->getPhaseName1($result['project_phase_contract_id']),
-                                'contract'                      => $this->financial_plans->getContractName($result['project_phase_contract_id']),
-                                'fund_name'                     => $this->financial_plans->getFundName($result['fund_id']),
+                        'financial_id'                  => $result['financial_id'],
+                        'project_phase'                 => $this->financial_plans->getPhaseName1($result['project_phase_contract_id']),
+                        'contract'                      => $this->financial_plans->getContractName($result['project_phase_contract_id']),
+                        'fund_name'                     => $this->financial_plans->getFundName($result['fund_id']),
                         //'curr_base'                     => $result['curr_base'],
-                                'prop_base'                     => $result['prop_base'],
-                                'eac'                           => $result['eac'],
-                                'unfunded'                      => $result['unfunded'],
-                                'priorfy'                       => $result['priorfy'],
-                                'fytodate'                      => $result['fytodate'],
-                                'fybalance'                     => $result['fybalance'],
-                                'start_date'                    => $result['start_date'],
-                                'end_date'                      => $result['end_date'],
-                         'phase_id'                                            => $phase_id,
-                         'weight'                                                => $this->financial_plans->getPhaseWeight($phase_id),
-                           );
-                           $prop_base = $prop_base + $result['prop_base'];
-                           $eac = $eac + $result['eac'];
+                        'prop_base'                     => $result['prop_base'],
+                        'eac'                           => $result['eac'],
+                        'unfunded'                      => $result['unfunded'],
+                        'priorfy'                       => $result['priorfy'],
+                        'fytodate'                      => $result['fytodate'],
+                        'fybalance'                     => $result['fybalance'],
+                        'start_date'                    => $result['start_date'],
+                        'end_date'                      => $result['end_date'],
+                        'phase_id'                                            => $phase_id,
+                        'weight'                                                => $this->financial_plans->getPhaseWeight($phase_id),
+                        );
+                        $prop_base = $prop_base + $result['prop_base'];
+                        $eac = $eac + $result['eac'];
                     }
 
-                    $data['financial_plan_lists'] = $this->sortPhaseFinancialPlans($data['financial_plan_lists']);
-
-                    $data['prop_base'] = ($prop_base) ? $prop_base : 0.0;
-                    $data['eac'] = ($eac) ? $eac : 0.0;
-
-                    $this->load->view('common/header', $data);
-                    $this->load->view('mapping/financial_plan/add', $data);
-                    $this->load->view('common/footer2');
+                     $data['financial_plan_lists'] = $this->sortPhaseFinancialPlans($data['financial_plan_lists']);
                 }
 
-                if($project_phase) {
-                    $phase_to_contracts = $this->projects_phases_contracts->getRowsByPhaseProject($project_phase, $this->session->userdata('project_id'));
-                    foreach($phase_to_contracts as $phase_to_contract) {
-                         $phase_contracts[] = $phase_to_contract['project_phase_contract_id'];
-                    }
-                    $results = $this->financial_plans->getfilter4($phase_contracts, $this->session->userdata('project_id'));
 
-                    $prop_base = 0.0;
-                    $eac = 0.0;
-                    if (!empty($results)) {
-                        foreach ($results as $result)
-                         {
-                            $phase_id = $this->financial_plans->getPhaseId($result['project_phase_contract_id']);
-                            $data['financial_plan_lists'][] = array(
-                            'financial_id'                  => $result['financial_id'],
-                            'project_phase'                 => $this->financial_plans->getPhaseName1($result['project_phase_contract_id']),
-                            'contract'                      => $this->financial_plans->getContractName($result['project_phase_contract_id']),
-                            'fund_name'                     => $this->financial_plans->getFundName($result['fund_id']),
-                            //'curr_base'                     => $result['curr_base'],
-                            'prop_base'                     => $result['prop_base'],
-                            'eac'                           => $result['eac'],
-                            'unfunded'                      => $result['unfunded'],
-                            'priorfy'                       => $result['priorfy'],
-                            'fytodate'                      => $result['fytodate'],
-                            'fybalance'                     => $result['fybalance'],
-                            'start_date'                    => $result['start_date'],
-                            'end_date'                      => $result['end_date'],
-                            'phase_id'                                            => $phase_id,
-                            'weight'                                                => $this->financial_plans->getPhaseWeight($phase_id),
-                            );
-                            $prop_base = $prop_base + $result['prop_base'];
-                            $eac = $eac + $result['eac'];
-                        }
+                $data['prop_base'] = ($prop_base) ? $prop_base : 0.0;
+                $data['eac'] = ($eac) ? $eac : 0.0;
 
-                         $data['financial_plan_lists'] = $this->sortPhaseFinancialPlans($data['financial_plan_lists']);
-                    }
+                $this->load->view('common/header', $data);
+                $this->load->view('mapping/financial_plan/add', $data);
+                $this->load->view('common/footer2');
+              } else {
+
+                  if($fund_source) {
+                      $results = $this->financial_plans->getfilter3($fund_source, $this->session->userdata('project_id'));
+
+                      $prop_base = 0.0;
+                      $eac = 0.0;
+                      foreach ($results as $result)
+                      {
+                          $phase_id = $this->financial_plans->getPhaseId($result['project_phase_contract_id']);
+                          $data['financial_plan_lists'][] = array(
+                                  'financial_id'                  => $result['financial_id'],
+                                  'project_phase'                 => $this->financial_plans->getPhaseName1($result['project_phase_contract_id']),
+                                  'contract'                      => $this->financial_plans->getContractName($result['project_phase_contract_id']),
+                                  'fund_name'                     => $this->financial_plans->getFundName($result['fund_id']),
+                          //'curr_base'                     => $result['curr_base'],
+                                  'prop_base'                     => $result['prop_base'],
+                                  'eac'                           => $result['eac'],
+                                  'unfunded'                      => $result['unfunded'],
+                                  'priorfy'                       => $result['priorfy'],
+                                  'fytodate'                      => $result['fytodate'],
+                                  'fybalance'                     => $result['fybalance'],
+                                  'start_date'                    => $result['start_date'],
+                                  'end_date'                      => $result['end_date'],
+                           'phase_id'                                            => $phase_id,
+                           'weight'                                                => $this->financial_plans->getPhaseWeight($phase_id),
+                             );
+                             $prop_base = $prop_base + $result['prop_base'];
+                             $eac = $eac + $result['eac'];
+                      }
+
+                      $data['financial_plan_lists'] = $this->sortPhaseFinancialPlans($data['financial_plan_lists']);
+
+                      $data['prop_base'] = ($prop_base) ? $prop_base : 0.0;
+                      $data['eac'] = ($eac) ? $eac : 0.0;
+
+                      $this->load->view('common/header', $data);
+                      $this->load->view('mapping/financial_plan/add', $data);
+                      $this->load->view('common/footer2');
+                  }
+
+                  if($project_phase) {
+                      $phase_to_contracts = $this->projects_phases_contracts->getRowsByPhaseProject($project_phase, $this->session->userdata('project_id'));
+                      foreach($phase_to_contracts as $phase_to_contract) {
+                           $phase_contracts[] = $phase_to_contract['project_phase_contract_id'];
+                      }
+                      $results = $this->financial_plans->getfilter4($phase_contracts, $this->session->userdata('project_id'));
+
+                      $prop_base = 0.0;
+                      $eac = 0.0;
+                      if (!empty($results)) {
+                          foreach ($results as $result)
+                           {
+                              $phase_id = $this->financial_plans->getPhaseId($result['project_phase_contract_id']);
+                              $data['financial_plan_lists'][] = array(
+                              'financial_id'                  => $result['financial_id'],
+                              'project_phase'                 => $this->financial_plans->getPhaseName1($result['project_phase_contract_id']),
+                              'contract'                      => $this->financial_plans->getContractName($result['project_phase_contract_id']),
+                              'fund_name'                     => $this->financial_plans->getFundName($result['fund_id']),
+                              //'curr_base'                     => $result['curr_base'],
+                              'prop_base'                     => $result['prop_base'],
+                              'eac'                           => $result['eac'],
+                              'unfunded'                      => $result['unfunded'],
+                              'priorfy'                       => $result['priorfy'],
+                              'fytodate'                      => $result['fytodate'],
+                              'fybalance'                     => $result['fybalance'],
+                              'start_date'                    => $result['start_date'],
+                              'end_date'                      => $result['end_date'],
+                              'phase_id'                                            => $phase_id,
+                              'weight'                                                => $this->financial_plans->getPhaseWeight($phase_id),
+                              );
+                              $prop_base = $prop_base + $result['prop_base'];
+                              $eac = $eac + $result['eac'];
+                          }
+
+                           $data['financial_plan_lists'] = $this->sortPhaseFinancialPlans($data['financial_plan_lists']);
+                      }
 
 
-                    $data['prop_base'] = ($prop_base) ? $prop_base : 0.0;
-                    $data['eac'] = ($eac) ? $eac : 0.0;
+                      $data['prop_base'] = ($prop_base) ? $prop_base : 0.0;
+                      $data['eac'] = ($eac) ? $eac : 0.0;
 
-                    $this->load->view('common/header', $data);
-                    $this->load->view('mapping/financial_plan/add', $data);
-                    $this->load->view('common/footer2');
-                }
+                      $this->load->view('common/header', $data);
+                      $this->load->view('mapping/financial_plan/add', $data);
+                      $this->load->view('common/footer2');
+                  }
+              }
             }
 
             if(!$project_phase && !$Contract && !$fund_source) {

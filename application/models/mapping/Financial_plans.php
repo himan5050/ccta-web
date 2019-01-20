@@ -414,6 +414,17 @@ class Financial_Plans extends CI_Model
         return $query->result_array();
     }
 
+    public function getfilter5($project_phases, $fund_source, $project_id)
+    {
+        $this->db->select('*');
+        $this->db->from('financial_plan');
+        $this->db->where_in('project_phase_contract_id', $project_phases);
+        $this->db->where('project_id', $project_id);
+        $this->db->where('fund_id', $fund_source);
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+
     public function getTotalFundFinancialPlans($fund_id, $project_id, $field_name)
     {
         $this->db->select_sum($field_name);
