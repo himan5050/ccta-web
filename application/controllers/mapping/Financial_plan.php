@@ -85,12 +85,13 @@ class Financial_Plan extends CI_Controller
             if(!$postData["fybalance"]) {
                 $postData["fybalance"] = 0;
             }
-            else if (isset($data['amount'])) {
-                for ($i=0; $i < count($data['amount']); $i++) {
-                    if ($data['year'][$i] == $current_fy_year) {
-                        $postData['fybalance'] += $data['amount'][$i];
-                    }
+
+            if (isset($data['amount'])) {
+              for ($i=0; $i < count($data['amount']); $i++) {
+                if ($data['year'][$i] == $current_fy_year) {
+                  $postData['fybalance'] += $data['amount'][$i];
                 }
+              }
             }
 
 
@@ -479,12 +480,13 @@ class Financial_Plan extends CI_Controller
             if(!$postData["fybalance"]) {
                 $postData["fybalance"] = 0;
             }
-            else if (isset($data['amount'])) {
-                for ($i=0; $i < count($data['amount']); $i++) {
-                    if ($data['year'][$i] == $current_fy_year) {
-                        $postData['fybalance'] += $data['amount'][$i];
-                    }
+
+            if (isset($data['amount'])) {
+              for ($i=0; $i < count($data['amount']); $i++) {
+                if ($data['year'][$i] == $current_fy_year) {
+                  $postData['fybalance'] += $data['amount'][$i];
                 }
+              }
             }
 
             $postDataCheck['project_id'] = $recoverdata['project_id'];
