@@ -479,10 +479,21 @@
 
 <script type="text/javascript">
     $(function () {
-        $('.datetimepicker').datetimepicker({
-           viewMode: 'years',
-          format: 'YYYY'
-        });
+      //get current date
+      var today = new Date();
+      //get current month
+      var curMonth = today.getMonth();
+      var fiscalYr = "";
+      if (curMonth > 6) { //
+        var fiscalYr = (today.getFullYear() + 1).toString();
+      } else {
+        var fiscalYr = today.getFullYear().toString();
+      }
+      $('.datetimepicker').datetimepicker({
+        viewMode: 'years',
+        format: 'YYYY',
+        minDate: new Date(fiscalYr, 0, 1)
+      });
     });
 
     $(document).keydown(function (e)
@@ -538,10 +549,24 @@
       });
     });
 
-       $('.datetimepicker').datetimepicker({
-           viewMode: 'years',
-          format: 'YYYY'
-        });
+    //get current date
+    var today = new Date();
+
+    //get current month
+    var curMonth = today.getMonth();
+
+    var fiscalYr = "";
+    if (curMonth > 6) { //
+        var fiscalYr = (today.getFullYear() + 1).toString();
+    } else {
+        var fiscalYr = today.getFullYear().toString();
+    }
+
+    $('.datetimepicker').datetimepicker({
+      viewMode: 'years',
+      format: 'YYYY',
+      minDate: new Date(fiscalYr, 0, 1)
+    });
 
   }
 
