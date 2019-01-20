@@ -19,11 +19,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Shared
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Shared
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_Shared_Excel5
 {
@@ -32,10 +32,10 @@ class PHPExcel_Shared_Excel5
      * x is the width in intrinsic Excel units (measuring width in number of normal characters)
      * This holds for Arial 10
      *
-     * @param PHPExcel_Worksheet $sheet The sheet
-     * @param string $col The column
+     * @param  PHPExcel_Worksheet $sheet The sheet
+     * @param  string             $col   The column
      * @return integer The width in pixels
-    */
+     */
     public static function sizeCol($sheet, $col = 'A')
     {
         // default font of the workbook
@@ -74,8 +74,8 @@ class PHPExcel_Shared_Excel5
      * the relationship is: y = 4/3x. If the height hasn't been set by the user we
      * use the default value. If the row is hidden we use a value of zero.
      *
-     * @param PHPExcel_Worksheet $sheet The sheet
-     * @param integer $row The row index (1-based)
+     * @param  PHPExcel_Worksheet $sheet The sheet
+     * @param  integer            $row   The row index (1-based)
      * @return integer The width in pixels
      */
     public static function sizeRow($sheet, $row = 1)
@@ -116,11 +116,11 @@ class PHPExcel_Shared_Excel5
      * Get the horizontal distance in pixels between two anchors
      * The distanceX is found as sum of all the spanning columns widths minus correction for the two offsets
      *
-     * @param PHPExcel_Worksheet $sheet
-     * @param string $startColumn
-     * @param integer $startOffsetX Offset within start cell measured in 1/1024 of the cell width
-     * @param string $endColumn
-     * @param integer $endOffsetX Offset within end cell measured in 1/1024 of the cell width
+     * @param  PHPExcel_Worksheet $sheet
+     * @param  string             $startColumn
+     * @param  integer            $startOffsetX Offset within start cell measured in 1/1024 of the cell width
+     * @param  string             $endColumn
+     * @param  integer            $endOffsetX   Offset within end cell measured in 1/1024 of the cell width
      * @return integer Horizontal measured in pixels
      */
     public static function getDistanceX(PHPExcel_Worksheet $sheet, $startColumn = 'A', $startOffsetX = 0, $endColumn = 'A', $endOffsetX = 0)
@@ -147,11 +147,11 @@ class PHPExcel_Shared_Excel5
      * Get the vertical distance in pixels between two anchors
      * The distanceY is found as sum of all the spanning rows minus two offsets
      *
-     * @param PHPExcel_Worksheet $sheet
-     * @param integer $startRow (1-based)
-     * @param integer $startOffsetY Offset within start cell measured in 1/256 of the cell height
-     * @param integer $endRow (1-based)
-     * @param integer $endOffsetY Offset within end cell measured in 1/256 of the cell height
+     * @param  PHPExcel_Worksheet $sheet
+     * @param  integer            $startRow     (1-based)
+     * @param  integer            $startOffsetY Offset within start cell measured in 1/256 of the cell height
+     * @param  integer            $endRow       (1-based)
+     * @param  integer            $endOffsetY   Offset within end cell measured in 1/256 of the cell height
      * @return integer Vertical distance measured in pixels
      */
     public static function getDistanceY(PHPExcel_Worksheet $sheet, $startRow = 1, $startOffsetY = 0, $endRow = 1, $endOffsetY = 0)
@@ -216,12 +216,12 @@ class PHPExcel_Shared_Excel5
      *               W is the width of the cell
      *               H is the height of the cell
      *
-     * @param PHPExcel_Worksheet $sheet
-     * @param string $coordinates E.g. 'A1'
-     * @param integer $offsetX Horizontal offset in pixels
-     * @param integer $offsetY Vertical offset in pixels
-     * @param integer $width Width in pixels
-     * @param integer $height Height in pixels
+     * @param  PHPExcel_Worksheet $sheet
+     * @param  string             $coordinates E.g. 'A1'
+     * @param  integer            $offsetX     Horizontal offset in pixels
+     * @param  integer            $offsetY     Vertical offset in pixels
+     * @param  integer            $width       Width in pixels
+     * @param  integer            $height      Height in pixels
      * @return array
      */
     public static function oneAnchor2twoAnchor($sheet, $coordinates, $offsetX, $offsetY, $width, $height)

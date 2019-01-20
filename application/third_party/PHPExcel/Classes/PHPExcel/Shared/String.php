@@ -19,16 +19,20 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Shared
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Shared
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_Shared_String
 {
-    /**    Constants                */
-    /**    Regular Expressions        */
+    /**
+    * Constants                
+*/
+    /**
+    * Regular Expressions        
+*/
     //    Fraction
     const STRING_REGEXP_FRACTION    = '(-?)(\d+)\s+(\d+\/\d+)';
 
@@ -340,8 +344,8 @@ class PHPExcel_Shared_String
      * So you could end up with something like _x0008_ in a string (either in a cell value (<v>)
      * element or in the shared string <t> element.
      *
-     * @param     string    $value    Value to unescape
-     * @return     string
+     * @param  string $value Value to unescape
+     * @return string
      */
     public static function ControlCharacterOOXML2PHP($value = '')
     {
@@ -359,8 +363,8 @@ class PHPExcel_Shared_String
      * So you could end up with something like _x0008_ in a string (either in a cell value (<v>)
      * element or in the shared string <t> element.
      *
-     * @param     string    $value    Value to escape
-     * @return     string
+     * @param  string $value Value to escape
+     * @return string
      */
     public static function ControlCharacterPHP2OOXML($value = '')
     {
@@ -370,7 +374,7 @@ class PHPExcel_Shared_String
     /**
      * Try to sanitize UTF8, stripping invalid byte sequences. Not perfect. Does not surrogate characters.
      *
-     * @param string $value
+     * @param  string $value
      * @return string
      */
     public static function SanitizeUTF8($value)
@@ -392,7 +396,7 @@ class PHPExcel_Shared_String
     /**
      * Check if a string contains UTF8 data
      *
-     * @param string $value
+     * @param  string $value
      * @return boolean
      */
     public static function IsUTF8($value = '')
@@ -404,7 +408,7 @@ class PHPExcel_Shared_String
      * Formats a numeric value as a string for output in various output writers forcing
      * point as decimal separator in case locale is other than English.
      *
-     * @param mixed $value
+     * @param  mixed $value
      * @return string
      */
     public static function FormatNumber($value)
@@ -422,8 +426,8 @@ class PHPExcel_Shared_String
      * although this will give wrong results for non-ASCII strings
      * see OpenOffice.org's Documentation of the Microsoft Excel File Format, sect. 2.5.3
      *
-     * @param string  $value    UTF-8 encoded string
-     * @param mixed[] $arrcRuns Details of rich text runs in $value
+     * @param  string  $value    UTF-8 encoded string
+     * @param  mixed[] $arrcRuns Details of rich text runs in $value
      * @return string
      */
     public static function UTF8toBIFF8UnicodeShort($value, $arrcRuns = array())
@@ -457,7 +461,7 @@ class PHPExcel_Shared_String
      * although this will give wrong results for non-ASCII strings
      * see OpenOffice.org's Documentation of the Microsoft Excel File Format, sect. 2.5.3
      *
-     * @param string $value UTF-8 encoded string
+     * @param  string $value UTF-8 encoded string
      * @return string
      */
     public static function UTF8toBIFF8UnicodeLong($value)
@@ -479,9 +483,9 @@ class PHPExcel_Shared_String
     /**
      * Convert string from one encoding to another. First try mbstring, then iconv, finally strlen
      *
-     * @param string $value
-     * @param string $to Encoding to convert to, e.g. 'UTF-8'
-     * @param string $from Encoding to convert from, e.g. 'UTF-16LE'
+     * @param  string $value
+     * @param  string $to    Encoding to convert to, e.g. 'UTF-8'
+     * @param  string $from  Encoding to convert from, e.g. 'UTF-16LE'
      * @return string
      */
     public static function ConvertEncoding($value, $to, $from)
@@ -511,12 +515,12 @@ class PHPExcel_Shared_String
      * This function was taken from http://php.net/manual/en/function.utf8-decode.php
      * and $bom_be parameter added.
      *
-     * @param   string  $str  UTF-16 encoded data to decode.
+     * @param   string $str UTF-16 encoded data to decode.
      * @return  string  UTF-8 / ISO encoded data.
      * @access  public
      * @version 0.2 / 2010-05-13
      * @author  Rasmus Andersson {@link http://rasmusandersson.se/}
-     * @author vadik56
+     * @author  vadik56
      */
     public static function utf16_decode($str, $bom_be = true)
     {
@@ -549,8 +553,8 @@ class PHPExcel_Shared_String
     /**
      * Get character count. First try mbstring, then iconv, finally strlen
      *
-     * @param string $value
-     * @param string $enc Encoding
+     * @param  string $value
+     * @param  string $enc   Encoding
      * @return int Character count
      */
     public static function CountCharacters($value, $enc = 'UTF-8')
@@ -570,9 +574,9 @@ class PHPExcel_Shared_String
     /**
      * Get a substring of a UTF-8 encoded string. First try mbstring, then iconv, finally strlen
      *
-     * @param string $pValue UTF-8 encoded string
-     * @param int $pStart Start offset
-     * @param int $pLength Maximum number of characters in substring
+     * @param  string $pValue  UTF-8 encoded string
+     * @param  int    $pStart  Start offset
+     * @param  int    $pLength Maximum number of characters in substring
      * @return string
      */
     public static function Substring($pValue = '', $pStart = 0, $pLength = 0)
@@ -592,7 +596,7 @@ class PHPExcel_Shared_String
     /**
      * Convert a UTF-8 encoded string to upper case
      *
-     * @param string $pValue UTF-8 encoded string
+     * @param  string $pValue UTF-8 encoded string
      * @return string
      */
     public static function StrToUpper($pValue = '')
@@ -606,7 +610,7 @@ class PHPExcel_Shared_String
     /**
      * Convert a UTF-8 encoded string to lower case
      *
-     * @param string $pValue UTF-8 encoded string
+     * @param  string $pValue UTF-8 encoded string
      * @return string
      */
     public static function StrToLower($pValue = '')
@@ -621,7 +625,7 @@ class PHPExcel_Shared_String
      * Convert a UTF-8 encoded string to title/proper case
      *    (uppercase every first character in each word, lower case all other characters)
      *
-     * @param string $pValue UTF-8 encoded string
+     * @param  string $pValue UTF-8 encoded string
      * @return string
      */
     public static function StrToTitle($pValue = '')
@@ -639,8 +643,8 @@ class PHPExcel_Shared_String
 
     public static function mb_str_split($string)
     {
-        # Split at all position not after the start: ^
-        # and not before the end: $
+        // Split at all position not after the start: ^
+        // and not before the end: $
         return preg_split('/(?<!^)(?!$)/u', $string);
     }
 
@@ -648,7 +652,7 @@ class PHPExcel_Shared_String
      * Reverse the case of a string, so that all uppercase characters become lowercase
      *    and all lowercase characters become uppercase
      *
-     * @param string $pValue UTF-8 encoded string
+     * @param  string $pValue UTF-8 encoded string
      * @return string
      */
     public static function StrCaseReverse($pValue = '')
@@ -671,7 +675,7 @@ class PHPExcel_Shared_String
      * Identify whether a string contains a fractional numeric value,
      *    and convert it to a numeric if it is
      *
-     * @param string &$operand string value to test
+     * @param  string &$operand string value to test
      * @return boolean
      */
     public static function convertToNumberIfFraction(&$operand)
@@ -784,7 +788,7 @@ class PHPExcel_Shared_String
     /**
      * Convert SYLK encoded string to UTF-8
      *
-     * @param string $pValue
+     * @param  string $pValue
      * @return string UTF-8 encoded string
      */
     public static function SYLKtoUTF8($pValue = '')
@@ -805,8 +809,8 @@ class PHPExcel_Shared_String
      * Retrieve any leading numeric part of a string, or return the full string if no leading numeric
      *    (handles basic integer or float, but not exponent or non decimal)
      *
-     * @param    string    $value
-     * @return    mixed    string or only the leading numeric part of the string
+     * @param  string $value
+     * @return mixed    string or only the leading numeric part of the string
      */
     public static function testStringAsNumeric($value)
     {

@@ -18,23 +18,27 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 
-/** Error reporting */
+/**
+ * Error reporting 
+ */
 error_reporting(E_ALL);
-ini_set('display_errors', TRUE);
-ini_set('display_startup_errors', TRUE);
+ini_set('display_errors', true);
+ini_set('display_startup_errors', true);
 
-define('EOL',(PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
+define('EOL', (PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
 
 date_default_timezone_set('Europe/London');
 
-/** Include PHPExcel */
+/**
+ * Include PHPExcel 
+*/
 require_once dirname(__FILE__) . '/../Classes/PHPExcel.php';
 
 
@@ -45,37 +49,37 @@ $objPHPExcel = new PHPExcel();
 // Set document properties
 echo date('H:i:s') , " Set document properties" , EOL;
 $objPHPExcel->getProperties()->setCreator("Maarten Balliauw")
-							 ->setLastModifiedBy("Maarten Balliauw")
-							 ->setTitle("Office 2007 XLSX Test Document")
-							 ->setSubject("Office 2007 XLSX Test Document")
-							 ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
-							 ->setKeywords("office 2007 openxml php")
-							 ->setCategory("Test result file");
+    ->setLastModifiedBy("Maarten Balliauw")
+    ->setTitle("Office 2007 XLSX Test Document")
+    ->setSubject("Office 2007 XLSX Test Document")
+    ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
+    ->setKeywords("office 2007 openxml php")
+    ->setCategory("Test result file");
 
 
 // Create a first sheet, representing sales data
 echo date('H:i:s') , " Add some data" , EOL;
 $objPHPExcel->setActiveSheetIndex(0);
 $objPHPExcel->getActiveSheet()->setCellValue('A1', 'Description')
-                              ->setCellValue('B1', 'Amount');
+    ->setCellValue('B1', 'Amount');
 
 $objPHPExcel->getActiveSheet()->setCellValue('A2', 'Paycheck received')
-                              ->setCellValue('B2', 100);
+    ->setCellValue('B2', 100);
 
 $objPHPExcel->getActiveSheet()->setCellValue('A3', 'Cup of coffee bought')
-                              ->setCellValue('B3', -1.5);
+    ->setCellValue('B3', -1.5);
 
 $objPHPExcel->getActiveSheet()->setCellValue('A4', 'Cup of coffee bought')
-                              ->setCellValue('B4', -1.5);
+    ->setCellValue('B4', -1.5);
 
 $objPHPExcel->getActiveSheet()->setCellValue('A5', 'Cup of tea bought')
-                              ->setCellValue('B5', -1.2);
+    ->setCellValue('B5', -1.2);
 
 $objPHPExcel->getActiveSheet()->setCellValue('A6', 'Found some money')
-                              ->setCellValue('B6', 8);
+    ->setCellValue('B6', 8);
 
 $objPHPExcel->getActiveSheet()->setCellValue('A7', 'Total:')
-                              ->setCellValue('B7', '=SUM(B2:B6)');
+    ->setCellValue('B7', '=SUM(B2:B6)');
 
 
 // Set column widths
@@ -88,25 +92,25 @@ $objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(12);
 echo date('H:i:s') , " Add conditional formatting" , EOL;
 $objConditional1 = new PHPExcel_Style_Conditional();
 $objConditional1->setConditionType(PHPExcel_Style_Conditional::CONDITION_CELLIS)
-                ->setOperatorType(PHPExcel_Style_Conditional::OPERATOR_BETWEEN)
-                ->addCondition('200')
-                ->addCondition('400');
+    ->setOperatorType(PHPExcel_Style_Conditional::OPERATOR_BETWEEN)
+    ->addCondition('200')
+    ->addCondition('400');
 $objConditional1->getStyle()->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_YELLOW);
 $objConditional1->getStyle()->getFont()->setBold(true);
 $objConditional1->getStyle()->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_CURRENCY_EUR_SIMPLE);
 
 $objConditional2 = new PHPExcel_Style_Conditional();
 $objConditional2->setConditionType(PHPExcel_Style_Conditional::CONDITION_CELLIS)
-                ->setOperatorType(PHPExcel_Style_Conditional::OPERATOR_LESSTHAN)
-                ->addCondition('0');
+    ->setOperatorType(PHPExcel_Style_Conditional::OPERATOR_LESSTHAN)
+    ->addCondition('0');
 $objConditional2->getStyle()->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_RED);
 $objConditional2->getStyle()->getFont()->setItalic(true);
 $objConditional2->getStyle()->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_CURRENCY_EUR_SIMPLE);
 
 $objConditional3 = new PHPExcel_Style_Conditional();
 $objConditional3->setConditionType(PHPExcel_Style_Conditional::CONDITION_CELLIS)
-                ->setOperatorType(PHPExcel_Style_Conditional::OPERATOR_GREATERTHANOREQUAL)
-                ->addCondition('0');
+    ->setOperatorType(PHPExcel_Style_Conditional::OPERATOR_GREATERTHANOREQUAL)
+    ->addCondition('0');
 $objConditional3->getStyle()->getFont()->getColor()->setARGB(PHPExcel_Style_Color::COLOR_GREEN);
 $objConditional3->getStyle()->getFont()->setItalic(true);
 $objConditional3->getStyle()->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_CURRENCY_EUR_SIMPLE);
@@ -118,12 +122,12 @@ array_push($conditionalStyles, $objConditional3);
 $objPHPExcel->getActiveSheet()->getStyle('B2')->setConditionalStyles($conditionalStyles);
 
 
-//	duplicate the conditional styles across a range of cells
+//    duplicate the conditional styles across a range of cells
 echo date('H:i:s') , " Duplicate the conditional formatting across a range of cells" , EOL;
 $objPHPExcel->getActiveSheet()->duplicateConditionalStyle(
-				$objPHPExcel->getActiveSheet()->getStyle('B2')->getConditionalStyles(),
-				'B3:B7'
-			  );
+    $objPHPExcel->getActiveSheet()->getStyle('B2')->getConditionalStyles(),
+    'B3:B7'
+);
 
 
 // Set fonts
@@ -165,7 +169,7 @@ $callEndTime = microtime(true);
 $callTime = $callEndTime - $callStartTime;
 
 echo date('H:i:s') , " File written to " , str_replace('.php', '.xlsx', pathinfo(__FILE__, PATHINFO_BASENAME)) , EOL;
-echo 'Call time to write Workbook was ' , sprintf('%.4f',$callTime) , " seconds" , EOL;
+echo 'Call time to write Workbook was ' , sprintf('%.4f', $callTime) , " seconds" , EOL;
 // Save Excel5 file
 echo date('H:i:s') , " Write to Excel5 format" , EOL;
 $callStartTime = microtime(true);
@@ -176,7 +180,7 @@ $callEndTime = microtime(true);
 $callTime = $callEndTime - $callStartTime;
 
 echo date('H:i:s') , " File written to " , str_replace('.php', '.xls', pathinfo(__FILE__, PATHINFO_BASENAME)) , EOL;
-echo 'Call time to write Workbook was ' , sprintf('%.4f',$callTime) , " seconds" , EOL;
+echo 'Call time to write Workbook was ' , sprintf('%.4f', $callTime) , " seconds" , EOL;
 // Echo memory usage
 echo date('H:i:s') , ' Current memory usage: ' , (memory_get_usage(true) / 1024 / 1024) , " MB" , EOL;
 

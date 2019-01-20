@@ -19,15 +19,17 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category    PHPExcel
- * @package    PHPExcel
- * @copyright    Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_DocumentProperties
 {
-    /** constants */
+    /**
+ * constants 
+*/
     const PROPERTY_TYPE_BOOLEAN = 'b';
     const PROPERTY_TYPE_INTEGER = 'i';
     const PROPERTY_TYPE_FLOAT   = 'f';
@@ -144,7 +146,7 @@ class PHPExcel_DocumentProperties
     /**
      * Set Creator
      *
-     * @param string $pValue
+     * @param  string $pValue
      * @return PHPExcel_DocumentProperties
      */
     public function setCreator($pValue = '')
@@ -166,7 +168,7 @@ class PHPExcel_DocumentProperties
     /**
      * Set Last Modified By
      *
-     * @param string $pValue
+     * @param  string $pValue
      * @return PHPExcel_DocumentProperties
      */
     public function setLastModifiedBy($pValue = '')
@@ -188,7 +190,7 @@ class PHPExcel_DocumentProperties
     /**
      * Set Created
      *
-     * @param datetime $pValue
+     * @param  datetime $pValue
      * @return PHPExcel_DocumentProperties
      */
     public function setCreated($pValue = null)
@@ -220,7 +222,7 @@ class PHPExcel_DocumentProperties
     /**
      * Set Modified
      *
-     * @param datetime $pValue
+     * @param  datetime $pValue
      * @return PHPExcel_DocumentProperties
      */
     public function setModified($pValue = null)
@@ -252,7 +254,7 @@ class PHPExcel_DocumentProperties
     /**
      * Set Title
      *
-     * @param string $pValue
+     * @param  string $pValue
      * @return PHPExcel_DocumentProperties
      */
     public function setTitle($pValue = '')
@@ -274,7 +276,7 @@ class PHPExcel_DocumentProperties
     /**
      * Set Description
      *
-     * @param string $pValue
+     * @param  string $pValue
      * @return PHPExcel_DocumentProperties
      */
     public function setDescription($pValue = '')
@@ -296,7 +298,7 @@ class PHPExcel_DocumentProperties
     /**
      * Set Subject
      *
-     * @param string $pValue
+     * @param  string $pValue
      * @return PHPExcel_DocumentProperties
      */
     public function setSubject($pValue = '')
@@ -318,7 +320,7 @@ class PHPExcel_DocumentProperties
     /**
      * Set Keywords
      *
-     * @param string $pValue
+     * @param  string $pValue
      * @return PHPExcel_DocumentProperties
      */
     public function setKeywords($pValue = '')
@@ -340,7 +342,7 @@ class PHPExcel_DocumentProperties
     /**
      * Set Category
      *
-     * @param string $pValue
+     * @param  string $pValue
      * @return PHPExcel_DocumentProperties
      */
     public function setCategory($pValue = '')
@@ -362,7 +364,7 @@ class PHPExcel_DocumentProperties
     /**
      * Set Company
      *
-     * @param string $pValue
+     * @param  string $pValue
      * @return PHPExcel_DocumentProperties
      */
     public function setCompany($pValue = '')
@@ -384,7 +386,7 @@ class PHPExcel_DocumentProperties
     /**
      * Set Manager
      *
-     * @param string $pValue
+     * @param  string $pValue
      * @return PHPExcel_DocumentProperties
      */
     public function setManager($pValue = '')
@@ -406,7 +408,7 @@ class PHPExcel_DocumentProperties
     /**
      * Check if a Custom Property is defined
      *
-     * @param string $propertyName
+     * @param  string $propertyName
      * @return boolean
      */
     public function isCustomPropertySet($propertyName)
@@ -417,7 +419,7 @@ class PHPExcel_DocumentProperties
     /**
      * Get a Custom Property Value
      *
-     * @param string $propertyName
+     * @param  string $propertyName
      * @return string
      */
     public function getCustomPropertyValue($propertyName)
@@ -431,7 +433,7 @@ class PHPExcel_DocumentProperties
     /**
      * Get a Custom Property Type
      *
-     * @param string $propertyName
+     * @param  string $propertyName
      * @return string
      */
     public function getCustomPropertyType($propertyName)
@@ -445,9 +447,9 @@ class PHPExcel_DocumentProperties
     /**
      * Set a Custom Property
      *
-     * @param string $propertyName
-     * @param mixed $propertyValue
-     * @param string $propertyType
+     * @param  string $propertyName
+     * @param  mixed  $propertyValue
+     * @param  string $propertyType
      *      'i'    : Integer
      *   'f' : Floating Point
      *   's' : String
@@ -457,11 +459,14 @@ class PHPExcel_DocumentProperties
      */
     public function setCustomProperty($propertyName, $propertyValue = '', $propertyType = null)
     {
-        if (($propertyType === null) || (!in_array($propertyType, array(self::PROPERTY_TYPE_INTEGER,
+        if (($propertyType === null) || (!in_array(
+            $propertyType, array(self::PROPERTY_TYPE_INTEGER,
                                                                         self::PROPERTY_TYPE_FLOAT,
                                                                         self::PROPERTY_TYPE_STRING,
                                                                         self::PROPERTY_TYPE_DATE,
-                                                                        self::PROPERTY_TYPE_BOOLEAN)))) {
+            self::PROPERTY_TYPE_BOOLEAN)
+        ))
+        ) {
             if ($propertyValue === null) {
                 $propertyType = self::PROPERTY_TYPE_STRING;
             } elseif (is_float($propertyValue)) {
@@ -500,57 +505,57 @@ class PHPExcel_DocumentProperties
     public static function convertProperty($propertyValue, $propertyType)
     {
         switch ($propertyType) {
-            case 'empty':     //    Empty
-                return '';
+        case 'empty':     //    Empty
+            return '';
                 break;
-            case 'null':      //    Null
-                return null;
+        case 'null':      //    Null
+            return null;
                 break;
-            case 'i1':        //    1-Byte Signed Integer
-            case 'i2':        //    2-Byte Signed Integer
-            case 'i4':        //    4-Byte Signed Integer
-            case 'i8':        //    8-Byte Signed Integer
-            case 'int':       //    Integer
-                return (int) $propertyValue;
+        case 'i1':        //    1-Byte Signed Integer
+        case 'i2':        //    2-Byte Signed Integer
+        case 'i4':        //    4-Byte Signed Integer
+        case 'i8':        //    8-Byte Signed Integer
+        case 'int':       //    Integer
+            return (int) $propertyValue;
                 break;
-            case 'ui1':       //    1-Byte Unsigned Integer
-            case 'ui2':       //    2-Byte Unsigned Integer
-            case 'ui4':       //    4-Byte Unsigned Integer
-            case 'ui8':       //    8-Byte Unsigned Integer
-            case 'uint':      //    Unsigned Integer
-                return abs((int) $propertyValue);
+        case 'ui1':       //    1-Byte Unsigned Integer
+        case 'ui2':       //    2-Byte Unsigned Integer
+        case 'ui4':       //    4-Byte Unsigned Integer
+        case 'ui8':       //    8-Byte Unsigned Integer
+        case 'uint':      //    Unsigned Integer
+            return abs((int) $propertyValue);
                 break;
-            case 'r4':        //    4-Byte Real Number
-            case 'r8':        //    8-Byte Real Number
-            case 'decimal':   //    Decimal
-                return (float) $propertyValue;
+        case 'r4':        //    4-Byte Real Number
+        case 'r8':        //    8-Byte Real Number
+        case 'decimal':   //    Decimal
+            return (float) $propertyValue;
                 break;
-            case 'lpstr':     //    LPSTR
-            case 'lpwstr':    //    LPWSTR
-            case 'bstr':      //    Basic String
-                return $propertyValue;
+        case 'lpstr':     //    LPSTR
+        case 'lpwstr':    //    LPWSTR
+        case 'bstr':      //    Basic String
+            return $propertyValue;
                 break;
-            case 'date':      //    Date and Time
-            case 'filetime':  //    File Time
-                return strtotime($propertyValue);
+        case 'date':      //    Date and Time
+        case 'filetime':  //    File Time
+            return strtotime($propertyValue);
                 break;
-            case 'bool':     //    Boolean
-                return ($propertyValue == 'true') ? true : false;
+        case 'bool':     //    Boolean
+            return ($propertyValue == 'true') ? true : false;
                 break;
-            case 'cy':       //    Currency
-            case 'error':    //    Error Status Code
-            case 'vector':   //    Vector
-            case 'array':    //    Array
-            case 'blob':     //    Binary Blob
-            case 'oblob':    //    Binary Blob Object
-            case 'stream':   //    Binary Stream
-            case 'ostream':  //    Binary Stream Object
-            case 'storage':  //    Binary Storage
-            case 'ostorage': //    Binary Storage Object
-            case 'vstream':  //    Binary Versioned Stream
-            case 'clsid':    //    Class ID
-            case 'cf':       //    Clipboard Data
-                return $propertyValue;
+        case 'cy':       //    Currency
+        case 'error':    //    Error Status Code
+        case 'vector':   //    Vector
+        case 'array':    //    Array
+        case 'blob':     //    Binary Blob
+        case 'oblob':    //    Binary Blob Object
+        case 'stream':   //    Binary Stream
+        case 'ostream':  //    Binary Stream Object
+        case 'storage':  //    Binary Storage
+        case 'ostorage': //    Binary Storage Object
+        case 'vstream':  //    Binary Versioned Stream
+        case 'clsid':    //    Class ID
+        case 'cf':       //    Clipboard Data
+            return $propertyValue;
                 break;
         }
         return $propertyValue;
@@ -559,51 +564,51 @@ class PHPExcel_DocumentProperties
     public static function convertPropertyType($propertyType)
     {
         switch ($propertyType) {
-            case 'i1':       //    1-Byte Signed Integer
-            case 'i2':       //    2-Byte Signed Integer
-            case 'i4':       //    4-Byte Signed Integer
-            case 'i8':       //    8-Byte Signed Integer
-            case 'int':      //    Integer
-            case 'ui1':      //    1-Byte Unsigned Integer
-            case 'ui2':      //    2-Byte Unsigned Integer
-            case 'ui4':      //    4-Byte Unsigned Integer
-            case 'ui8':      //    8-Byte Unsigned Integer
-            case 'uint':     //    Unsigned Integer
-                return self::PROPERTY_TYPE_INTEGER;
+        case 'i1':       //    1-Byte Signed Integer
+        case 'i2':       //    2-Byte Signed Integer
+        case 'i4':       //    4-Byte Signed Integer
+        case 'i8':       //    8-Byte Signed Integer
+        case 'int':      //    Integer
+        case 'ui1':      //    1-Byte Unsigned Integer
+        case 'ui2':      //    2-Byte Unsigned Integer
+        case 'ui4':      //    4-Byte Unsigned Integer
+        case 'ui8':      //    8-Byte Unsigned Integer
+        case 'uint':     //    Unsigned Integer
+            return self::PROPERTY_TYPE_INTEGER;
                 break;
-            case 'r4':       //    4-Byte Real Number
-            case 'r8':       //    8-Byte Real Number
-            case 'decimal':  //    Decimal
-                return self::PROPERTY_TYPE_FLOAT;
+        case 'r4':       //    4-Byte Real Number
+        case 'r8':       //    8-Byte Real Number
+        case 'decimal':  //    Decimal
+            return self::PROPERTY_TYPE_FLOAT;
                 break;
-            case 'empty':    //    Empty
-            case 'null':     //    Null
-            case 'lpstr':    //    LPSTR
-            case 'lpwstr':   //    LPWSTR
-            case 'bstr':     //    Basic String
-                return self::PROPERTY_TYPE_STRING;
+        case 'empty':    //    Empty
+        case 'null':     //    Null
+        case 'lpstr':    //    LPSTR
+        case 'lpwstr':   //    LPWSTR
+        case 'bstr':     //    Basic String
+            return self::PROPERTY_TYPE_STRING;
                 break;
-            case 'date':     //    Date and Time
-            case 'filetime': //    File Time
-                return self::PROPERTY_TYPE_DATE;
+        case 'date':     //    Date and Time
+        case 'filetime': //    File Time
+            return self::PROPERTY_TYPE_DATE;
                 break;
-            case 'bool':     //    Boolean
-                return self::PROPERTY_TYPE_BOOLEAN;
+        case 'bool':     //    Boolean
+            return self::PROPERTY_TYPE_BOOLEAN;
                 break;
-            case 'cy':       //    Currency
-            case 'error':    //    Error Status Code
-            case 'vector':   //    Vector
-            case 'array':    //    Array
-            case 'blob':     //    Binary Blob
-            case 'oblob':    //    Binary Blob Object
-            case 'stream':   //    Binary Stream
-            case 'ostream':  //    Binary Stream Object
-            case 'storage':  //    Binary Storage
-            case 'ostorage': //    Binary Storage Object
-            case 'vstream':  //    Binary Versioned Stream
-            case 'clsid':    //    Class ID
-            case 'cf':       //    Clipboard Data
-                return self::PROPERTY_TYPE_UNKNOWN;
+        case 'cy':       //    Currency
+        case 'error':    //    Error Status Code
+        case 'vector':   //    Vector
+        case 'array':    //    Array
+        case 'blob':     //    Binary Blob
+        case 'oblob':    //    Binary Blob Object
+        case 'stream':   //    Binary Stream
+        case 'ostream':  //    Binary Stream Object
+        case 'storage':  //    Binary Storage
+        case 'ostorage': //    Binary Storage Object
+        case 'vstream':  //    Binary Versioned Stream
+        case 'clsid':    //    Class ID
+        case 'cf':       //    Clipboard Data
+            return self::PROPERTY_TYPE_UNKNOWN;
                 break;
         }
         return self::PROPERTY_TYPE_UNKNOWN;

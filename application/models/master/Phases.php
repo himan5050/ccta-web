@@ -1,10 +1,12 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (! defined('BASEPATH')) { exit('No direct script access allowed');
+}
 
-class Phases extends CI_Model{
+class Phases extends CI_Model
+{
 
-    public function getRows($id = ""){
-        if(!empty($id))
-        {
+    public function getRows($id = "")
+    {
+        if(!empty($id)) {
             $query = $this->db->get_where('master_phase', array('phase_id' => $id));
             return $query->row_array();
         }
@@ -15,25 +17,27 @@ class Phases extends CI_Model{
         }
     }
     
-    public function getRowsByCode($code = ""){
-        if(!empty($code))
-        {
+    public function getRowsByCode($code = "")
+    {
+        if(!empty($code)) {
             $query = $this->db->get_where('master_phase', array('phase_code' => $code));
             return $query->row_array();
         }
     }
     
-    public function add($data = array()) {
+    public function add($data = array())
+    {
         $insert = $this->db->insert('master_phase', $data);
-        if($insert){
+        if($insert) {
             return $this->db->insert_id();
         }else{
             return false;
         }
     }
     
-    public function update($data, $id) {
-        if(!empty($data) && !empty($id)){
+    public function update($data, $id)
+    {
+        if(!empty($data) && !empty($id)) {
             $update = $this->db->update('master_phase', $data, array('phase_id'=>$id));
             return $update?true:false;
         }else{
@@ -41,12 +45,14 @@ class Phases extends CI_Model{
         }
     }
 
-    public function delete($id){
-        $delete = $this->db->delete('master_phase',array('phase_id'=>$id));
+    public function delete($id)
+    {
+        $delete = $this->db->delete('master_phase', array('phase_id'=>$id));
         return $delete?true:false;
     }
 
-    public function check($phase) { 
+    public function check($phase)
+    { 
         $query = $this->db->query("SELECT COUNT(*) AS total FROM master_phase WHERE TRIM(phase_name) = '". $phase ."'");
 
         foreach ($query->result() as $row)

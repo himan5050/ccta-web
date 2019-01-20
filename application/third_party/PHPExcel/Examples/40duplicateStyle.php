@@ -1,15 +1,19 @@
 <?php
-/** Error reporting */
+/**
+ * Error reporting 
+ */
 error_reporting(E_ALL);
-ini_set('display_errors', TRUE);
-ini_set('display_startup_errors', TRUE);
+ini_set('display_errors', true);
+ini_set('display_startup_errors', true);
 date_default_timezone_set('Europe/London');
 
-define('EOL',(PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
+define('EOL', (PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
 
 date_default_timezone_set('Europe/London');
 
-/** Include PHPExcel */
+/**
+ * Include PHPExcel 
+*/
 require_once dirname(__FILE__) . '/../Classes/PHPExcel.php';
 
 echo date('H:i:s') , " Create new PHPExcel object" , EOL;

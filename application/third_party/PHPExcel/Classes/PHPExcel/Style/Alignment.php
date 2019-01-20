@@ -18,11 +18,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Style
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Style
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_Style_Alignment extends PHPExcel_Style_Supervisor implements PHPExcel_IComparable
 {
@@ -100,12 +100,12 @@ class PHPExcel_Style_Alignment extends PHPExcel_Style_Supervisor implements PHPE
     /**
      * Create a new PHPExcel_Style_Alignment
      *
-     * @param    boolean    $isSupervisor    Flag indicating if this is a supervisor or not
-     *                                       Leave this value at default unless you understand exactly what
-     *                                          its ramifications are
-     * @param    boolean    $isConditional   Flag indicating if this is a conditional style or not
-     *                                       Leave this value at default unless you understand exactly what
-     *                                          its ramifications are
+     * @param boolean $isSupervisor  Flag indicating if this is a supervisor or not
+     *                               Leave this value at default unless you
+     *                               understand exactly what its ramifications are
+     * @param boolean $isConditional Flag indicating if this is a conditional style or not
+     *                               Leave this value at default unless you understand
+     *                               exactly what its ramifications are
      */
     public function __construct($isSupervisor = false, $isConditional = false)
     {
@@ -133,7 +133,7 @@ class PHPExcel_Style_Alignment extends PHPExcel_Style_Supervisor implements PHPE
     /**
      * Build style array from subcomponents
      *
-     * @param array $array
+     * @param  array $array
      * @return array
      */
     public function getStyleArray($array)
@@ -155,8 +155,8 @@ class PHPExcel_Style_Alignment extends PHPExcel_Style_Supervisor implements PHPE
      * );
      * </code>
      *
-     * @param    array    $pStyles    Array containing style information
-     * @throws    PHPExcel_Exception
+     * @param  array $pStyles Array containing style information
+     * @throws PHPExcel_Exception
      * @return PHPExcel_Style_Alignment
      */
     public function applyFromArray($pStyles = null)
@@ -210,7 +210,7 @@ class PHPExcel_Style_Alignment extends PHPExcel_Style_Supervisor implements PHPE
     /**
      * Set Horizontal
      *
-     * @param string $pValue
+     * @param  string $pValue
      * @return PHPExcel_Style_Alignment
      */
     public function setHorizontal($pValue = PHPExcel_Style_Alignment::HORIZONTAL_GENERAL)
@@ -244,7 +244,7 @@ class PHPExcel_Style_Alignment extends PHPExcel_Style_Supervisor implements PHPE
     /**
      * Set Vertical
      *
-     * @param string $pValue
+     * @param  string $pValue
      * @return PHPExcel_Style_Alignment
      */
     public function setVertical($pValue = PHPExcel_Style_Alignment::VERTICAL_BOTTOM)
@@ -278,7 +278,7 @@ class PHPExcel_Style_Alignment extends PHPExcel_Style_Supervisor implements PHPE
     /**
      * Set TextRotation
      *
-     * @param int $pValue
+     * @param  int $pValue
      * @throws PHPExcel_Exception
      * @return PHPExcel_Style_Alignment
      */
@@ -320,7 +320,7 @@ class PHPExcel_Style_Alignment extends PHPExcel_Style_Supervisor implements PHPE
     /**
      * Set Wrap Text
      *
-     * @param boolean $pValue
+     * @param  boolean $pValue
      * @return PHPExcel_Style_Alignment
      */
     public function setWrapText($pValue = false)
@@ -353,7 +353,7 @@ class PHPExcel_Style_Alignment extends PHPExcel_Style_Supervisor implements PHPE
     /**
      * Set Shrink to fit
      *
-     * @param boolean $pValue
+     * @param  boolean $pValue
      * @return PHPExcel_Style_Alignment
      */
     public function setShrinkToFit($pValue = false)
@@ -386,15 +386,16 @@ class PHPExcel_Style_Alignment extends PHPExcel_Style_Supervisor implements PHPE
     /**
      * Set indent
      *
-     * @param int $pValue
+     * @param  int $pValue
      * @return PHPExcel_Style_Alignment
      */
     public function setIndent($pValue = 0)
     {
         if ($pValue > 0) {
-            if ($this->getHorizontal() != self::HORIZONTAL_GENERAL &&
-                $this->getHorizontal() != self::HORIZONTAL_LEFT &&
-                $this->getHorizontal() != self::HORIZONTAL_RIGHT) {
+            if ($this->getHorizontal() != self::HORIZONTAL_GENERAL 
+                && $this->getHorizontal() != self::HORIZONTAL_LEFT 
+                && $this->getHorizontal() != self::HORIZONTAL_RIGHT
+            ) {
                 $pValue = 0; // indent not supported
             }
         }
@@ -423,7 +424,7 @@ class PHPExcel_Style_Alignment extends PHPExcel_Style_Supervisor implements PHPE
     /**
      * Set read order
      *
-     * @param int $pValue
+     * @param  int $pValue
      * @return PHPExcel_Style_Alignment
      */
     public function setReadorder($pValue = 0)

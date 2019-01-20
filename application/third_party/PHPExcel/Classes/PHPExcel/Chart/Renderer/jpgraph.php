@@ -1,6 +1,6 @@
 <?php
 
-require_once(PHPExcel_Settings::getChartRendererPath().'/jpgraph.php');
+require_once PHPExcel_Settings::getChartRendererPath().'/jpgraph.php';
 
 /**
  * PHPExcel_Chart_Renderer_jpgraph
@@ -21,11 +21,11 @@ require_once(PHPExcel_Settings::getChartRendererPath().'/jpgraph.php');
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category    PHPExcel
- * @package        PHPExcel_Chart_Renderer
- * @copyright    Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license        http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version        ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Chart_Renderer
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_Chart_Renderer_jpgraph
 {
@@ -185,24 +185,24 @@ class PHPExcel_Chart_Renderer_jpgraph
             $legendPosition = $legend->getPosition();
             $legendOverlay = $legend->getOverlay();
             switch ($legendPosition) {
-                case 'r':
-                    $this->graph->legend->SetPos(0.01, 0.5, 'right', 'center');    //    right
-                    $this->graph->legend->SetColumns(1);
-                    break;
-                case 'l':
-                    $this->graph->legend->SetPos(0.01, 0.5, 'left', 'center');    //    left
-                    $this->graph->legend->SetColumns(1);
-                    break;
-                case 't':
-                    $this->graph->legend->SetPos(0.5, 0.01, 'center', 'top');    //    top
-                    break;
-                case 'b':
-                    $this->graph->legend->SetPos(0.5, 0.99, 'center', 'bottom');    //    bottom
-                    break;
-                default:
-                    $this->graph->legend->SetPos(0.01, 0.01, 'right', 'top');    //    top-right
-                    $this->graph->legend->SetColumns(1);
-                    break;
+            case 'r':
+                $this->graph->legend->SetPos(0.01, 0.5, 'right', 'center');    //    right
+                $this->graph->legend->SetColumns(1);
+                break;
+            case 'l':
+                $this->graph->legend->SetPos(0.01, 0.5, 'left', 'center');    //    left
+                $this->graph->legend->SetColumns(1);
+                break;
+            case 't':
+                $this->graph->legend->SetPos(0.5, 0.01, 'center', 'top');    //    top
+                break;
+            case 'b':
+                $this->graph->legend->SetPos(0.5, 0.99, 'center', 'bottom');    //    bottom
+                break;
+            default:
+                $this->graph->legend->SetPos(0.01, 0.01, 'right', 'top');    //    top-right
+                $this->graph->legend->SetColumns(1);
+                break;
             }
         } else {
             $this->graph->legend->Hide();
@@ -563,7 +563,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 
     private function renderAreaChart($groupCount, $dimensions = '2d')
     {
-        require_once(PHPExcel_Settings::getChartRendererPath().'jpgraph_line.php');
+        include_once PHPExcel_Settings::getChartRendererPath().'jpgraph_line.php';
 
         $this->renderCartesianPlotArea();
 
@@ -575,7 +575,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 
     private function renderLineChart($groupCount, $dimensions = '2d')
     {
-        require_once(PHPExcel_Settings::getChartRendererPath().'jpgraph_line.php');
+        include_once PHPExcel_Settings::getChartRendererPath().'jpgraph_line.php';
 
         $this->renderCartesianPlotArea();
 
@@ -587,7 +587,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 
     private function renderBarChart($groupCount, $dimensions = '2d')
     {
-        require_once(PHPExcel_Settings::getChartRendererPath().'jpgraph_bar.php');
+        include_once PHPExcel_Settings::getChartRendererPath().'jpgraph_bar.php';
 
         $this->renderCartesianPlotArea();
 
@@ -599,9 +599,9 @@ class PHPExcel_Chart_Renderer_jpgraph
 
     private function renderScatterChart($groupCount)
     {
-        require_once(PHPExcel_Settings::getChartRendererPath().'jpgraph_scatter.php');
-        require_once(PHPExcel_Settings::getChartRendererPath().'jpgraph_regstat.php');
-        require_once(PHPExcel_Settings::getChartRendererPath().'jpgraph_line.php');
+        include_once PHPExcel_Settings::getChartRendererPath().'jpgraph_scatter.php';
+        include_once PHPExcel_Settings::getChartRendererPath().'jpgraph_regstat.php';
+        include_once PHPExcel_Settings::getChartRendererPath().'jpgraph_line.php';
 
         $this->renderCartesianPlotArea('linlin');
 
@@ -613,7 +613,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 
     private function renderBubbleChart($groupCount)
     {
-        require_once(PHPExcel_Settings::getChartRendererPath().'jpgraph_scatter.php');
+        include_once PHPExcel_Settings::getChartRendererPath().'jpgraph_scatter.php';
 
         $this->renderCartesianPlotArea('linlin');
 
@@ -625,9 +625,9 @@ class PHPExcel_Chart_Renderer_jpgraph
 
     private function renderPieChart($groupCount, $dimensions = '2d', $doughnut = false, $multiplePlots = false)
     {
-        require_once(PHPExcel_Settings::getChartRendererPath().'jpgraph_pie.php');
+        include_once PHPExcel_Settings::getChartRendererPath().'jpgraph_pie.php';
         if ($dimensions == '3d') {
-            require_once(PHPExcel_Settings::getChartRendererPath().'jpgraph_pie3d.php');
+            include_once PHPExcel_Settings::getChartRendererPath().'jpgraph_pie3d.php';
         }
 
         $this->renderPiePlotArea($doughnut);
@@ -702,7 +702,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 
     private function renderRadarChart($groupCount)
     {
-        require_once(PHPExcel_Settings::getChartRendererPath().'jpgraph_radar.php');
+        include_once PHPExcel_Settings::getChartRendererPath().'jpgraph_radar.php';
 
         $this->renderRadarPlotArea();
 
@@ -714,7 +714,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 
     private function renderStockChart($groupCount)
     {
-        require_once(PHPExcel_Settings::getChartRendererPath().'jpgraph_stock.php');
+        include_once PHPExcel_Settings::getChartRendererPath().'jpgraph_stock.php';
 
         $this->renderCartesianPlotArea('intint');
 
@@ -726,7 +726,7 @@ class PHPExcel_Chart_Renderer_jpgraph
 
     private function renderContourChart($groupCount, $dimensions)
     {
-        require_once(PHPExcel_Settings::getChartRendererPath().'jpgraph_contour.php');
+        include_once PHPExcel_Settings::getChartRendererPath().'jpgraph_contour.php';
 
         $this->renderCartesianPlotArea('intint');
 
@@ -738,11 +738,11 @@ class PHPExcel_Chart_Renderer_jpgraph
 
     private function renderCombinationChart($groupCount, $dimensions, $outputDestination)
     {
-        require_once(PHPExcel_Settings::getChartRendererPath().'jpgraph_line.php');
-        require_once(PHPExcel_Settings::getChartRendererPath().'jpgraph_bar.php');
-        require_once(PHPExcel_Settings::getChartRendererPath().'jpgraph_scatter.php');
-        require_once(PHPExcel_Settings::getChartRendererPath().'jpgraph_regstat.php');
-        require_once(PHPExcel_Settings::getChartRendererPath().'jpgraph_line.php');
+        include_once PHPExcel_Settings::getChartRendererPath().'jpgraph_line.php';
+        include_once PHPExcel_Settings::getChartRendererPath().'jpgraph_bar.php';
+        include_once PHPExcel_Settings::getChartRendererPath().'jpgraph_scatter.php';
+        include_once PHPExcel_Settings::getChartRendererPath().'jpgraph_regstat.php';
+        include_once PHPExcel_Settings::getChartRendererPath().'jpgraph_line.php';
 
         $this->renderCartesianPlotArea();
 
@@ -750,33 +750,33 @@ class PHPExcel_Chart_Renderer_jpgraph
             $dimensions = null;
             $chartType = $this->chart->getPlotArea()->getPlotGroupByIndex($i)->getPlotType();
             switch ($chartType) {
-                case 'area3DChart':
-                    $dimensions = '3d';
-                    // no break
-                case 'areaChart':
-                    $this->renderPlotLine($i, true, true, $dimensions);
-                    break;
-                case 'bar3DChart':
-                    $dimensions = '3d';
-                    // no break
-                case 'barChart':
-                    $this->renderPlotBar($i, $dimensions);
-                    break;
-                case 'line3DChart':
-                    $dimensions = '3d';
-                    // no break
-                case 'lineChart':
-                    $this->renderPlotLine($i, false, true, $dimensions);
-                    break;
-                case 'scatterChart':
-                    $this->renderPlotScatter($i, false);
-                    break;
-                case 'bubbleChart':
-                    $this->renderPlotScatter($i, true);
-                    break;
-                default:
-                    $this->graph = null;
-                    return false;
+            case 'area3DChart':
+                $dimensions = '3d';
+                // no break
+            case 'areaChart':
+                $this->renderPlotLine($i, true, true, $dimensions);
+                break;
+            case 'bar3DChart':
+                $dimensions = '3d';
+                // no break
+            case 'barChart':
+                $this->renderPlotBar($i, $dimensions);
+                break;
+            case 'line3DChart':
+                $dimensions = '3d';
+                // no break
+            case 'lineChart':
+                $this->renderPlotLine($i, false, true, $dimensions);
+                break;
+            case 'scatterChart':
+                $this->renderPlotScatter($i, false);
+                break;
+            case 'bubbleChart':
+                $this->renderPlotScatter($i, true);
+                break;
+            default:
+                $this->graph = null;
+                return false;
             }
         }
 
@@ -813,57 +813,57 @@ class PHPExcel_Chart_Renderer_jpgraph
         }
 
         switch ($chartType) {
-            case 'area3DChart':
-                $dimensions = '3d';
-                // no break
-            case 'areaChart':
-                $this->renderAreaChart($groupCount, $dimensions);
-                break;
-            case 'bar3DChart':
-                $dimensions = '3d';
-                // no break
-            case 'barChart':
-                $this->renderBarChart($groupCount, $dimensions);
-                break;
-            case 'line3DChart':
-                $dimensions = '3d';
-                // no break
-            case 'lineChart':
-                $this->renderLineChart($groupCount, $dimensions);
-                break;
-            case 'pie3DChart':
-                $dimensions = '3d';
-                // no break
-            case 'pieChart':
-                $this->renderPieChart($groupCount, $dimensions, false, false);
-                break;
-            case 'doughnut3DChart':
-                $dimensions = '3d';
-                // no break
-            case 'doughnutChart':
-                $this->renderPieChart($groupCount, $dimensions, true, true);
-                break;
-            case 'scatterChart':
-                $this->renderScatterChart($groupCount);
-                break;
-            case 'bubbleChart':
-                $this->renderBubbleChart($groupCount);
-                break;
-            case 'radarChart':
-                $this->renderRadarChart($groupCount);
-                break;
-            case 'surface3DChart':
-                $dimensions = '3d';
-                // no break
-            case 'surfaceChart':
-                $this->renderContourChart($groupCount, $dimensions);
-                break;
-            case 'stockChart':
-                $this->renderStockChart($groupCount, $dimensions);
-                break;
-            default:
-                echo $chartType.' is not yet implemented<br />';
-                return false;
+        case 'area3DChart':
+            $dimensions = '3d';
+            // no break
+        case 'areaChart':
+            $this->renderAreaChart($groupCount, $dimensions);
+            break;
+        case 'bar3DChart':
+            $dimensions = '3d';
+            // no break
+        case 'barChart':
+            $this->renderBarChart($groupCount, $dimensions);
+            break;
+        case 'line3DChart':
+            $dimensions = '3d';
+            // no break
+        case 'lineChart':
+            $this->renderLineChart($groupCount, $dimensions);
+            break;
+        case 'pie3DChart':
+            $dimensions = '3d';
+            // no break
+        case 'pieChart':
+            $this->renderPieChart($groupCount, $dimensions, false, false);
+            break;
+        case 'doughnut3DChart':
+            $dimensions = '3d';
+            // no break
+        case 'doughnutChart':
+            $this->renderPieChart($groupCount, $dimensions, true, true);
+            break;
+        case 'scatterChart':
+            $this->renderScatterChart($groupCount);
+            break;
+        case 'bubbleChart':
+            $this->renderBubbleChart($groupCount);
+            break;
+        case 'radarChart':
+            $this->renderRadarChart($groupCount);
+            break;
+        case 'surface3DChart':
+            $dimensions = '3d';
+            // no break
+        case 'surfaceChart':
+            $this->renderContourChart($groupCount, $dimensions);
+            break;
+        case 'stockChart':
+            $this->renderStockChart($groupCount, $dimensions);
+            break;
+        default:
+            echo $chartType.' is not yet implemented<br />';
+            return false;
         }
         $this->renderLegend();
 

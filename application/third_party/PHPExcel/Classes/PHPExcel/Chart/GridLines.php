@@ -10,15 +10,14 @@
 class PHPExcel_Chart_GridLines extends PHPExcel_Chart_Properties
 {
 
-  /**
-   * Properties of Class:
-   * Object State (State for Minor Tick Mark) @var bool
-   * Line Properties @var  array of mixed
-   * Shadow Properties @var  array of mixed
-   * Glow Properties @var  array of mixed
-   * Soft Properties @var  array of mixed
-   *
-   */
+    /**
+     * Properties of Class:
+     * Object State (State for Minor Tick Mark) @var bool
+     * Line Properties @var  array of mixed
+     * Shadow Properties @var  array of mixed
+     * Glow Properties @var  array of mixed
+     * Soft Properties @var  array of mixed
+     */
 
     private $objectState = false;
 
@@ -108,7 +107,7 @@ class PHPExcel_Chart_GridLines extends PHPExcel_Chart_Properties
      * Set Line Color Properties
      *
      * @param string $value
-     * @param int $alpha
+     * @param int    $alpha
      * @param string $type
      */
 
@@ -125,7 +124,7 @@ class PHPExcel_Chart_GridLines extends PHPExcel_Chart_Properties
     /**
      * Set Line Color Properties
      *
-     * @param float $line_width
+     * @param float  $line_width
      * @param string $compound_type
      * @param string $dash_type
      * @param string $cap_type
@@ -184,7 +183,7 @@ class PHPExcel_Chart_GridLines extends PHPExcel_Chart_Properties
     /**
      * Get Line Style Property
      *
-     * @param    array|string $elements
+     * @param array|string $elements
      *
      * @return string
      */
@@ -197,19 +196,18 @@ class PHPExcel_Chart_GridLines extends PHPExcel_Chart_Properties
     /**
      * Set Glow Properties
      *
-     * @param    float $size
-     * @param    string $color_value
-     * @param    int $color_alpha
-     * @param    string $color_type
-     *
+     * @param float  $size
+     * @param string $color_value
+     * @param int    $color_alpha
+     * @param string $color_type
      */
 
     public function setGlowProperties($size, $color_value = null, $color_alpha = null, $color_type = null)
     {
         $this
-                ->activateObject()
-                ->setGlowSize($size)
-                ->setGlowColor($color_value, $color_alpha, $color_type);
+            ->activateObject()
+            ->setGlowSize($size)
+            ->setGlowColor($color_value, $color_alpha, $color_type);
     }
 
     /**
@@ -255,7 +253,7 @@ class PHPExcel_Chart_GridLines extends PHPExcel_Chart_Properties
      * Set Glow Color
      *
      * @param string $color
-     * @param int $alpha
+     * @param int    $alpha
      * @param string $type
      *
      * @return PHPExcel_Chart_GridLines
@@ -293,14 +291,13 @@ class PHPExcel_Chart_GridLines extends PHPExcel_Chart_Properties
     /**
      * Set Shadow Properties
      *
-     * @param int $sh_presets
+     * @param int    $sh_presets
      * @param string $sh_color_value
      * @param string $sh_color_type
-     * @param int $sh_color_alpha
+     * @param int    $sh_color_alpha
      * @param string $sh_blur
-     * @param int $sh_angle
-     * @param float $sh_distance
-     *
+     * @param int    $sh_angle
+     * @param float  $sh_distance
      */
 
     public function setShadowProperties($sh_presets, $sh_color_value = null, $sh_color_type = null, $sh_color_alpha = null, $sh_blur = null, $sh_angle = null, $sh_distance = null)
@@ -337,7 +334,7 @@ class PHPExcel_Chart_GridLines extends PHPExcel_Chart_Properties
      * Set Shadow Properties Values
      *
      * @param array $properties_map
-     * @param * $reference
+     * @param *     $reference
      *
      * @return PHPExcel_Chart_GridLines
      */
@@ -368,9 +365,9 @@ class PHPExcel_Chart_GridLines extends PHPExcel_Chart_Properties
     /**
      * Set Shadow Color
      *
-     * @param string $color
-     * @param int $alpha
-     * @param string $type
+     * @param  string $color
+     * @param  int    $alpha
+     * @param  string $type
      * @return PHPExcel_Chart_GridLines
      */
     private function setShadowColor($color, $alpha, $type)
@@ -407,7 +404,7 @@ class PHPExcel_Chart_GridLines extends PHPExcel_Chart_Properties
     /**
      * Set Shadow Angle
      *
-     * @param int $angle
+     * @param  int $angle
      * @return PHPExcel_Chart_GridLines
      */
 
@@ -423,7 +420,7 @@ class PHPExcel_Chart_GridLines extends PHPExcel_Chart_Properties
     /**
      * Set Shadow Distance
      *
-     * @param float $distance
+     * @param  float $distance
      * @return PHPExcel_Chart_GridLines
      */
     private function setShadowDistance($distance)
@@ -438,8 +435,8 @@ class PHPExcel_Chart_GridLines extends PHPExcel_Chart_Properties
     /**
      * Get Shadow Property
      *
-     * @param string $elements
-     * @param array $elements
+     * @param  string $elements
+     * @param  array  $elements
      * @return string
      */
     public function getShadowProperty($elements)

@@ -19,20 +19,20 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Shared
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Shared
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 
 
 /**
  * PHPExcel_Shared_TimeZone
  *
- * @category   PHPExcel
- * @package    PHPExcel_Shared
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @category  PHPExcel
+ * @package   PHPExcel_Shared
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
 class PHPExcel_Shared_TimeZone
 {
@@ -47,8 +47,8 @@ class PHPExcel_Shared_TimeZone
     /**
      * Validate a Timezone name
      *
-     * @param     string        $timezone            Time zone (e.g. 'Europe/London')
-     * @return     boolean                        Success or failure
+     * @param  string $timezone Time zone (e.g. 'Europe/London')
+     * @return boolean                        Success or failure
      */
     public static function _validateTimeZone($timezone)
     {
@@ -61,8 +61,8 @@ class PHPExcel_Shared_TimeZone
     /**
      * Set the Default Timezone used for date/time conversions
      *
-     * @param     string        $timezone            Time zone (e.g. 'Europe/London')
-     * @return     boolean                        Success or failure
+     * @param  string $timezone Time zone (e.g. 'Europe/London')
+     * @return boolean                        Success or failure
      */
     public static function setTimeZone($timezone)
     {
@@ -77,7 +77,7 @@ class PHPExcel_Shared_TimeZone
     /**
      * Return the Default Timezone used for date/time conversions
      *
-     * @return     string        Timezone (e.g. 'Europe/London')
+     * @return string        Timezone (e.g. 'Europe/London')
      */
     public static function getTimeZone()
     {
@@ -88,9 +88,9 @@ class PHPExcel_Shared_TimeZone
     /**
      *    Return the Timezone transition for the specified timezone and timestamp
      *
-     *    @param        DateTimeZone         $objTimezone    The timezone for finding the transitions
-     *    @param        integer                 $timestamp        PHP date/time value for finding the current transition
-     *    @return         array                The current transition details
+     * @param  DateTimeZone $objTimezone The timezone for finding the transitions
+     * @param  integer      $timestamp   PHP date/time value for finding the current transition
+     * @return array                The current transition details
      */
     private static function getTimezoneTransitions($objTimezone, $timestamp)
     {
@@ -113,10 +113,10 @@ class PHPExcel_Shared_TimeZone
      *    Return the Timezone offset used for date/time conversions to/from UST
      *    This requires both the timezone and the calculated date/time to allow for local DST
      *
-     *    @param        string                 $timezone        The timezone for finding the adjustment to UST
-     *    @param        integer                 $timestamp        PHP date/time value
-     *    @return         integer                Number of seconds for timezone adjustment
-     *    @throws        PHPExcel_Exception
+     * @param  string  $timezone  The timezone for finding the adjustment to UST
+     * @param  integer $timestamp PHP date/time value
+     * @return integer                Number of seconds for timezone adjustment
+     * @throws PHPExcel_Exception
      */
     public static function getTimeZoneAdjustment($timezone, $timestamp)
     {

@@ -19,11 +19,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Style
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Style
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements PHPExcel_IComparable
 {
@@ -98,12 +98,12 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
     /**
      * Create a new PHPExcel_Style_NumberFormat
      *
-     * @param    boolean    $isSupervisor    Flag indicating if this is a supervisor or not
-     *                                    Leave this value at default unless you understand exactly what
-     *                                        its ramifications are
-     * @param    boolean    $isConditional    Flag indicating if this is a conditional style or not
-     *                                    Leave this value at default unless you understand exactly what
-     *                                        its ramifications are
+     * @param boolean $isSupervisor  Flag indicating if this is a supervisor or not
+     *                               Leave this value at default unless you
+     *                               understand exactly what its ramifications are
+     * @param boolean $isConditional Flag indicating if this is a conditional style or not
+     *                               Leave this value at default unless you understand
+     *                               exactly what its ramifications are
      */
     public function __construct($isSupervisor = false, $isConditional = false)
     {
@@ -130,7 +130,7 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
     /**
      * Build style array from subcomponents
      *
-     * @param array $array
+     * @param  array $array
      * @return array
      */
     public function getStyleArray($array)
@@ -149,8 +149,8 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
      * );
      * </code>
      *
-     * @param    array    $pStyles    Array containing style information
-     * @throws    PHPExcel_Exception
+     * @param  array $pStyles Array containing style information
+     * @throws PHPExcel_Exception
      * @return PHPExcel_Style_NumberFormat
      */
     public function applyFromArray($pStyles = null)
@@ -188,7 +188,7 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
     /**
      * Set Format Code
      *
-     * @param string $pValue
+     * @param  string $pValue
      * @return PHPExcel_Style_NumberFormat
      */
     public function setFormatCode($pValue = PHPExcel_Style_NumberFormat::FORMAT_GENERAL)
@@ -222,7 +222,7 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
     /**
      * Set Built-In Format Code
      *
-     * @param int $pValue
+     * @param  int $pValue
      * @return PHPExcel_Style_NumberFormat
      */
     public function setBuiltInFormatCode($pValue = 0)
@@ -328,8 +328,8 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
     /**
      * Get built-in format code
      *
-     * @param    int        $pIndex
-     * @return    string
+     * @param  int $pIndex
+     * @return string
      */
     public static function builtInFormatCode($pIndex)
     {
@@ -349,8 +349,8 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
     /**
      * Get built-in format code index
      *
-     * @param    string        $formatCode
-     * @return    int|boolean
+     * @param  string $formatCode
+     * @return int|boolean
      */
     public static function builtInFormatCodeIndex($formatCode)
     {
@@ -444,11 +444,13 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
             'h'  => 'g'
         );
 
-    private static function setLowercaseCallback($matches) {
+    private static function setLowercaseCallback($matches)
+    {
         return mb_strtolower($matches[0]);
     }
 
-    private static function escapeQuotesCallback($matches) {
+    private static function escapeQuotesCallback($matches)
+    {
         return '\\' . implode('\\', str_split($matches[1]));
     }
 
@@ -571,9 +573,9 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
     /**
      * Convert a value in a pre-defined format to a PHP string
      *
-     * @param mixed    $value        Value to format
-     * @param string    $format        Format code
-     * @param array        $callBack    Callback function for additional formatting of string
+     * @param  mixed  $value    Value to format
+     * @param  string $format   Format code
+     * @param  array  $callBack Callback function for additional formatting of string
      * @return string    Formatted string
      */
     public static function toFormattedString($value = '0', $format = PHPExcel_Style_NumberFormat::FORMAT_GENERAL, $callBack = null)
@@ -603,29 +605,29 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
         //   3 sections:  [POSITIVE/TEXT] [NEGATIVE] [ZERO]
         //   4 sections:  [POSITIVE] [NEGATIVE] [ZERO] [TEXT]
         switch (count($sections)) {
-            case 1:
-                $format = $sections[0];
-                break;
-            case 2:
-                $format = ($value >= 0) ? $sections[0] : $sections[1];
-                $value = abs($value); // Use the absolute value
-                break;
-            case 3:
-                $format = ($value > 0) ?
-                    $sections[0] : ( ($value < 0) ?
-                        $sections[1] : $sections[2]);
-                $value = abs($value); // Use the absolute value
-                break;
-            case 4:
-                $format = ($value > 0) ?
-                    $sections[0] : ( ($value < 0) ?
-                        $sections[1] : $sections[2]);
-                $value = abs($value); // Use the absolute value
-                break;
-            default:
-                // something is wrong, just use first section
-                $format = $sections[0];
-                break;
+        case 1:
+            $format = $sections[0];
+            break;
+        case 2:
+            $format = ($value >= 0) ? $sections[0] : $sections[1];
+            $value = abs($value); // Use the absolute value
+            break;
+        case 3:
+            $format = ($value > 0) ?
+                $sections[0] : ( ($value < 0) ?
+                    $sections[1] : $sections[2]);
+            $value = abs($value); // Use the absolute value
+            break;
+        case 4:
+            $format = ($value > 0) ?
+                $sections[0] : ( ($value < 0) ?
+                    $sections[1] : $sections[2]);
+            $value = abs($value); // Use the absolute value
+            break;
+        default:
+            // something is wrong, just use first section
+            $format = $sections[0];
+            break;
         }
 
         // In Excel formats, "_" is used to add spacing,

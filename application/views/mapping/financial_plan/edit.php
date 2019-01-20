@@ -24,16 +24,16 @@
             <div class="panel panel-default" id="">
                 <div class="panel-heading">
                   <h5>Financial Plan</h5>
-                  <?php if (isset($error_msg)) { ?>
-						<h5>
-							<b style="color: red;"><?php echo $error_msg ?> </b>
-						</h5>
-						<?php } ?>
-						<?php if (isset($success_msg)) { ?>
-						<h5>
-							<b style="color: green;"><?php echo $success_msg ?> </b>
-						</h5>
-						<?php } ?>
+                    <?php if (isset($error_msg)) { ?>
+                        <h5>
+                            <b style="color: red;"><?php echo $error_msg ?> </b>
+                        </h5>
+                    <?php } ?>
+        <?php if (isset($success_msg)) { ?>
+                        <h5>
+                            <b style="color: green;"><?php echo $success_msg ?> </b>
+                        </h5>
+        <?php } ?>
                 </div>
                 <?php $year = ( date('m') > 6) ? date('y') + 1 : date('y'); ?>
                 <div class="panel-body">
@@ -238,8 +238,8 @@
                               </tr>
                             </thead>
                             <tbody>
-                              <?php if(isset($financial_plan_lists)) { ?>
-                              <?php foreach($financial_plan_lists as $financial_plan_list): ?>
+                                <?php if(isset($financial_plan_lists)) { ?>
+                                    <?php foreach($financial_plan_lists as $financial_plan_list): ?>
                                 <tr>
                                   <td style="width:200px;"><?php echo $financial_plan_list['project_phase'] ?></td>
                                   <td><?php echo $financial_plan_list['contract'] ?></td>
@@ -258,15 +258,15 @@
                                     <button type="button" class="btn btn-info btn-sm" data-toggle="tooltip" title="History" onclick="openhistory(<?php echo $financial_plan_list['financial_id'] ?>)"><i class="fa fa-history" aria-hidden="true"></i></button>
                                   </td>
                                 </tr>
-                              <?php endforeach; ?>
-                              <?php } ?>
+                                    <?php endforeach; ?>
+                                <?php } ?>
                             </tbody>
                             <tfoot>
                               <tr>
                                 <td colspan="3"><b> Total</b></td>
                                 <!-- <td><b>$ <php echo number_format(preg_replace('/\s+/', '', $curr_base) )?></b></td> -->
-                                <td><b>$ <?php echo number_format(preg_replace('/\s+/', '', $prop_base) )?></b></td>
-                                <td><b>$ <?php echo number_format(preg_replace('/\s+/', '', $eac) )?></b></td>
+                                <td><b>$ <?php echo number_format(preg_replace('/\s+/', '', $prop_base))?></b></td>
+                                <td><b>$ <?php echo number_format(preg_replace('/\s+/', '', $eac))?></b></td>
                                 <td colspan="4"></td>
                               </tr>
                             </tfoot>
@@ -535,9 +535,11 @@ function changeNumber(i) {
     $('#dataTable_exp_wrapper').find(".row").eq(0).find(".col-sm-6").removeClass("col-sm-6").addClass("col-sm-2");
 
     var dt_filter = '<div class="col-md-8" style="padding:0;"><form class="form-horizontal" action="" method="post" id="formfilters">'+
-            '<div class="col-md-4"><div class="row" style="margin:0;"> <label class="col-sm-6 " style="font-weight:500;">Project Phase:</label> <div class="col-sm-6" style="padding:0;"> <select class="form-control input-sm" name="phasefilter" id="phasefilter" style="width:100%;" onchange="populateContractfilter(this)"><option value="">--select--</option><?php foreach($phases as $phase): ?><option value="<?php echo $phase['phase_id'] ?>"><?php echo $phase['phase_name'] ?></option><?php endforeach; ?></select></div></div></div>'+
+            '<div class="col-md-4"><div class="row" style="margin:0;"> <label class="col-sm-6 " style="font-weight:500;">Project Phase:</label> <div class="col-sm-6" style="padding:0;"> <select class="form-control input-sm" name="phasefilter" id="phasefilter" style="width:100%;" onchange="populateContractfilter(this)"><option value="">--select--</option><?php foreach($phases as $phase): ?><option value="<?php echo $phase['phase_id'] ?>"><?php echo $phase['phase_name'] ?></option><?php 
+           endforeach; ?></select></div></div></div>'+
             '<div class="col-md-3" style="padding:0;"><div class="row" style="margin:0;"> <label class="col-sm-5 " style="font-weight:500;">Contract:</label> <div class="col-sm-7" style="padding:0;"><select class="form-control contract" name="contractfilter" id="contractfilter" disabled="true" style="width:100%;" ><option>--None--</option></select></div></div></div>'+
-            '<div class="col-md-3" style="padding:0;"><div class="row" style="margin:0;"> <label class="col-sm-7 " style="font-weight:500;">Fund Source:</label> <div class="col-sm-5" style="padding:0;"> <select class="form-control input-sm" name="fundfilter" id="fundfilter" style="width:100%;"><option value="">--select--</option><?php foreach($funds as $fund): ?><option value="<?php echo $fund['fund_id'] ?>"><?php echo $fund['fund_name'] ?></option><?php endforeach; ?></select> </div></div></div>'+
+            '<div class="col-md-3" style="padding:0;"><div class="row" style="margin:0;"> <label class="col-sm-7 " style="font-weight:500;">Fund Source:</label> <div class="col-sm-5" style="padding:0;"> <select class="form-control input-sm" name="fundfilter" id="fundfilter" style="width:100%;"><option value="">--select--</option><?php foreach($funds as $fund): ?><option value="<?php echo $fund['fund_id'] ?>"><?php echo $fund['fund_name'] ?></option><?php 
+           endforeach; ?></select> </div></div></div>'+
             '<div class="col-md-2"><input type="submit" name="postFilter" class="btn btn-sm btn-success" value="Apply"/></form></div>'+
 
               '</div>';

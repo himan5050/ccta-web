@@ -18,24 +18,28 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel
- * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel
+ * @copyright Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 
-/** Error reporting */
+/**
+ * Error reporting 
+ */
 error_reporting(E_ALL);
-ini_set('display_errors', TRUE);
-ini_set('display_startup_errors', TRUE);
+ini_set('display_errors', true);
+ini_set('display_startup_errors', true);
 date_default_timezone_set('Europe/London');
 
-define('EOL',(PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
+define('EOL', (PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
 
 date_default_timezone_set('Europe/London');
 
-/** Include PHPExcel */
+/**
+ * Include PHPExcel 
+*/
 require_once dirname(__FILE__) . '/../Classes/PHPExcel.php';
 
 
@@ -46,9 +50,9 @@ $objPHPExcel = new PHPExcel();
 // Add some data, we will use some formulas here
 echo date('H:i:s') , " Add some data and formulas" , EOL;
 $objPHPExcel->getActiveSheet()->setCellValue('A1', '=B1')
-                              ->setCellValue('A2', '=B2+1')
-                              ->setCellValue('B1', '=A1+1')
-                              ->setCellValue('B2', '=A2');
+    ->setCellValue('A2', '=B2+1')
+    ->setCellValue('B1', '=A1+1')
+    ->setCellValue('B2', '=A2');
 
 PHPExcel_Calculation::getInstance($objPHPExcel)->cyclicFormulaCount = 100;
 
@@ -56,8 +60,9 @@ PHPExcel_Calculation::getInstance($objPHPExcel)->cyclicFormulaCount = 100;
 echo date('H:i:s') , " Calculated data" , EOL;
 for($row = 1; $row <= 2; ++$row) {
     for ($col = 'A'; $col != 'C'; ++$col) {
-        if ((!is_null($formula = $objPHPExcel->getActiveSheet()->getCell($col.$row)->getValue())) &&
-			($formula[0] == '=')) {
+        if ((!is_null($formula = $objPHPExcel->getActiveSheet()->getCell($col.$row)->getValue())) 
+            && ($formula[0] == '=')
+        ) {
             echo 'Value of ' , $col , $row , ' [' , $formula , ']: ' ,
                                $objPHPExcel->getActiveSheet()->getCell($col.$row)->getCalculatedValue() . EOL;
         }
@@ -84,7 +89,7 @@ $callEndTime = microtime(true);
 $callTime = $callEndTime - $callStartTime;
 
 echo date('H:i:s') , " File written to " , str_replace('.php', '.xlsx', pathinfo(__FILE__, PATHINFO_BASENAME)) , EOL;
-echo 'Call time to write Workbook was ' , sprintf('%.4f',$callTime) , " seconds" , EOL;
+echo 'Call time to write Workbook was ' , sprintf('%.4f', $callTime) , " seconds" , EOL;
 // Echo memory usage
 echo date('H:i:s') , ' Current memory usage: ' , (memory_get_usage(true) / 1024 / 1024) , " MB" , EOL;
 

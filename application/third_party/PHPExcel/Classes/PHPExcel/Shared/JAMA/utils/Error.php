@@ -1,10 +1,10 @@
 <?php
 /**
- *    @package JAMA
+ * @package JAMA
  *
  *    Error handling
- *    @author Michael Bommarito
- *    @version 01292005
+ * @author  Michael Bommarito
+ * @version 01292005
  */
 
 //Language constant
@@ -65,7 +65,8 @@ $error['EN'][ROW_LENGTH_EXCEPTION] = "All rows must have the same length.";
 
 /**
  *    Custom error handler
- *    @param int $num Error number
+ *
+ * @param int $num Error number
  */
 function JAMAError($errorNumber = null)
 {

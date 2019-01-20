@@ -19,11 +19,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_RichText
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_RichText
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_RichText implements PHPExcel_IComparable
 {
@@ -37,7 +37,7 @@ class PHPExcel_RichText implements PHPExcel_IComparable
     /**
      * Create a new PHPExcel_RichText instance
      *
-     * @param PHPExcel_Cell $pCell
+     * @param  PHPExcel_Cell $pCell
      * @throws PHPExcel_Exception
      */
     public function __construct(PHPExcel_Cell $pCell = null)
@@ -62,7 +62,7 @@ class PHPExcel_RichText implements PHPExcel_IComparable
     /**
      * Add text
      *
-     * @param PHPExcel_RichText_ITextElement $pText Rich text element
+     * @param  PHPExcel_RichText_ITextElement $pText Rich text element
      * @throws PHPExcel_Exception
      * @return PHPExcel_RichText
      */
@@ -75,7 +75,7 @@ class PHPExcel_RichText implements PHPExcel_IComparable
     /**
      * Create text
      *
-     * @param string $pText Text
+     * @param  string $pText Text
      * @return PHPExcel_RichText_TextElement
      * @throws PHPExcel_Exception
      */
@@ -89,7 +89,7 @@ class PHPExcel_RichText implements PHPExcel_IComparable
     /**
      * Create text run
      *
-     * @param string $pText Text
+     * @param  string $pText Text
      * @return PHPExcel_RichText_Run
      * @throws PHPExcel_Exception
      */
@@ -142,7 +142,7 @@ class PHPExcel_RichText implements PHPExcel_IComparable
     /**
      * Set Rich Text elements
      *
-     * @param PHPExcel_RichText_ITextElement[] $pElements Array of elements
+     * @param  PHPExcel_RichText_ITextElement[] $pElements Array of elements
      * @throws PHPExcel_Exception
      * @return PHPExcel_RichText
      */

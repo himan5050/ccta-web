@@ -18,46 +18,49 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 
 error_reporting(E_ALL);
-ini_set('display_errors', TRUE);
-ini_set('display_startup_errors', TRUE);
+ini_set('display_errors', true);
+ini_set('display_startup_errors', true);
 
-define('EOL',(PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
+define('EOL', (PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
 
 date_default_timezone_set('Europe/London');
 
-/** PHPExcel_IOFactory */
+/**
+ * PHPExcel_IOFactory 
+*/
 require_once dirname(__FILE__) . '/../Classes/PHPExcel/IOFactory.php';
 
 
 // Check prerequisites
 if (!file_exists("06largescale.xlsx")) {
-	exit("Please run 06largescale.php first.\n");
+    exit("Please run 06largescale.php first.\n");
 }
 
 class MyReadFilter implements PHPExcel_Reader_IReadFilter
 {
-	public function readCell($column, $row, $worksheetName = '') {
-		// Read title row and rows 20 - 30
-		if ($row == 1 || ($row >= 20 && $row <= 30)) {
-			return true;
-		}
+    public function readCell($column, $row, $worksheetName = '')
+    {
+        // Read title row and rows 20 - 30
+        if ($row == 1 || ($row >= 20 && $row <= 30)) {
+            return true;
+        }
 
-		return false;
-	}
+        return false;
+    }
 }
 
 
 echo date('H:i:s') , " Load from Excel2007 file" , EOL;
 $objReader = PHPExcel_IOFactory::createReader('Excel2007');
-$objReader->setReadFilter( new MyReadFilter() );
+$objReader->setReadFilter(new MyReadFilter());
 $objPHPExcel = $objReader->load("06largescale.xlsx");
 
 echo date('H:i:s') , " Remove unnecessary rows" , EOL;

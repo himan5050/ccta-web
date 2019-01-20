@@ -16,7 +16,7 @@
                                 <a href="<?php echo site_url('report3'); ?>" id="">Report 3</a>
                             </span>
                             <span class="project_name">
-                              <?php echo $project_name; ?>
+                                <?php echo $project_name; ?>
                             </span>
                         </h4>
                     </div>
@@ -24,16 +24,16 @@
             <div class="panel panel-default" id="">
                 <div class="panel-heading">
                   <h5>Phase to Contract Mapping</h5>
-                  <?php if (isset($error_msg)) { ?>
-						<h5>
-							<b style="color: red;"><?php echo $error_msg ?> </b>
-						</h5>
-						<?php } ?>
-						<?php if (isset($success_msg)) { ?>
-						<h5>
-							<b style="color: green;"><?php echo $success_msg ?> </b>
-						</h5>
-						<?php } ?>
+                    <?php if (isset($error_msg)) { ?>
+                        <h5>
+                            <b style="color: red;"><?php echo $error_msg ?> </b>
+                        </h5>
+                    <?php } ?>
+        <?php if (isset($success_msg)) { ?>
+                        <h5>
+                            <b style="color: green;"><?php echo $success_msg ?> </b>
+                        </h5>
+        <?php } ?>
               </div>
                 <div class="panel-body">
                   <div class="row">
@@ -46,9 +46,9 @@
                               <div class="col-sm-12">
                                 <select class="form-control phase" id="phase0" name="phase_id[]" required="required" onchange="check1(this)">
                                     <option value="">--  Please Select  --</option>
-                                  <?php foreach($phases as $phase): ?>
+                                    <?php foreach($phases as $phase): ?>
                                     <option value="<?php echo $phase['phase_id'] ?>" > <?php echo $phase['phase_name'] ?> </option>
-                                  <?php endforeach; ?>
+                                    <?php endforeach; ?>
                                   </select>
                               </div>
                             </div>
@@ -138,42 +138,44 @@
                           </tr>
                         </thead>
                           <tbody>
-                            <?php if(isset($project_phase_contract_lists)){ ?>
-                            <?php foreach($project_phase_contract_lists as $project_phase_contract_list): ?>
+                            <?php if(isset($project_phase_contract_lists)) { ?>
+                                <?php foreach($project_phase_contract_lists as $project_phase_contract_list): ?>
                             <tr>
                               <td><?php echo $project_phase_contract_list['phase_id'] ?></td>
-                              <td><?php echo $project_phase_contract_list['contract'] ?><b><sup style="color:red; font-size: 14px;"><?php if (($project_phase_contract_list['status'] == 'Expiring') || ($project_phase_contract_list['status'] == 'Expired')) { echo $project_phase_contract_list['status']; } ?></sup></b></td>
+                              <td><?php echo $project_phase_contract_list['contract'] ?><b><sup style="color:red; font-size: 14px;"><?php if (($project_phase_contract_list['status'] == 'Expiring') || ($project_phase_contract_list['status'] == 'Expired')) { echo $project_phase_contract_list['status']; 
+} ?></sup></b></td>
                               <td style="width:200px;">$ <?php echo number_format(preg_replace('/\s+/', '', $project_phase_contract_list['amount']), 0) ?></td>
                               <td><?php echo $project_phase_contract_list['description'] ?></td>
                               <td><a href="<?php echo base_url(); ?>uploads/<?php echo $project_phase_contract_list['attachment']; ?>" target="_blank"> <?php echo $project_phase_contract_list['attachment'] ?></a></td>
                               <td>
-                                <?php if ($project_phase_contract_list['status'] == 'Closed') { ?>
-                                  <?php echo 'Closed'; ?>
-                                <?php } else { ?>
-                                  <?php echo $project_phase_contract_list['start_date'] ?>
-                                <?php } ?>
+                                    <?php if ($project_phase_contract_list['status'] == 'Closed') { ?>
+                                        <?php echo 'Closed'; ?>
+                                    <?php } else { ?>
+                                        <?php echo $project_phase_contract_list['start_date'] ?>
+                                    <?php } ?>
                               </td>
                               <td>
-                                <?php if ($project_phase_contract_list['status'] == 'Closed') { ?>
-                                  <?php echo 'Closed'; ?>
-                                <?php } else { ?>
-                                  <?php echo $project_phase_contract_list['end_date'] ?>
-                                <?php } ?>
+                                    <?php if ($project_phase_contract_list['status'] == 'Closed') { ?>
+                                        <?php echo 'Closed'; ?>
+                                    <?php } else { ?>
+                                        <?php echo $project_phase_contract_list['end_date'] ?>
+                                    <?php } ?>
                               </td>
                               <td style="width:200px;">
-                                <?php if ($project_phase_contract_list['status'] == 'Closed') { ?>
+                                    <?php if ($project_phase_contract_list['status'] == 'Closed') { ?>
                                   <a href="<?php echo site_url('project_phase_contract/edit/'.$project_phase_contract_list['project_phase_contract_id']); ?>" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Renew"><i class="fa fa-check" aria-hidden="true"></i></a>
-                                <?php } else { ?>
+                                    <?php } else { ?>
                                   <a href="<?php echo site_url('project_phase_contract/disable/'.$project_phase_contract_list['project_phase_contract_id']); ?>" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Close"><i class="fa fa-close" aria-hidden="true"></i></a>
-                                <?php } ?>
+                                    <?php } ?>
                                 <a href="<?php echo site_url('project_phase_contract/edit/'.$project_phase_contract_list['project_phase_contract_id']); ?>" class="btn btn-warning btn-sm" data-toggle="tooltip" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                 <a href="<?php echo site_url('project_phase_contract/delete/'.$project_phase_contract_list['project_phase_contract_id']); ?>" class="btn btn-danger btn-sm" data-toggle="tooltip" title="Delete"><i class="fa fa-trash" aria-hidden="true" onclick="return confirm('Are you sure to delete?')"></i></a>
                                 <button type="button" class="btn btn-info btn-sm details
                                 -control" data-toggle="tooltip" title="History" onclick="openhistory(<?php echo $project_phase_contract_list['project_phase_contract_id'] ?>)"><i class="fa fa-history" aria-hidden="true"></i></button>
                               </td>
                             </tr>
-                            <?php endforeach; ?>
-                            <?php } else {} ?>
+                                <?php endforeach; ?>
+                            <?php } else {
+                            } ?>
                           </tbody>
                           <tfoot>
                             <tr>
@@ -184,7 +186,7 @@
                               <td></td>
                               <td></td>
                             </tr>
-                            <?php if (is_numeric($remaining_amount)): ?>
+                            <?php if (is_numeric($remaining_amount)) : ?>
                             <tr>
                               <td></td>
                               <td><b>Remaining amount</b></td>
@@ -193,7 +195,7 @@
                               <td></td>
                               <td></td>
                             </tr>
-                          <?php endif; ?>
+                            <?php endif; ?>
                           </tfoot>
                       </table>
                     </div>
@@ -258,7 +260,8 @@
     $('#dataTable_exp_0_wrapper').find(".row").eq(0).find(".col-sm-6").removeClass("col-sm-6").addClass("col-sm-2");
 
     var dt_filter = '<div class="col-md-8" style="padding:0;"><form class="form-horizontal" action="" method="post" id="formfilters">'+
-            '<div class="col-md-4"><div class="row" style="margin:0;"> <label class="col-sm-6 " style="font-weight:500;">Project Phase:</label> <div class="col-sm-6" style="padding:0;"> <select class="form-control input-sm" name="phasefilter" id="phasefilter" style="width:100%;" onchange="populateContractfilter(this)"><option value="">--select--</option><?php foreach($phases as $phase): ?><option value="<?php echo $phase['phase_id'] ?>"><?php echo $phase['phase_name'] ?></option><?php endforeach; ?></select></div></div></div>'+
+            '<div class="col-md-4"><div class="row" style="margin:0;"> <label class="col-sm-6 " style="font-weight:500;">Project Phase:</label> <div class="col-sm-6" style="padding:0;"> <select class="form-control input-sm" name="phasefilter" id="phasefilter" style="width:100%;" onchange="populateContractfilter(this)"><option value="">--select--</option><?php foreach($phases as $phase): ?><option value="<?php echo $phase['phase_id'] ?>"><?php echo $phase['phase_name'] ?></option><?php 
+           endforeach; ?></select></div></div></div>'+
             '<div class="col-md-3" style="padding:0;"><div class="row" style="margin:0;"> <label class="col-sm-5 " style="font-weight:500;">Contract:</label> <div class="col-sm-7" style="padding:0;"><select class="form-control input-sm" name="contractfilter" id="contractfilter" disabled="true" style="width:100%;" ><option>--None--</option></select></div></div></div>'+
             '<div class="col-md-3" style="padding:0;"><div class="row" style="margin:0;"> <label class="col-sm-5 " style="font-weight:500;">Amount:</label> <div class="col-sm-7" style="padding:0;"><input type="text" class="form-control amount input-sm" id="amountfilter" placeholder="" name="amountfilter" size="15" onblur="check(this)"></div></div></div>'+
             '<div class="col-md-2"><input type="submit" name="postFilter" class="btn btn-sm btn-success" value="Apply"/></form></div>'+
@@ -356,7 +359,8 @@
     var cnt= $("#add").val();
 
       var htmldata = '<div class="col-md-12" id="myDiv'+cnt+'" style="padding:0;">'
-           +'<div class="col-md-2"><div class="form-group"><div class="col-sm-12"><select class="form-control phase" id="phase'+cnt+'" name="phase_id[]" required="required" onchange="check1(this)"><option value="">--  Please Select  --</option><?php foreach($phases as $phase): ?><option value="<?php echo $phase['phase_id'] ?>" ><?php echo $phase['phase_name'] ?></option><?php endforeach; ?></select></select></div></div></div><div class="col-md-1"><div class="form-group"><div class="col-sm-12"><input type="text" class="form-control contract" name="contract[]" id="contract'+cnt+'" placeholder="" onblur="check(this)" required="required"></div></div></div><div class="col-md-1"><div class="form-group"><div class="col-sm-12"><input type="text" class="form-control amount" name="amount[]" id="amount'+cnt+'" placeholder="" onblur="check(this)" required="required"></div></div></div><div class="col-md-2"><div class="form-group"><div class="col-sm-12"><textarea class="form-control" id="" name="description[]" placeholder=" "></textarea></div></div></div><div class="col-md-2"><div class="form-group"><div class="col-sm-12"><input type="text" name="start_date[]" class="form-control" id="datetimepicker6" required="required" /></div></div></div><div class="col-md-2"><div class="form-group"><div class="col-sm-12"><input type="text" name="end_date[]" class="form-control" id="datetimepicker5" required="required" /></div></div></div><div class="col-md-1"><div class="form-group"><div class="col-sm-12"><input type="file" name="attachment[]" class="form-control" id="" placeholder=""></div></div></div>'
+           +'<div class="col-md-2"><div class="form-group"><div class="col-sm-12"><select class="form-control phase" id="phase'+cnt+'" name="phase_id[]" required="required" onchange="check1(this)"><option value="">--  Please Select  --</option><?php foreach($phases as $phase): ?><option value="<?php echo $phase['phase_id'] ?>" ><?php echo $phase['phase_name'] ?></option><?php 
+          endforeach; ?></select></select></div></div></div><div class="col-md-1"><div class="form-group"><div class="col-sm-12"><input type="text" class="form-control contract" name="contract[]" id="contract'+cnt+'" placeholder="" onblur="check(this)" required="required"></div></div></div><div class="col-md-1"><div class="form-group"><div class="col-sm-12"><input type="text" class="form-control amount" name="amount[]" id="amount'+cnt+'" placeholder="" onblur="check(this)" required="required"></div></div></div><div class="col-md-2"><div class="form-group"><div class="col-sm-12"><textarea class="form-control" id="" name="description[]" placeholder=" "></textarea></div></div></div><div class="col-md-2"><div class="form-group"><div class="col-sm-12"><input type="text" name="start_date[]" class="form-control" id="datetimepicker6" required="required" /></div></div></div><div class="col-md-2"><div class="form-group"><div class="col-sm-12"><input type="text" name="end_date[]" class="form-control" id="datetimepicker5" required="required" /></div></div></div><div class="col-md-1"><div class="form-group"><div class="col-sm-12"><input type="file" name="attachment[]" class="form-control" id="" placeholder=""></div></div></div>'
            +'<div class="col-md-1" id="del'+cnt+'">'
           +'<button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip" title="Delete" '
           +' onclick="deleteRow('+cnt+')" ><i class="fa fa-minus" aria-hidden="true"></i>'

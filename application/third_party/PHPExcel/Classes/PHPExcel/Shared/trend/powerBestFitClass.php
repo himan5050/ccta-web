@@ -21,11 +21,11 @@ require_once PHPEXCEL_ROOT . 'PHPExcel/Shared/trend/bestFitClass.php';
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Shared_Trend
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Shared_Trend
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_Power_Best_Fit extends PHPExcel_Best_Fit
 {
@@ -33,7 +33,7 @@ class PHPExcel_Power_Best_Fit extends PHPExcel_Best_Fit
      * Algorithm type to use for best-fit
      * (Name of this trend class)
      *
-     * @var    string
+     * @var string
      **/
     protected $bestFitType        = 'power';
 
@@ -41,8 +41,8 @@ class PHPExcel_Power_Best_Fit extends PHPExcel_Best_Fit
     /**
      * Return the Y-Value for a specified value of X
      *
-     * @param     float        $xValue            X-Value
-     * @return     float                        Y-Value
+     * @param  float $xValue X-Value
+     * @return float                        Y-Value
      **/
     public function getValueOfYForX($xValue)
     {
@@ -53,8 +53,8 @@ class PHPExcel_Power_Best_Fit extends PHPExcel_Best_Fit
     /**
      * Return the X-Value for a specified value of Y
      *
-     * @param     float        $yValue            Y-Value
-     * @return     float                        X-Value
+     * @param  float $yValue Y-Value
+     * @return float                        X-Value
      **/
     public function getValueOfXForY($yValue)
     {
@@ -65,8 +65,8 @@ class PHPExcel_Power_Best_Fit extends PHPExcel_Best_Fit
     /**
      * Return the Equation of the best-fit line
      *
-     * @param     int        $dp        Number of places of decimal precision to display
-     * @return     string
+     * @param  int $dp Number of places of decimal precision to display
+     * @return string
      **/
     public function getEquation($dp = 0)
     {
@@ -80,8 +80,8 @@ class PHPExcel_Power_Best_Fit extends PHPExcel_Best_Fit
     /**
      * Return the Value of X where it intersects Y = 0
      *
-     * @param     int        $dp        Number of places of decimal precision to display
-     * @return     string
+     * @param  int $dp Number of places of decimal precision to display
+     * @return string
      **/
     public function getIntersect($dp = 0)
     {
@@ -95,9 +95,9 @@ class PHPExcel_Power_Best_Fit extends PHPExcel_Best_Fit
     /**
      * Execute the regression and calculate the goodness of fit for a set of X and Y data values
      *
-     * @param     float[]    $yValues    The set of Y-values for this regression
-     * @param     float[]    $xValues    The set of X-values for this regression
-     * @param     boolean    $const
+     * @param float[] $yValues The set of Y-values for this regression
+     * @param float[] $xValues The set of X-values for this regression
+     * @param boolean $const
      */
     private function powerRegression($yValues, $xValues, $const)
     {
@@ -125,9 +125,9 @@ class PHPExcel_Power_Best_Fit extends PHPExcel_Best_Fit
     /**
      * Define the regression and calculate the goodness of fit for a set of X and Y data values
      *
-     * @param     float[]    $yValues    The set of Y-values for this regression
-     * @param     float[]    $xValues    The set of X-values for this regression
-     * @param     boolean    $const
+     * @param float[] $yValues The set of Y-values for this regression
+     * @param float[] $xValues The set of X-values for this regression
+     * @param boolean $const
      */
     public function __construct($yValues, $xValues = array(), $const = true)
     {

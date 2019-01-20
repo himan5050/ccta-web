@@ -19,25 +19,25 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Calculation
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Calculation
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_CalcEngine_CyclicReferenceStack
 {
     /**
      *  The call stack for calculated cells
      *
-     *  @var mixed[]
+     * @var mixed[]
      */
     private $stack = array();
 
     /**
      * Return the number of entries on the stack
      *
-     * @return  integer
+     * @return integer
      */
     public function count()
     {
@@ -47,7 +47,7 @@ class PHPExcel_CalcEngine_CyclicReferenceStack
     /**
      * Push a new entry onto the stack
      *
-     * @param  mixed  $value
+     * @param mixed $value
      */
     public function push($value)
     {
@@ -57,7 +57,7 @@ class PHPExcel_CalcEngine_CyclicReferenceStack
     /**
      * Pop the last entry from the stack
      *
-     * @return  mixed
+     * @return mixed
      */
     public function pop()
     {
@@ -67,7 +67,7 @@ class PHPExcel_CalcEngine_CyclicReferenceStack
     /**
      * Test to see if a specified entry exists on the stack
      *
-     * @param  mixed  $value  The value to test
+     * @param mixed $value The value to test
      */
     public function onStack($value)
     {
@@ -85,7 +85,7 @@ class PHPExcel_CalcEngine_CyclicReferenceStack
     /**
      * Return an array of all entries on the stack
      *
-     * @return  mixed[]
+     * @return mixed[]
      */
     public function showStack()
     {

@@ -1,8 +1,11 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (! defined('BASEPATH')) { exit('No direct script access allowed');
+}
 
-class Phase extends CI_Controller {
+class Phase extends CI_Controller
+{
 
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
         $this->load->helper('form');
         $this->load->library('form_validation');
@@ -11,17 +14,18 @@ class Phase extends CI_Controller {
         $this->load->model('mapping/projects_phases_contracts');
     }
 
-    public function index(){
+    public function index()
+    {
         $data = array();
         $postData = array();
 
         //get messages from the session
-        if($this->session->userdata('success_msg')){
+        if($this->session->userdata('success_msg')) {
             $data['success_msg'] = $this->session->userdata('success_msg');
             $this->session->unset_userdata('success_msg');
         }
 
-        if($this->session->userdata('error_msg')){
+        if($this->session->userdata('error_msg')) {
             $data['error_msg'] = $this->session->userdata('error_msg');
             $this->session->unset_userdata('error_msg');
         }
@@ -41,7 +45,7 @@ class Phase extends CI_Controller {
 
             }
 
-            if($insert){
+            if($insert) {
                 $this->session->set_userdata('success_msg', 'Phase has been added successfully.');
                 redirect('/phase');
             }else{
@@ -53,16 +57,16 @@ class Phase extends CI_Controller {
         $data['title'] = 'Project Phase Master';
 
         //load the list page view
-        $this->load->view('common/header',$data);
+        $this->load->view('common/header', $data);
         $this->load->view('master/phase/add', $data);
         $this->load->view('common/footer');
     }
 
-    public function view($id) {
+    public function view($id)
+    {
         $data = array();
 
-        if(!empty($id))
-        {
+        if(!empty($id)) {
             $data['view'] = $this->phases->getRows($id);
 
             $data['phase_code'] = $data['view']['phase_code'];
@@ -76,7 +80,7 @@ class Phase extends CI_Controller {
             $data['title'] = 'Project Phase Master';
 
             //load the details page view
-            $this->load->view('common/header',$data);
+            $this->load->view('common/header', $data);
             $this->load->view('master/phase/view', $data);
             $this->load->view('common/footer');
         }
@@ -86,24 +90,25 @@ class Phase extends CI_Controller {
         }
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $data = array();
         $postData = $this->phases->getRows($id);
         $data['phase_lists'] = $this->phases->getRows();
         $data['title'] = 'Project Phase Master Edit';
 
-        if($this->input->post('postSubmit')){
+        if($this->input->post('postSubmit')) {
 
             $postData = array(
                 'phase_name' => $this->input->post('phase_name'),
                 'phase_description' => $this->input->post('phase_description'),
-            	'weight' => $this->input->post('weight'),
+                'weight' => $this->input->post('weight'),
                 'date_modified' => date("m/d/Y G:i:s")
             );
 
             $update = $this->phases->update($postData, $id);
 
-            if($update){
+            if($update) {
                 $this->session->set_userdata('success_msg', 'Project has been updated successfully.');
                 redirect('/phase');
             }else{
@@ -119,23 +124,25 @@ class Phase extends CI_Controller {
         $this->load->view('common/footer');
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         if($id) {
-        	if (!$this->projects_phases_contracts->getRowsByPhase($id)) {
-        		$delete = $this->phases->delete($id);
-        		if($delete){
-                	$this->session->set_userdata('success_msg', 'Phase has been removed successfully.');
-            	}else{
-                	$this->session->set_userdata('error_msg', 'Some problems occurred, please try again.');
-            	}
-        	} else {
-        		$this->session->set_userdata('error_msg', 'Phase is used by projects');
-        	}
+            if (!$this->projects_phases_contracts->getRowsByPhase($id)) {
+                $delete = $this->phases->delete($id);
+                if($delete) {
+                    $this->session->set_userdata('success_msg', 'Phase has been removed successfully.');
+                }else{
+                    $this->session->set_userdata('error_msg', 'Some problems occurred, please try again.');
+                }
+            } else {
+                $this->session->set_userdata('error_msg', 'Phase is used by projects');
+            }
         }
         redirect('/phase');
     }
 
-    public function check() {
+    public function check()
+    {
         $phase_name = $this->input->post('phase_name');
         $result = $this->phases->check($phase_name);
         echo json_encode($result);

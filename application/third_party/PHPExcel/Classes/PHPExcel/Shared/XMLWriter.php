@@ -27,15 +27,17 @@ if (!defined('DEBUGMODE_ENABLED')) {
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Shared
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Shared
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_Shared_XMLWriter extends XMLWriter
 {
-    /** Temporary storage method */
+    /**
+ * Temporary storage method 
+*/
     const STORAGE_MEMORY    = 1;
     const STORAGE_DISK      = 2;
 
@@ -49,8 +51,8 @@ class PHPExcel_Shared_XMLWriter extends XMLWriter
     /**
      * Create a new PHPExcel_Shared_XMLWriter instance
      *
-     * @param int      $pTemporaryStorage        Temporary storage location
-     * @param string   $pTemporaryStorageFolder  Temporary storage folder
+     * @param int    $pTemporaryStorage       Temporary storage location
+     * @param string $pTemporaryStorageFolder Temporary storage folder
      */
     public function __construct($pTemporaryStorage = self::STORAGE_MEMORY, $pTemporaryStorageFolder = null)
     {
@@ -106,7 +108,7 @@ class PHPExcel_Shared_XMLWriter extends XMLWriter
     /**
      * Fallback method for writeRaw, introduced in PHP 5.2
      *
-     * @param string $text
+     * @param  string $text
      * @return string
      */
     public function writeRawData($text)

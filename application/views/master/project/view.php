@@ -20,11 +20,11 @@
                             <div class="panel-heading">
                                 <h5>View Project</h5>
                                 <?php if (isset($error_msg)) { ?>
-              						       <h5><b style="color: red;"><?php echo $error_msg ?></b></h5>
-              						      <?php } ?>
-              						      <?php if (isset($success_msg)) { ?>
-              						       <h5><b style="color: green;"><?php echo $success_msg ?></b></h5>
-              						      <?php } ?>
+                                             <h5><b style="color: red;"><?php echo $error_msg ?></b></h5>
+                                <?php } ?>
+                            <?php if (isset($success_msg)) { ?>
+                                             <h5><b style="color: green;"><?php echo $success_msg ?></b></h5>
+                            <?php } ?>
                             </div>
                             <div class="panel-body">
                                 <div class="row">
@@ -68,7 +68,9 @@
                                               <div class="form-group">
                                                 <label class="col-sm-12" for="">Status:</label>
                                                 <div class="col-sm-12">
-                                                  <p><?php if($is_active != 0) { echo "Active"; ?> <?php } else { ?> <?php echo "InActive"; } ?></p>
+                                                  <p><?php if($is_active != 0) { echo "Active"; ?> <?php 
+} else { ?> <?php echo "InActive"; 
+                                                        } ?></p>
                                                 </div>
                                               </div>
                                             </div>
@@ -110,7 +112,8 @@
                                                       <td>
                                                         <?php if($project_list['is_active'] != 0) { echo "Active"; ?>
                                                         <?php  } else {?>
-                                                        <?php echo "InActive"; } ?>
+                                                            <?php echo "InActive"; 
+                                                        } ?>
                                                       </td>
                                                       <td>
                                                         <a href="<?php echo site_url('project/view/'.$project_list['project_id']); ?>" class="btn btn-success btn-sm" data-toggle="tooltip" title="View"><i class="fa fa-eye" aria-hidden="true"></i></a>

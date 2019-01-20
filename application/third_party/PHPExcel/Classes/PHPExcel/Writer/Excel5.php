@@ -19,11 +19,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Writer_Excel5
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Writer_Excel5
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExcel_Writer_IWriter
 {
@@ -93,7 +93,7 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
     /**
      * Create a new PHPExcel_Writer_Excel5
      *
-     * @param    PHPExcel    $phpExcel    PHPExcel object
+     * @param PHPExcel $phpExcel PHPExcel object
      */
     public function __construct(PHPExcel $phpExcel)
     {
@@ -105,8 +105,8 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
     /**
      * Save PHPExcel to file
      *
-     * @param    string        $pFilename
-     * @throws    PHPExcel_Writer_Exception
+     * @param  string $pFilename
+     * @throws PHPExcel_Writer_Exception
      */
     public function save($pFilename = null)
     {
@@ -221,9 +221,9 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
      * Set temporary storage directory
      *
      * @deprecated
-     * @param    string    $pValue        Temporary storage directory
-     * @throws    PHPExcel_Writer_Exception    when directory does not exist
-     * @return PHPExcel_Writer_Excel5
+     * @param      string $pValue Temporary storage directory
+     * @throws     PHPExcel_Writer_Exception    when directory does not exist
+     * @return     PHPExcel_Writer_Excel5
      */
     public function setTempDir($pValue = '')
     {
@@ -232,7 +232,6 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
 
     /**
      * Build the Worksheet Escher objects
-     *
      */
     private function buildWorksheetEschers()
     {
@@ -464,30 +463,30 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
                     list($imagesx, $imagesy, $imageFormat) = getimagesize($filename);
 
                     switch ($imageFormat) {
-                        case 1: // GIF, not supported by BIFF8, we convert to PNG
-                            $blipType = PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE::BLIPTYPE_PNG;
-                            ob_start();
-                            imagepng(imagecreatefromgif($filename));
-                            $blipData = ob_get_contents();
-                            ob_end_clean();
-                            break;
-                        case 2: // JPEG
-                            $blipType = PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE::BLIPTYPE_JPEG;
-                            $blipData = file_get_contents($filename);
-                            break;
-                        case 3: // PNG
-                            $blipType = PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE::BLIPTYPE_PNG;
-                            $blipData = file_get_contents($filename);
-                            break;
-                        case 6: // Windows DIB (BMP), we convert to PNG
-                            $blipType = PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE::BLIPTYPE_PNG;
-                            ob_start();
-                            imagepng(PHPExcel_Shared_Drawing::imagecreatefrombmp($filename));
-                            $blipData = ob_get_contents();
-                            ob_end_clean();
-                            break;
-                        default:
-                            continue 2;
+                    case 1: // GIF, not supported by BIFF8, we convert to PNG
+                        $blipType = PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE::BLIPTYPE_PNG;
+                        ob_start();
+                        imagepng(imagecreatefromgif($filename));
+                        $blipData = ob_get_contents();
+                        ob_end_clean();
+                        break;
+                    case 2: // JPEG
+                        $blipType = PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE::BLIPTYPE_JPEG;
+                        $blipData = file_get_contents($filename);
+                        break;
+                    case 3: // PNG
+                        $blipType = PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE::BLIPTYPE_PNG;
+                        $blipData = file_get_contents($filename);
+                        break;
+                    case 6: // Windows DIB (BMP), we convert to PNG
+                        $blipType = PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE::BLIPTYPE_PNG;
+                        ob_start();
+                        imagepng(PHPExcel_Shared_Drawing::imagecreatefrombmp($filename));
+                        $blipData = ob_get_contents();
+                        ob_end_clean();
+                        break;
+                    default:
+                        continue 2;
                     }
 
                     $blip = new PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE_Blip();
@@ -500,16 +499,16 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
                     $bstoreContainer->addBSE($BSE);
                 } elseif ($drawing instanceof PHPExcel_Worksheet_MemoryDrawing) {
                     switch ($drawing->getRenderingFunction()) {
-                        case PHPExcel_Worksheet_MemoryDrawing::RENDERING_JPEG:
-                            $blipType = PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE::BLIPTYPE_JPEG;
-                            $renderingFunction = 'imagejpeg';
-                            break;
-                        case PHPExcel_Worksheet_MemoryDrawing::RENDERING_GIF:
-                        case PHPExcel_Worksheet_MemoryDrawing::RENDERING_PNG:
-                        case PHPExcel_Worksheet_MemoryDrawing::RENDERING_DEFAULT:
-                            $blipType = PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE::BLIPTYPE_PNG;
-                            $renderingFunction = 'imagepng';
-                            break;
+                    case PHPExcel_Worksheet_MemoryDrawing::RENDERING_JPEG:
+                        $blipType = PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE::BLIPTYPE_JPEG;
+                        $renderingFunction = 'imagejpeg';
+                        break;
+                    case PHPExcel_Worksheet_MemoryDrawing::RENDERING_GIF:
+                    case PHPExcel_Worksheet_MemoryDrawing::RENDERING_PNG:
+                    case PHPExcel_Worksheet_MemoryDrawing::RENDERING_DEFAULT:
+                        $blipType = PHPExcel_Shared_Escher_DggContainer_BstoreContainer_BSE::BLIPTYPE_PNG;
+                        $renderingFunction = 'imagepng';
+                        break;
                     }
 
                     ob_start();
@@ -535,6 +534,7 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
 
     /**
      * Build the OLE Part for DocumentSummary Information
+     *
      * @return string
      */
     private function writeDocumentSummaryInformation()
@@ -731,6 +731,7 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
 
     /**
      * Build the OLE Part for Summary Information
+     *
      * @return string
      */
     private function writeSummaryInformation()

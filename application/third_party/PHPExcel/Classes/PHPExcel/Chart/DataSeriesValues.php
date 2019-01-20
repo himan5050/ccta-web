@@ -19,11 +19,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category    PHPExcel
- * @package        PHPExcel_Chart
- * @copyright    Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license        http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version        ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Chart
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_Chart_DataSeriesValues
 {
@@ -39,42 +39,42 @@ class PHPExcel_Chart_DataSeriesValues
     /**
      * Series Data Type
      *
-     * @var    string
+     * @var string
      */
     private $dataType;
 
     /**
      * Series Data Source
      *
-     * @var    string
+     * @var string
      */
     private $dataSource;
 
     /**
      * Format Code
      *
-     * @var    string
+     * @var string
      */
     private $formatCode;
 
     /**
      * Series Point Marker
      *
-     * @var    string
+     * @var string
      */
     private $pointMarker;
 
     /**
      * Point Count (The number of datapoints in the dataseries)
      *
-     * @var    integer
+     * @var integer
      */
     private $pointCount = 0;
 
     /**
      * Data Values
      *
-     * @var    array of mixed
+     * @var array of mixed
      */
     private $dataValues = array();
 
@@ -94,7 +94,7 @@ class PHPExcel_Chart_DataSeriesValues
     /**
      * Get Series Data Type
      *
-     * @return    string
+     * @return string
      */
     public function getDataType()
     {
@@ -104,13 +104,15 @@ class PHPExcel_Chart_DataSeriesValues
     /**
      * Set Series Data Type
      *
-     * @param    string    $dataType    Datatype of this data series
-     *                                Typical values are:
-     *                                    PHPExcel_Chart_DataSeriesValues::DATASERIES_TYPE_STRING
-     *                                        Normally used for axis point values
-     *                                    PHPExcel_Chart_DataSeriesValues::DATASERIES_TYPE_NUMBER
-     *                                        Normally used for chart data values
-     * @return    PHPExcel_Chart_DataSeriesValues
+     * @param  string $dataType Datatype of this data series
+     *                          Typical values are:
+     *                          PHPExcel_Chart_DataSeriesValues::DATASERIES_TYPE_STRING
+     *                          Normally used for axis point
+     *                          values
+     *                          PHPExcel_Chart_DataSeriesValues::DATASERIES_TYPE_NUMBER
+     *                          Normally used for chart data
+     *                          values
+     * @return PHPExcel_Chart_DataSeriesValues
      */
     public function setDataType($dataType = self::DATASERIES_TYPE_NUMBER)
     {
@@ -125,7 +127,7 @@ class PHPExcel_Chart_DataSeriesValues
     /**
      * Get Series Data Source (formula)
      *
-     * @return    string
+     * @return string
      */
     public function getDataSource()
     {
@@ -135,8 +137,8 @@ class PHPExcel_Chart_DataSeriesValues
     /**
      * Set Series Data Source (formula)
      *
-     * @param    string    $dataSource
-     * @return    PHPExcel_Chart_DataSeriesValues
+     * @param  string $dataSource
+     * @return PHPExcel_Chart_DataSeriesValues
      */
     public function setDataSource($dataSource = null, $refreshDataValues = true)
     {
@@ -162,8 +164,8 @@ class PHPExcel_Chart_DataSeriesValues
     /**
      * Set Point Marker
      *
-     * @param    string    $marker
-     * @return    PHPExcel_Chart_DataSeriesValues
+     * @param  string $marker
+     * @return PHPExcel_Chart_DataSeriesValues
      */
     public function setPointMarker($marker = null)
     {
@@ -175,7 +177,7 @@ class PHPExcel_Chart_DataSeriesValues
     /**
      * Get Series Format Code
      *
-     * @return    string
+     * @return string
      */
     public function getFormatCode()
     {
@@ -185,8 +187,8 @@ class PHPExcel_Chart_DataSeriesValues
     /**
      * Set Series Format Code
      *
-     * @param    string    $formatCode
-     * @return    PHPExcel_Chart_DataSeriesValues
+     * @param  string $formatCode
+     * @return PHPExcel_Chart_DataSeriesValues
      */
     public function setFormatCode($formatCode = null)
     {
@@ -198,7 +200,7 @@ class PHPExcel_Chart_DataSeriesValues
     /**
      * Get Series Point Count
      *
-     * @return    integer
+     * @return integer
      */
     public function getPointCount()
     {
@@ -208,7 +210,7 @@ class PHPExcel_Chart_DataSeriesValues
     /**
      * Identify if the Data Series is a multi-level or a simple series
      *
-     * @return    boolean
+     * @return boolean
      */
     public function isMultiLevelSeries()
     {
@@ -221,7 +223,7 @@ class PHPExcel_Chart_DataSeriesValues
     /**
      * Return the level count of a multi-level Data Series
      *
-     * @return    boolean
+     * @return boolean
      */
     public function multiLevelCount()
     {
@@ -235,7 +237,7 @@ class PHPExcel_Chart_DataSeriesValues
     /**
      * Get Series Data Values
      *
-     * @return    array of mixed
+     * @return array of mixed
      */
     public function getDataValues()
     {
@@ -245,7 +247,7 @@ class PHPExcel_Chart_DataSeriesValues
     /**
      * Get the first Series Data value
      *
-     * @return    mixed
+     * @return mixed
      */
     public function getDataValue()
     {
@@ -261,11 +263,11 @@ class PHPExcel_Chart_DataSeriesValues
     /**
      * Set Series Data Values
      *
-     * @param    array    $dataValues
-     * @param    boolean    $refreshDataSource
+     * @param  array   $dataValues
+     * @param  boolean $refreshDataSource
      *                    TRUE - refresh the value of dataSource based on the values of $dataValues
      *                    FALSE - don't change the value of dataSource
-     * @return    PHPExcel_Chart_DataSeriesValues
+     * @return PHPExcel_Chart_DataSeriesValues
      */
     public function setDataValues($dataValues = array(), $refreshDataSource = true)
     {

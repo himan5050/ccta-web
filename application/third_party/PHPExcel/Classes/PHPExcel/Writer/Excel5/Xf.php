@@ -19,11 +19,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Writer_Excel5
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Writer_Excel5
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 
 // Original file header of PEAR::Spreadsheet_Excel_Writer_Format (used as the base for this class):
@@ -71,54 +71,63 @@ class PHPExcel_Writer_Excel5_Xf
 
     /**
      * Index to the FONT record. Index 4 does not exist
+     *
      * @var integer
      */
     private $fontIndex;
 
     /**
      * An index (2 bytes) to a FORMAT record (number format).
+     *
      * @var integer
      */
     private $numberFormatIndex;
 
     /**
      * 1 bit, apparently not used.
+     *
      * @var integer
      */
     private $textJustLast;
 
     /**
      * The cell's foreground color.
+     *
      * @var integer
      */
     private $foregroundColor;
 
     /**
      * The cell's background color.
+     *
      * @var integer
      */
     private $backgroundColor;
 
     /**
      * Color of the bottom border of the cell.
+     *
      * @var integer
      */
     private $bottomBorderColor;
 
     /**
      * Color of the top border of the cell.
+     *
      * @var integer
      */
     private $topBorderColor;
 
     /**
-    * Color of the left border of the cell.
-    * @var integer
-    */
+     * Color of the left border of the cell.
+     *
+     * @var integer
+     */
     private $leftBorderColor;
 
     /**
      * Color of the right border of the cell.
+     *
      * @var integer
      */
     private $rightBorderColor;
@@ -127,7 +136,7 @@ class PHPExcel_Writer_Excel5_Xf
      * Constructor
      *
      * @access public
-     * @param PHPExcel_Style    The XF format
+     * @param  PHPExcel_Style    The XF format
      */
     public function __construct(PHPExcel_Style $style = null)
     {
@@ -268,7 +277,7 @@ class PHPExcel_Writer_Excel5_Xf
      * Sets the cell's bottom border color
      *
      * @access public
-     * @param int $colorIndex Color index
+     * @param  int $colorIndex Color index
      */
     public function setBottomColor($colorIndex)
     {
@@ -279,7 +288,7 @@ class PHPExcel_Writer_Excel5_Xf
      * Sets the cell's top border color
      *
      * @access public
-     * @param int $colorIndex Color index
+     * @param  int $colorIndex Color index
      */
     public function setTopColor($colorIndex)
     {
@@ -290,7 +299,7 @@ class PHPExcel_Writer_Excel5_Xf
      * Sets the cell's left border color
      *
      * @access public
-     * @param int $colorIndex Color index
+     * @param  int $colorIndex Color index
      */
     public function setLeftColor($colorIndex)
     {
@@ -301,7 +310,7 @@ class PHPExcel_Writer_Excel5_Xf
      * Sets the cell's right border color
      *
      * @access public
-     * @param int $colorIndex Color index
+     * @param  int $colorIndex Color index
      */
     public function setRightColor($colorIndex)
     {
@@ -312,7 +321,7 @@ class PHPExcel_Writer_Excel5_Xf
      * Sets the cell's diagonal border color
      *
      * @access public
-     * @param int $colorIndex Color index
+     * @param  int $colorIndex Color index
      */
     public function setDiagColor($colorIndex)
     {
@@ -324,7 +333,7 @@ class PHPExcel_Writer_Excel5_Xf
      * Sets the cell's foreground color
      *
      * @access public
-     * @param int $colorIndex Color index
+     * @param  int $colorIndex Color index
      */
     public function setFgColor($colorIndex)
     {
@@ -335,7 +344,7 @@ class PHPExcel_Writer_Excel5_Xf
      * Sets the cell's background color
      *
      * @access public
-     * @param int $colorIndex Color index
+     * @param  int $colorIndex Color index
      */
     public function setBgColor($colorIndex)
     {
@@ -347,7 +356,7 @@ class PHPExcel_Writer_Excel5_Xf
      * It can be date, time, currency, etc...
      *
      * @access public
-     * @param integer $numberFormatIndex Index to format record
+     * @param  integer $numberFormatIndex Index to format record
      */
     public function setNumberFormatIndex($numberFormatIndex)
     {
@@ -366,8 +375,8 @@ class PHPExcel_Writer_Excel5_Xf
 
     /**
      * Map of BIFF2-BIFF8 codes for border styles
-     * @static    array of int
      *
+     * @static array of int
      */
     private static $mapBorderStyles = array(
         PHPExcel_Style_Border::BORDER_NONE             => 0x00,
@@ -389,7 +398,7 @@ class PHPExcel_Writer_Excel5_Xf
     /**
      * Map border style
      *
-     * @param string $borderStyle
+     * @param  string $borderStyle
      * @return int
      */
     private static function mapBorderStyle($borderStyle)
@@ -402,8 +411,8 @@ class PHPExcel_Writer_Excel5_Xf
 
     /**
      * Map of BIFF2-BIFF8 codes for fill types
-     * @static    array of int
      *
+     * @static array of int
      */
     private static $mapFillTypes = array(
         PHPExcel_Style_Fill::FILL_NONE                    => 0x00,
@@ -432,7 +441,7 @@ class PHPExcel_Writer_Excel5_Xf
     /**
      * Map fill type
      *
-     * @param string $fillType
+     * @param  string $fillType
      * @return int
      */
     private static function mapFillType($fillType)
@@ -445,8 +454,8 @@ class PHPExcel_Writer_Excel5_Xf
 
     /**
      * Map of BIFF2-BIFF8 codes for horizontal alignment
-     * @static    array of int
      *
+     * @static array of int
      */
     private static $mapHAlignments = array(
         PHPExcel_Style_Alignment::HORIZONTAL_GENERAL           => 0,
@@ -461,7 +470,7 @@ class PHPExcel_Writer_Excel5_Xf
     /**
      * Map to BIFF2-BIFF8 codes for horizontal alignment
      *
-     * @param string $hAlign
+     * @param  string $hAlign
      * @return int
      */
     private function mapHAlign($hAlign)
@@ -474,8 +483,8 @@ class PHPExcel_Writer_Excel5_Xf
 
     /**
      * Map of BIFF2-BIFF8 codes for vertical alignment
-     * @static    array of int
      *
+     * @static array of int
      */
     private static $mapVAlignments = array(
         PHPExcel_Style_Alignment::VERTICAL_TOP     => 0,
@@ -487,7 +496,7 @@ class PHPExcel_Writer_Excel5_Xf
     /**
      * Map to BIFF2-BIFF8 codes for vertical alignment
      *
-     * @param string $vAlign
+     * @param  string $vAlign
      * @return int
      */
     private static function mapVAlign($vAlign)
@@ -501,7 +510,7 @@ class PHPExcel_Writer_Excel5_Xf
     /**
      * Map to BIFF8 codes for text rotation angle
      *
-     * @param int $textRotation
+     * @param  int $textRotation
      * @return int
      */
     private static function mapTextRotation($textRotation)
@@ -518,40 +527,40 @@ class PHPExcel_Writer_Excel5_Xf
     /**
      * Map locked
      *
-     * @param string
+     * @param  string
      * @return int
      */
     private static function mapLocked($locked)
     {
         switch ($locked) {
-            case PHPExcel_Style_Protection::PROTECTION_INHERIT:
-                return 1;
-            case PHPExcel_Style_Protection::PROTECTION_PROTECTED:
-                return 1;
-            case PHPExcel_Style_Protection::PROTECTION_UNPROTECTED:
-                return 0;
-            default:
-                return 1;
+        case PHPExcel_Style_Protection::PROTECTION_INHERIT:
+            return 1;
+        case PHPExcel_Style_Protection::PROTECTION_PROTECTED:
+            return 1;
+        case PHPExcel_Style_Protection::PROTECTION_UNPROTECTED:
+            return 0;
+        default:
+            return 1;
         }
     }
 
     /**
      * Map hidden
      *
-     * @param string
+     * @param  string
      * @return int
      */
     private static function mapHidden($hidden)
     {
         switch ($hidden) {
-            case PHPExcel_Style_Protection::PROTECTION_INHERIT:
-                return 0;
-            case PHPExcel_Style_Protection::PROTECTION_PROTECTED:
-                return 1;
-            case PHPExcel_Style_Protection::PROTECTION_UNPROTECTED:
-                return 0;
-            default:
-                return 0;
+        case PHPExcel_Style_Protection::PROTECTION_INHERIT:
+            return 0;
+        case PHPExcel_Style_Protection::PROTECTION_PROTECTED:
+            return 1;
+        case PHPExcel_Style_Protection::PROTECTION_UNPROTECTED:
+            return 0;
+        default:
+            return 0;
         }
     }
 }

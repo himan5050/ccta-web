@@ -19,11 +19,11 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  *
- * @category   PHPExcel
- * @package    PHPExcel_Worksheet
- * @copyright  Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
- * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
- * @version    ##VERSION##, ##DATE##
+ * @category  PHPExcel
+ * @package   PHPExcel_Worksheet
+ * @copyright Copyright (c) 2006 - 2015 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @license   http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt    LGPL
+ * @version   ##VERSION##, ##DATE##
  */
 class PHPExcel_Worksheet_Row
 {
@@ -44,8 +44,8 @@ class PHPExcel_Worksheet_Row
     /**
      * Create a new row
      *
-     * @param PHPExcel_Worksheet         $parent
-     * @param int                        $rowIndex
+     * @param PHPExcel_Worksheet $parent
+     * @param int                $rowIndex
      */
     public function __construct(PHPExcel_Worksheet $parent = null, $rowIndex = 1)
     {
@@ -75,8 +75,8 @@ class PHPExcel_Worksheet_Row
     /**
      * Get cell iterator
      *
-     * @param    string                $startColumn    The column address at which to start iterating
-     * @param    string                $endColumn        Optionally, the column address at which to stop iterating
+     * @param  string $startColumn The column address at which to start iterating
+     * @param  string $endColumn   Optionally, the column address at which to stop iterating
      * @return PHPExcel_Worksheet_CellIterator
      */
     public function getCellIterator($startColumn = 'A', $endColumn = null)
