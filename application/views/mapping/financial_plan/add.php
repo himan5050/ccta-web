@@ -50,14 +50,11 @@
                                 <!-- <th>Current Base (<i class="fa fa-usd" aria-hidden="true"></i>):</th> -->
                                 <th>Base Line (<i class="fa fa-usd" aria-hidden="true"></i>):</th>
                                 <th>EAC (<i class="fa fa-usd" aria-hidden="true"></i>):</th>
-                                <th>Unfunded (<i class="fa fa-usd" aria-hidden="true"></i>):</th>
+                                <th>Base Line (<i class="fa fa-usd" aria-hidden="true"></i>) - EAC (<i class="fa fa-usd" aria-hidden="true"></i>):</th>
                                 <th>Prior FYs Expended to date </th>
                                 <th>FY<?php echo $year ?> Expended to date</th>
                                 <th>FY<?php echo $year ?> Balance</th>
-                              <!--  <th>Start Date:</th>
-                                <th>End Date:</th> -->
                                 <th>Financial Year:</th>
-                                <!-- <th></th> -->
                               </tr>
                             </thead>
                             <tbody>
@@ -778,7 +775,10 @@
   //Ajax call to check allocated amount should not be smaller
   function verify1(i)
   {
+    var prop_base = parseInt($("#prop_base").val());
     var amount = parseInt(i.value);
+    var unfunded = prop_base - amount;
+    $('#unfunded').val(unfunded);
     var a = i.id;
 
     var fund_id = $("#fund").val();
