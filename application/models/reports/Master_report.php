@@ -472,18 +472,20 @@ class Master_report extends CI_Model
     public function getphasewise_startdate($project_id, $project_phase_contract_id)
     {
         if($project_id && $project_phase_contract_id) {
-            $query = $this->db->query("SELECT start_date as dates FROM financial_plan WHERE project_phase_contract_id = '". $project_phase_contract_id ."' AND project_id = '". $project_id ."'");
-
-            return $query->result_array();
+            $query = $this->db->query("SELECT contract_start_date as dates FROM map_project_phase_contract WHERE project_phase_contract_id = '". $project_phase_contract_id ."' AND project_id = '". $project_id ."'");
+            foreach ($query->result() as $row) {
+              return $row->dates;
+            }
         }
     }
 
     public function getphasewise_enddate($project_id, $project_phase_contract_id)
     {
         if($project_id && $project_phase_contract_id) {
-            $query = $this->db->query("SELECT end_date as dates FROM financial_plan WHERE project_phase_contract_id = '". $project_phase_contract_id ."' AND project_id = '". $project_id ."'");
-
-            return $query->result_array();
+            $query = $this->db->query("SELECT contract_end_date as dates FROM map_project_phase_contract WHERE project_phase_contract_id = '". $project_phase_contract_id ."' AND project_id = '". $project_id ."'");
+            foreach ($query->result() as $row) {
+              return $row->dates;
+            }
         }
     }
 
