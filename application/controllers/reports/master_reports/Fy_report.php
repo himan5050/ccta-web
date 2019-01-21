@@ -68,13 +68,14 @@ class Fy_Report extends CI_Controller
 
     public function returnFYName($fy)
     {
+        $fy_year = ( date('m') > 6) ? date('y') + 1 : date('y');
         switch($fy) {
         case 'priorfy':
             return 'Prior';
         case 'fytodate':
-            return 'FY18 Expended to Date';
+            return 'FY' . $fy_year . ' Expended to Date';
         case 'fybalance':
-            return 'FY18 Remaining';
+            return 'FY' . $fy_year . ' Remaining';
         default:
             return 'Financial Year - '.$fy;
         }

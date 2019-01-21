@@ -6,11 +6,14 @@ switch ($_SERVER["HTTP_HOST"]) {
 case 'localhost':
     $base_url = 'http://localhost/ccta';
     break;
+
 case 'www.qa.vuonsite.com':
     $base_url = 'http://www.qa.vuonsite.com';
     break;
+
 case 'www.vuonsite.com':
     $base_url = 'http://www.vuonsite.com/invoices';
+    break;
 
 default:
     $base_url = 'http://localhost/ccta';

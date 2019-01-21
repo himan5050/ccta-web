@@ -54,7 +54,6 @@ case 'www.qa.vuonsite.com':
   );
     break;
 case 'www.vuonsite.com':
-    $base_url = 'http://www.vuonsite.com/invoices';
     $db['default'] = array(
     'dsn'    => '',
     'hostname' => 'localhost',
@@ -76,4 +75,5 @@ case 'www.vuonsite.com':
     'failover' => array(),
     'save_queries' => TRUE
     );
+    break;
 }
