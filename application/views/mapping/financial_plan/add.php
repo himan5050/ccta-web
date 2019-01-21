@@ -482,9 +482,9 @@
       var curMonth = today.getMonth();
       var fiscalYr = "";
       if (curMonth > 6) { //
-        var fiscalYr = (today.getFullYear() + 1).toString();
+        var fiscalYr = (today.getFullYear() + 2).toString();
       } else {
-        var fiscalYr = today.getFullYear().toString();
+        var fiscalYr = (today.getFullYear() + 1).toString();
       }
       $('.datetimepicker').datetimepicker({
         viewMode: 'years',
@@ -554,9 +554,9 @@
 
     var fiscalYr = "";
     if (curMonth > 6) { //
-        var fiscalYr = (today.getFullYear() + 1).toString();
+        var fiscalYr = (today.getFullYear() + 2).toString();
     } else {
-        var fiscalYr = today.getFullYear().toString();
+        var fiscalYr = (today.getFullYear() + 1).toString();
     }
 
     $('.datetimepicker').datetimepicker({
