@@ -15,6 +15,14 @@ case 'www.vuonsite.com':
     $base_url = 'http://www.vuonsite.com/invoices';
     break;
 
+case 'www.migration.vuonsite.com':
+    $base_url = 'http://www.migration.vuonsite.com';
+    break;
+
+case 'migration.vuonsite.com':
+    $base_url = 'http://migration.vuonsite.com';
+    break;
+
 default:
     $base_url = 'http://localhost/ccta';
     break;

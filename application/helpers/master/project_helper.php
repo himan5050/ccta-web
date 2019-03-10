@@ -28,7 +28,7 @@ if (!function_exists('validate_edit_project')) {
         $project_phase_contract_sum = $modelProjectPhaseContract->getSumRowsByProject($project_id);
 
         if (($new_total_project_cost < $financial_plan_sum) || ($new_total_project_cost < $funds_sum)
-            || ($new_total_project_cost < $project_phase_contract_sum) 
+            || ($new_total_project_cost < $project_phase_contract_sum)
         ) {
             $error_msg = 'Total project cost is not valid.';
             return $error_msg;
@@ -54,7 +54,7 @@ if (!function_exists('cleanup_process')) {
         $projectfunds = $modelProjectFunds->getRowsByProject($project_id);
         if (!empty($projectfunds)) {
             foreach ($projectfunds as $projectfund) {
-                $masterfund = $this->funds->getRows($projectfund['fund_id']);
+                $masterfund = $modelFunds->funds->getRows($projectfund['fund_id']);
                 $remain_allocated_amount = $masterfund['allocated_amount'] - $projectfund['allocated_amount'];
                 $remain_available_amount = $masterfund['available_amount'] - $projectfund['available_amount'];
                 if (($remain_allocated_amount >= 0) && ($remain_available_amount >= 0)) {
