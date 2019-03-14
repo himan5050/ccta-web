@@ -143,6 +143,7 @@ class Project_Phase_Contract extends CI_Controller
         if (!$this->input->post('postFilter')) {
             // Get Results to display list of phase to contracts.
             $results = $this->projects_phases_contracts->getRows();
+            $data['project_phase_contract_lists'] = [];
 
             // Total amount of contracts.
             $total_contracts_amount = 0;
