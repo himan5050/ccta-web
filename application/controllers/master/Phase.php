@@ -30,6 +30,13 @@ class Phase extends CI_Controller
             $this->session->unset_userdata('error_msg');
         }
 
+        if(!$this->session->userdata('username')) {
+          redirect('user/login');
+        } else {
+            $data['username'] = $this->session->userdata('username');
+        }
+
+
         if($this->input->post('postSubmit')) {
             for ($i=0; $i < count($this->input->post('phase_name')); $i++) {
                 $postData = array(
@@ -66,6 +73,13 @@ class Phase extends CI_Controller
     {
         $data = array();
 
+        if(!$this->session->userdata('username')) {
+          redirect('user/login');
+        } else {
+            $data['username'] = $this->session->userdata('username');
+        }
+
+
         if(!empty($id)) {
             $data['view'] = $this->phases->getRows($id);
 
@@ -96,6 +110,13 @@ class Phase extends CI_Controller
         $postData = $this->phases->getRows($id);
         $data['phase_lists'] = $this->phases->getRows();
         $data['title'] = 'Project Phase Master Edit';
+
+        if(!$this->session->userdata('username')) {
+          redirect('user/login');
+        } else {
+            $data['username'] = $this->session->userdata('username');
+        }
+
 
         if($this->input->post('postSubmit')) {
 

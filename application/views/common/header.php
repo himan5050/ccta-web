@@ -25,7 +25,7 @@
         <div class="row">
           <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 admin-head-logo">
                  <span class="modal-title-admin">
-                    <a href="<?php echo site_url('dashboard'); ?>">
+                    <a href="<?php echo site_url('user/login'); ?>">
                       <img src="<?php echo base_url('asset/img/') ?>/CroppedLogo.png" class="img-responsive header-ficusdash-logo">
                   </a>
               </span>
@@ -37,6 +37,14 @@
                 </span>
                  </a>
               </div>
-        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5"></p></div>
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5"></p>
+          <div class="user-navigation">
+            <?php if (isset($username)): ?>
+              <span><a href="#"><?php echo 'Hi ' . $username . '!'; ?></a></span>
+              <span><a href="<?php echo site_url('user/logout') ?>">Logout</a></span>
+            <?php endif; ?>
+          </div>
+
+        </div>
       </div>
     </div>

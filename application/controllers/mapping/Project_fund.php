@@ -37,6 +37,12 @@ class Project_Fund extends CI_Controller
             $this->session->unset_userdata('error_msg');
         }
 
+        if(!$this->session->userdata('username')) {
+          redirect('user/login');
+        } else {
+            $data['username'] = $this->session->userdata('username');
+        }
+
         if(!$this->session->userdata('project_id')) {
             redirect('/project');
         } else {
@@ -161,6 +167,12 @@ class Project_Fund extends CI_Controller
     public function edit($id)
     {
         $data = [];
+        if(!$this->session->userdata('username')) {
+          redirect('user/login');
+        } else {
+            $data['username'] = $this->session->userdata('username');
+        }
+
         // set session values.
         if(!$this->session->userdata('project_id')) {
             redirect('/project');

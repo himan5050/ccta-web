@@ -50,6 +50,7 @@ class Invoice extends CI_Controller
         $data = array();
         $postData = array();
 
+
         //get messages from the session
         if($this->session->userdata('success_msg')) {
             $data['success_msg'] = $this->session->userdata('success_msg');
@@ -59,6 +60,12 @@ class Invoice extends CI_Controller
         if($this->session->userdata('error_msg')) {
             $data['error_msg'] = $this->session->userdata('error_msg');
             $this->session->unset_userdata('error_msg');
+        }
+
+        if(!$this->session->userdata('username')) {
+          redirect('user/login');
+        } else {
+            $data['username'] = $this->session->userdata('username');
         }
 
         if($this->input->post('postSubmit')) {

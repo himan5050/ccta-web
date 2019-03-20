@@ -16,6 +16,12 @@ class Dashboard extends CI_Controller
 
         $data['title'] = 'Ficus Dashboard';
 
+        if(!$this->session->userdata('username')) {
+          redirect('user/login');
+        } else {
+            $data['username'] = $this->session->userdata('username');
+        }
+
         $this->load->view('common/header', $data);
         $this->load->view('dashboard');
         $this->load->view('common/footer');

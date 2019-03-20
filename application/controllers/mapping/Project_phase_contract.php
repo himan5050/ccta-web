@@ -38,6 +38,13 @@ class Project_Phase_Contract extends CI_Controller
             $data['error_msg'] = $this->session->userdata('error_msg');
             $this->session->unset_userdata('error_msg');
         }
+
+        if(!$this->session->userdata('username')) {
+          redirect('user/login');
+        } else {
+            $data['username'] = $this->session->userdata('username');
+        }
+
         // check project id.
         if (!$this->session->userdata('project_id')) {
             redirect('/project');
@@ -440,6 +447,12 @@ class Project_Phase_Contract extends CI_Controller
         if ($this->session->userdata('error_msg')) {
             $data['error_msg'] = $this->session->userdata('error_msg');
             $this->session->unset_userdata('error_msg');
+        }
+
+        if(!$this->session->userdata('username')) {
+          redirect('user/login');
+        } else {
+            $data['username'] = $this->session->userdata('username');
         }
 
         if (!$this->session->userdata('project_id')) {

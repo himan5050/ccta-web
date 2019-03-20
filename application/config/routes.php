@@ -2,7 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 // Default controller.
-$route['default_controller'] = 'dashboard';
+$route['dashboard'] = 'dashboard';
+$route['default_controller'] = 'user/login';
+
+// User controller.
+$route['user/login'] = 'user/login';
 
 // Master project module.
 $route['project/view/(:num)'] = 'master/project/view/$1';

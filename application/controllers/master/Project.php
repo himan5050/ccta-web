@@ -44,6 +44,12 @@ class Project extends CI_Controller
             $this->session->unset_userdata('error_msg');
         }
 
+        if(!$this->session->userdata('username')) {
+          redirect('user/login');
+        } else {
+            $data['username'] = $this->session->userdata('username');
+        }
+
         if ($this->input->post('project_name')) {
             $postData = [
             'project_code' => $this->input->post('project_code'),
@@ -104,6 +110,13 @@ class Project extends CI_Controller
         $data = [];
         $this->session->set_userdata('project_id', $id);
 
+        if(!$this->session->userdata('username')) {
+          redirect('user/login');
+        } else {
+            $data['username'] = $this->session->userdata('username');
+        }
+
+
         // Check if project id is not empty.
         if (!empty($id)) {
             $data['view'] = $this->projects->getRows($id);
@@ -144,6 +157,12 @@ class Project extends CI_Controller
         $postData = $this->projects->getRows($id);
         $data['project_lists'] = $this->projects->getRows();
         $data['title'] = 'Project Edit';
+
+        if(!$this->session->userdata('username')) {
+          redirect('user/login');
+        } else {
+            $data['username'] = $this->session->userdata('username');
+        }
 
         if ($this->input->post('project_name')) {
             $postData = [

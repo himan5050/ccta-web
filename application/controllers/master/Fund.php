@@ -29,6 +29,13 @@ class Fund extends CI_Controller
             $this->session->unset_userdata('error_msg');
         }
 
+        if(!$this->session->userdata('username')) {
+          redirect('user/login');
+        } else {
+            $data['username'] = $this->session->userdata('username');
+        }
+
+
         if($this->input->post('postSubmit')) {
             for ($i=0; $i < count($this->input->post('fund_name')); $i++)
             {
@@ -86,6 +93,13 @@ class Fund extends CI_Controller
 
         $postData = $this->funds->getRows($id);
         $data['fund_lists'] = $this->funds->getRows();
+
+        if(!$this->session->userdata('username')) {
+          redirect('user/login');
+        } else {
+            $data['username'] = $this->session->userdata('username');
+        }
+
 
         $data['title'] = 'Edit Fund Master';
 
